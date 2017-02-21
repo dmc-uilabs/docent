@@ -1,0 +1,40 @@
+<div id='blackLinks'>
+
+  <div class='container-fluid'>
+  <div class='mra_panel'>
+
+    <div class="mra_page_title">
+      <h2>{{pageTitle}}</h2>
+      <hr>
+    </div>
+
+    <div class='row'>
+      <div class='col-lg-1'></div>
+      <div class='col-lg-10'>
+        <table class='table table-responsive table-hover' align='center'>
+          {{#each navigation}}
+          <th colspan=3 align='center'>{{thread}}</th>
+            {{#each questions}}
+              <tr>
+                  <td align='left'></td>
+                  <td align='left'>Level:{{mrlLevel}}</td>
+                  <td align='left'>
+                    <a href onclick='$("#functionToCall").val("getQuestionnairePageFromNavigation");$("#navQuestionId").val({{questionId}})' ng-click='run()'>{{questionText}}</a><br>
+                  </td>
+              </tr>
+            {{/each}}
+            </tr>
+          {{/each}}
+        </table>
+      </div>
+      <div class='col-lg-1'></div>
+    </div>
+
+  </div>
+  </div>
+    <input type='hidden' id='navThreadId' value='0'>
+    <input type='hidden' id='navSubThreadId' value='0'>
+    <input type='hidden' id='navSubThreadLevelId' value='0'>
+    <input type='hidden' id='navQuestionId' value='0'>
+    <input type='hidden' id='inputPage' value='navigationPage'>
+</div>

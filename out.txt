@@ -1,0 +1,28 @@
+definitions=undefined
+assessment=undefined
+threads=undefined
+outputTemplate=<div class='header' id='header'>
+	Manufacturing Readiness Assessment
+</div>
+<div>
+  <div>
+    <table class='table table-responsive table-hover' style='max-width:800px;' align='center'>
+      <th colspan=2 align='center'>Acronyms</th>
+      {{#each acronyms}}
+      <tr><td align='left'><b>{{acronym}}</b></td><td align='left'>{{value}}</td></tr>{{/each}}
+    </table>
+    <input type='hidden' id='currentPage' value='acronymPage'>
+  </div>
+</div>
+<div class='footer' id='footer'>
+	<ul class='list-inline'>
+		<li><a href ng-click='functionToCall="getStartPage"; run()'>Start Assessment</a></li>
+		<li><a href ng-click='functionToCall="getCriteriaPage"; run()'>Level Criteria</a></li>
+		<li><a href ng-click='functionToCall="getDashboardPage"; run()'>Review Progress</a></li>
+		<li><a href ng-click='functionToCall="getDefinitionsPage"; run()'>Definitions</a></li>
+		<li><a href ng-click='functionToCall="getAcronymsPage"; run()'>Acronyms</a></li>
+  	<li><a href ng-click='functionToCall="getHelpPage"; run()'>Help</a></li>
+		<li><a href ng-click='functionToCall="saveAssessment"; run()'>Save</a></li>
+  </ul>
+</div>
+
