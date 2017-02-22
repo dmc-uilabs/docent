@@ -16,23 +16,23 @@
   },
   "license": "ISC",
   "dependencies": {
-    "angular": "~1.5.8",
-    "asar": "^0.12.3",
+    "angular": "~1.6.2",
+    "asar": "^0.13.0",
     "electron": "^1.4.15",
     "electron-packager": "^8.5.2",
     "electron-prebuilt": "^1.4.2",
     "fs": "0.0.2",
     "jquery": "~3.1.0",
-    "sql.js": "^0.3.2",
-    "wine": "0.0.2"
+    "sql.js": "^0.4.0",
+    "wine": "0.0.3"
   },
   "devDependencies": {
-    "asar": "^0.12.3",
+    "asar": "^0.13.0",
     "electron": "^1.4.7",
-    "electron-builder": "^7.26.0",
+    "electron-builder": "^13.11.1",
     "electron-packager": "^8.3.0",
     "electron-prebuilt": "^1.4.2",
     "fs": "0.0.2",
-    "wine": "0.0.2"
+    "wine": "0.0.3"
   }
 }
