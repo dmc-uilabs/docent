@@ -1002,6 +1002,7 @@ objectToCSVArray = function(item, csvOutputShape){
     currentItem = formatCSVOutputValue(currentItem, itemKey, csvOutputShape);
     objectValues.push(currentItem)
   }
+  objectValues.push("\n");
 
   return objectValues
 }
@@ -1088,6 +1089,7 @@ generateCSVHeader = function(csvOutputShape) {
   for (var apKey in csvOutputShape){
     headerValue.push(csvOutputShape[apKey].displayValue || apKey)
   }
+  headerValue.push("\n");
   return headerValue
 }
 
