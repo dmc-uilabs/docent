@@ -45,7 +45,7 @@
               <span class='label label-danger' ng-if='{{answer}}==2'><b>No</b></span>
               <span class='label label-default' ng-if='{{answer}}==3'><b>Not Applicable</b></span>
               <span class='label label-default' ng-if='{{answer}}==0'><b>Skipped</b></span>
-            </h4> 
+            </h4>
           </div>
           {{#if evidence}}
             <div class='row' ng-if='{{answer}}==1'>
@@ -136,7 +136,7 @@
       csv[i] = csv[i].join(',');
     }
 
-    csv = csv.join('\n');
+    csv = csv.join('');
 
     return csv;
   }

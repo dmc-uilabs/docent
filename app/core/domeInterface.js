@@ -86,6 +86,33 @@ writeOutDomeData = function(){
 
 }
 
+returnTeamMembers = function() {
+    if (!domeInputs['teamMemberNames']) {
+    return undefined;
+  }
+
+  var teamMemberNamesJson = domeInputs['teamMemberNames'] || "";
+  var teamMemberNames = [];
+
+  if(teamMemberNamesJson.length > 0){
+    teamMemberNames = JSON.parse(teamMemberNamesJson);
+  }
+
+  var teamMemberRolesJson = domeInputs['teamMemberRoles'] || "";
+  var teamMemberRoles = [];
+
+  if(teamMemberRolesJson.length > 0){
+    teamMemberRoles = JSON.parse(teamMemberRolesJson);
+  }
+
+  var teamMembers = [];
+  for(var i=0; i<teamMemberNames.length; i++){
+    teamMembers.push({name:teamMemberNames[i], role:teamMemberRoles[i]});
+  }
+
+  return teamMembers;
+}
+
 callDomeFunction = function(inputPage, functionToCall){
   // Save input values based on the current page parameter
   if(inputPage == 'startPage'){
@@ -96,8 +123,8 @@ callDomeFunction = function(inputPage, functionToCall){
       assessmentValues['targetLevel'] = Math.floor(domeInputs['targetLevel']);
       assessmentValues['location'] = domeInputs['location'];
       assessmentValues['targetDate'] = domeInputs['targetDate'];
-      assessmentValues['teamMembers'] = domeInputs['teamMembers'];
       assessmentValues['path'] = domeInputs['inAssessmentPath'];
+      assessmentValues['teamMembers'] = returnTeamMembers();
       assessmentPath = domeInputs['inAssessmentPath'];
       createAssessment(assessmentValues);
     }
