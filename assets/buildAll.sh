@@ -24,4 +24,4 @@ echo $'\";' >> "$OUTPUT_FILE"
 ./assets/createInputTemplate.sh
 
 # Run the script to package the app for electron
-electron-packager . docent --out=dist --asar --ignore=dist --icon=docent_icon.ico --all
+./node_modules/.bin/electron-packager . docent --out=dist --asar --ignore=dist --icon=docent_icon.ico --all
