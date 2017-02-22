@@ -303,6 +303,12 @@ app.controller('templateCtrl', function($scope, $compile){
 	attachFileLocal = function(questionId, path){
 		var attachmentId = 0;
 		var buffer = fs.readFileSync(path);
+		// If file is larger than 25 MB
+		if(buffer.length > 26214400){
+			console.log("Attachment is too big");
+			alert('Attachment is larger than 25 MB');
+			return;
+		}
 		var base64Data = new Buffer(buffer, 'binary').toString('base64');
 		var fileName = path.replace(/^.*[\\\/]/, '');
 
