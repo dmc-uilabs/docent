@@ -1,0 +1,3 @@
+From top level directory run:
+>npm install
+>npm run build-mra
