@@ -1,3 +1,5 @@
+var startDate = new Date().toISOString();
+console.log("DOCENT START TIME******************************"+startDate+"***********************");
 var core = require('./core');
 var fs = require('fs');
 var functionToCall;
@@ -84,6 +86,8 @@ writeOutDomeData = function(){
     if(err) return console.log(err);
   });
 
+  var endDate = new Date().toISOString();
+  console.log("DOCENT STOP TIME******************************"+endDate+"***********************");
 }
 
 returnTeamMembers = function() {
@@ -223,6 +227,7 @@ callDomeFunction = function(inputPage, functionToCall){
   if(functionToCall == 'startPageImportAssessment'){
     var dmcProjectId = domeInputs['dmcProjectId'];
     getAvailableAssessmentsFromS3(dmcProjectId);
+    return;
   }
   if(functionToCall == 'saveAssessment'){
     var inPath = domeInputs['inAssessmentPath'];
