@@ -91,7 +91,7 @@ writeOutDomeData = function(){
 }
 
 returnTeamMembers = function() {
-    if (!domeInputs['teamMemberNames']) {
+  if (!domeInputs['teamMemberNames']) {
     return undefined;
   }
 
@@ -111,7 +111,9 @@ returnTeamMembers = function() {
 
   var teamMembers = [];
   for(var i=0; i<teamMemberNames.length; i++){
-    teamMembers.push({name:teamMemberNames[i], role:teamMemberRoles[i]});
+    if (teamMemberNames[i].length > 0) {
+      teamMembers.push({name:teamMemberNames[i], role:teamMemberRoles[i]});
+    }
   }
 
   return teamMembers;
