@@ -937,7 +937,7 @@ getMmpInfo = function(){
 cleanStringForCSV = function(csvString){
   csvString = String(csvString)
   //escape any double quotes in the string
-  return csvString.replace(/"/g,'')
+  return csvString.replace(/"/g,'""')
 }
 
 cleanObjectForCSV = function(csvObject){
@@ -952,7 +952,6 @@ cleanObjectForCSV = function(csvObject){
 
 cleanObjectForCSVRecur = function(csvObject, valueCollection){
   if (typeof csvObject === 'string' || csvObject instanceof String || typeof(csvObject) === 'number'){
-    csvObject = cleanStringForCSV(csvObject);
     valueCollection.push(csvObject)
     return
   }
@@ -998,6 +997,8 @@ formatCSVOutputValue = function(currentItem, itemKey, csvOutputShape){
     currentItem = csvOutputShape[itemKey].customFormat[currentItem]
   }
 
+  currentItem = cleanStringForCSV(currentItem);
+
   return '\"'+currentItem+'\"';
 };
 
@@ -1021,6 +1022,8 @@ answersToCSVString = function(review){
       displayValue: "technical risk",
       format: 'bool'
     },
+    notes: {},
+    assumptions: {},
     costRisk: {
       displayValue: "cost risk",
       format: 'bool'
