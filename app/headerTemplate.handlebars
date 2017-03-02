@@ -41,6 +41,7 @@
             <div class='col-xs-12 mra_infobar'>
               {{#if question.threadName}}
                 <a href onclick='$("#functionToCall").val("getNavigationPage")' ng-click='run()'>{{question.threadName}}</a> / <a class='mra_breadcrumbs_active' href onclick='$("#functionToCall").val("getNavigationPage")' ng-click='run()'>{{question.subThreadName}}</a>
+                <span style="float: right;">Level: {{question.mrlLevel}}</span>
               {{/if}}
               {{#unless question.threadName}}
               {{/unless}}

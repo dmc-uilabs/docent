@@ -319,7 +319,7 @@ getNextQuestionIdForSubThreadLevel = function(subThreadLevelQuestions, answers){
 */
 getQuestionInfo = function(questionId){
 
-  nextQuestionResults = criteriaDb.exec("SELECT a.question_id, a.question_text, b.help_text, a.question_order, c.sub_thread_id, c.name, d.thread_id, d.name \
+  nextQuestionResults = criteriaDb.exec("SELECT a.question_id, a.question_text, b.help_text, a.question_order, c.sub_thread_id, c.name, d.thread_id, d.name, b.mrl_level \
     FROM question a, sub_thread_level b, sub_thread c, thread d \
     WHERE question_id = \"" + questionId + "\" \
     AND a.sub_thread_level_id = b.sub_thread_level_id \
@@ -337,7 +337,9 @@ getQuestionInfo = function(questionId){
                   subThreadId:nextQuestionResults[0].values[0][4],
                   subThreadName:nextQuestionResults[0].values[0][5],
                   threadId:nextQuestionResults[0].values[0][6],
-                  threadName:nextQuestionResults[0].values[0][7]};
+                  threadName:nextQuestionResults[0].values[0][7],
+                  mrlLevel:nextQuestionResults[0].values[0][8]
+                };
 
   return question;
 }
@@ -374,24 +376,7 @@ getPreviousQuestion = function(assessment, questionToReturn) {
     createNewAssessment();
   }
 
-  previousQuestionResults = criteriaDb.exec("SELECT a.question_id, a.question_text, b.help_text, a.question_order, c.sub_thread_id, c.name, d.thread_id, d.name \
-    FROM question a, sub_thread_level b, sub_thread c, thread d \
-    WHERE question_id = " + questionToReturn +
-    " AND a.sub_thread_level_id = b.sub_thread_level_id \
-    AND b.sub_thread_id = c.sub_thread_id \
-    AND c.thread_id = d.thread_id \
-    ORDER BY a.question_order \
-    LIMIT 1");
-
-  var question = {questionId:previousQuestionResults[0].values[0][0],
-                  questionText:addTooltips(previousQuestionResults[0].values[0][1]),
-                  helpText:addTooltips(previousQuestionResults[0].values[0][2]),
-                  subThreadId:previousQuestionResults[0].values[0][4],
-                  subThreadName:previousQuestionResults[0].values[0][5],
-                  threadId:previousQuestionResults[0].values[0][6],
-                  threadName:previousQuestionResults[0].values[0][7]};
-
-  return question;
+  return getQuestionInfo(questionToReturn)
 }
 
 /************************************
@@ -452,6 +437,10 @@ getFirstQuestionIdForThread = function(threadId){
   }
 }
 
+returnQuestionData = function(questionId) {
+
+}
+
 getQuestionFromNavigation = function(navigationInput){
 
   if(navigationInput.questionId <= 0 && navigationInput.subThreadLevelId > 0){
@@ -468,26 +457,7 @@ getQuestionFromNavigation = function(navigationInput){
       return {};
   }
 
-  var questionResults = criteriaDb.exec("SELECT a.question_id, a.question_text, b.help_text, a.question_order, c.sub_thread_id, c.name, d.thread_id, d.name \
-    FROM question a, sub_thread_level b, sub_thread c, thread d \
-    WHERE question_id = " + navigationInput.questionId + " \
-    AND a.sub_thread_level_id = b.sub_thread_level_id \
-    AND b.sub_thread_id = c.sub_thread_id \
-    AND c.thread_id = d.thread_id");
-
-    if(questionResults.length == 0){
-      return {};
-    }
-
-  var question = {questionId:questionResults[0].values[0][0],
-                  questionText:addTooltips(questionResults[0].values[0][1]),
-                  helpText:addTooltips(questionResults[0].values[0][2]),
-                  subThreadId:questionResults[0].values[0][4],
-                  subThreadName:questionResults[0].values[0][5],
-                  threadId:questionResults[0].values[0][6],
-                  threadName:questionResults[0].values[0][7]};
-
-  return question;
+  return getQuestionInfo(navigationInput.questionId)
 
 }
 
