@@ -1730,7 +1730,7 @@ ToolTipAdder.prototype.separateText = function() {
     this.text = this.text.replace(prefix[0],'')
   }
 
-  if (suffix) {
+  if (suffix && this.text.length>1) {
     this.textSuffix = suffix[0]
     this.text = this.text.replace(suffix[0],'')
   }
