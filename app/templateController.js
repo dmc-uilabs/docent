@@ -336,25 +336,31 @@ app.controller('templateCtrl', function($scope, $compile){
 	downloadAttachmentLocal = function(attachmentId){
 		var remote = require('electron').remote;
 		var dialog = remote.dialog; // OS file dialog
-		dialog.showSaveDialog(function (fileName) {
-			if (fileName === undefined){
-					console.log("File not saved");
-					return;
-			}else{
-				attachmentResults = assessmentDb.exec("SELECT attachment_name, data \
-																							FROM attachment \
-																							WHERE id = \""+attachmentId+"\" \
-																							LIMIT 1");
-				attachmentValues = attachmentResults[0].values;
-				if(attachmentValues.length > 0){
-					var attachmentName = attachmentValues[0][0];
-					var base64String = attachmentValues[0][1];
-					var buffer = new Buffer(base64String, 'base64');
-					// TODO: import the file name from the data
-					fs.writeFileSync(fileName, buffer);
-				}
-			}
-		});
+		var attachmentName = "";
+		var base64String = "";
+
+		attachmentResults = assessmentDb.exec("SELECT attachment_name, data \
+																				FROM attachment \
+																				WHERE id = \""+attachmentId+"\" \
+																				LIMIT 1");
+		attachmentValues = attachmentResults[0].values;
+		if(attachmentValues.length > 0){
+			attachmentName = attachmentValues[0][0];
+			base64String = attachmentValues[0][1];
+		}
+
+		dialog.showSaveDialog(
+			{defaultPath: attachmentName},
+			function (fileName) {
+				if (fileName === undefined){
+						console.log("File not saved");
+						return;
+					}else{
+						attachmentValues = attachmentResults[0].values;
+						var buffer = new Buffer(base64String, 'base64');
+						fs.writeFileSync(fileName, buffer);
+					}
+				});
 	}
 
 	$scope.run = function(){
