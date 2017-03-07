@@ -22,6 +22,7 @@
                     <div class='mra_dropdowncontent'>
 
                         <a href class='mra_dropdownitem' onclick='$("#functionToCall").val("getStartPage")' ng-show='"{{outputPage}}"!="startPage"' ng-click='run()'>Start</a>
+                        <a href class='mra_dropdownitem' ng-show='{{#if outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getNextQuestionnairePage")' ng-show='"{{outputPage}}"!="startPage"' ng-click='run()'>Continue</a>
                         <a href class='mra_dropdownitem' ng-show='{{#if outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getMmpPage")' ng-click='run()'>Action Items</a>
                         <a href class='mra_dropdownitem' ng-show='{{#if outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getDashboardPage")' ng-click='run()'>Dashboard</a>
                         <a href class='mra_dropdownitem' ng-show='{{#if outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getReviewPage")' ng-click='run()'>Review</a>
