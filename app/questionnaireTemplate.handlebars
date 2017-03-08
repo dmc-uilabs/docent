@@ -200,8 +200,10 @@
     <div class='row'>
       <div class='col-md-2'></div>
       <div class='col-md-8'>
+        {{#if isRunningInElectron}}
         <label for='attachments'>Attachments:</label>
         <button class = 'btn btn-primary pull-right' style='margin:10px'  onclick='$("#functionToCall").val("addAttachment")' ng-click='run()'>Attach File</button>
+        {{/if}}
       </div>
       <div class='col-md-2'></div>
     </div>
@@ -231,7 +233,7 @@
 
 <script type="text/javascript">
   function updateActionPersonWithCurrent() {
-    
+
     var actionPersonList = $(".mrl_actionPersonName").map(function(x){
       return $(".mrl_actionPersonName")[x].value;
     }).get();

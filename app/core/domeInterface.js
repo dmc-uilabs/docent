@@ -75,6 +75,7 @@ writeOutDomeData = function(){
   outputData += 'threadStatus=' + JSON.stringify(coreContext['threadStatus']) + "\n";
   outputData += 'assessmentNames=' + JSON.stringify(coreContext['assessmentNames']) + "\n";
   outputData += 'answersCSV=' + JSON.stringify(coreContext['answersCSV']) + "\n";
+  outputData += 'isRunningInElectron=' + 'false' + "\n";
   outputData += 'mraCss=' + coreContext['mraCss'] + "\n";
   outputData += 'outputPage=' + coreContext['outputPage'] + "\n";
   outputData += 'outAssessmentPath=' + JSON.stringify(assessmentPath) + "\n";
