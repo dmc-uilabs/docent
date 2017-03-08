@@ -1581,22 +1581,6 @@ addTooltips = function(text) {
   return text;
 }
 
-addTooltipsAlternate = function(text) {
-  if (Object.keys(ttDictionary).length === 0) {
-    buildAlternateDictionary();
-  }
-
-  var withTipAdded = text
-
-  ttDictionary.forEach(function(termDef){
-    var openTag = '<a href style="font-weight: bold;" data-toggle="tooltip" title="'+termDef[1]+'">'
-    var closeTag = '</a>'
-    withTipAdded = withTipAdded.replace(termDef[0], openTag+termDef[0]+closeTag)
-  })
-
-  return withTipAdded;
-}
-
 checkToolTipDictionary = function(text) {
 
   var ttAdder = new ToolTipAdder(text)
@@ -1604,8 +1588,11 @@ checkToolTipDictionary = function(text) {
 
   if(typeof ttDictionary[ttAdder.text] === 'string' || ttDictionary[ttAdder.text] instanceof String){
     var tip = ttDictionary[ttAdder.text]
+    tip = tip.replace(/"/g,'&quot;')
+
     var openTag = '<a href style="font-weight: bold;" data-toggle="tooltip" title="'+tip+'">'
     var closeTag = '</a>'
+
     ttAdder.text = openTag+ttAdder.text+closeTag
   }
 
@@ -1646,25 +1633,6 @@ buildDictionary = function() {
     }
 
   })
-}
-
-buildAlternateDictionary = function() {
-  //update acronyms and definitions, then combine in to dicitonary
-  if(acronyms.length == 0){
-    getAcronyms();
-  }
-  if(definitions.length == 0){
-    getDefinitions();
-  }
-
-  acronyms.forEach(function(acronym){
-    ttDictionary.push([acronym.acronym, acronym.value])
-  })
-
-  definitions.forEach(function(definition, index){
-    ttDictionary.push([stripAcronyms(definition.term),definition.definition])
-  })
-
 }
 
 stripAcronyms = function(term) {
