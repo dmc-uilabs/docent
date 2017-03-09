@@ -3,7 +3,7 @@
     <div id="scopePanel" class="mra_panel" style="margin-bottom: 10px;">
       <b><u>Assessment Scope:</u></b>
       <span>
-        <div id="scopeText" class="mra-truncate">{{assessment.scope}}</div>
+        <div id="scopeText" class="mra-truncate">{{mraOutputs.assessment.scope}}</div>
         <div id='moreLessLinks' style="text-align: right; display: none">
           <a id="moreLink" onclick='$("#scopeText").removeClass("mra-truncate"); $("#moreLink").css("display","none"); $("#lessLink").css("display","")'>more</a>
           <a id="lessLink" style="display: none;" onclick='$("#scopeText").addClass("mra-truncate"); $("#lessLink").css("display","none"); $("#moreLink").css("display","")'>less</a>
@@ -22,7 +22,6 @@
           </div>
           <div class='row'>
             <div class='col-md-12'>
-              <!-- Assessment Scope: {{assessment.scope}} -->
             </div>
           </div>
         </div>
@@ -42,7 +41,7 @@
         <div class='col-xs-8'>
 
           <div class='row'>
-              <h3 style="text-align: justify;">{{{question.questionText}}}</h3>
+              <h3 style="text-align: justify;">{{{mraOutputs.question.questionText}}}</h3>
           </div>
 
           <div class='row'>
@@ -52,7 +51,7 @@
             </div>
 
           <div class="col-xs-6 pull-right">
-            <select id='answerValue' class='selectpicker form-control  pull-right' ng-model='selectOption' ng-init='selectOption={{#if answerInfo.answer}}"{{answerInfo.answer}}"{{else}}"0"{{/if}}' style='margin:10px'>
+            <select id='answerValue' class='selectpicker form-control  pull-right' ng-model='selectOption' ng-init='selectOption={{#if mraOutputs.answerInfo.answer}}"{{mraOutputs.answerInfo.answer}}"{{else}}"0"{{/if}}' style='margin:10px'>
               <option value='0'>Select...</option>
               <option value='1'>Yes</option>
               <option value='2'>No</option>
@@ -74,7 +73,7 @@
 
     <div class='row'>
       <div class='col-xs-2'></div>
-      <div class='col-xs-8' ng-show='show_explanation'>{{{question.helpText}}}</div>
+      <div class='col-xs-8' ng-show='show_explanation'>{{{mraOutputs.question.helpText}}}</div>
       <div class='col-xs-2'></div>
     </div>
 
@@ -90,7 +89,7 @@
         <div class='col-md-8' ng-switch='selectOption'>
           <div class = 'form-group well' ng-switch-when='1'>
             <label for='objectiveEvidence'>Objective Evidence:</label>
-            <textarea  class='form-control' rows='5' id='evidence' placeholder='Enter objective evidence here...'>{{#if answerInfo.evidence}}{{answerInfo.evidence}}{{/if}}</textarea>
+            <textarea  class='form-control' rows='5' id='evidence' placeholder='Enter objective evidence here...'>{{#if mraOutputs.answerInfo.evidence}}{{mraOutputs.answerInfo.evidence}}{{/if}}</textarea>
           </div>
           <div class = 'form-group well' ng-switch-when='2'>
             <div class='row'>
@@ -112,7 +111,7 @@
                 </div>
 
                 <!-- Loop for saved action persons -->
-                {{#each answerInfo.actionPerson}}
+                {{#each mraOutputs.answerInfo.actionPerson}}
                 <div style="margin-bottom: 10px;" class='row'>
                     <div class="col-xs-2">
                       {{#if @first}}
@@ -132,7 +131,7 @@
                 <div style="margin-bottom: 10px;" class='row' ng-repeat='x in mrl_actionPersonArray'>
 
                     <div class="col-xs-2">
-                      {{#unless answerInfo.actionPerson}}
+                      {{#unless mraOutputs.answerInfo.actionPerson}}
                         <button style="height: 32px; text-align: center;" ng-show='$first' class='btn btn-success btn-sm mra-btn-circle' ng-click='mrl_actionPersonArray.push(mrl_numActionPerson);mrl_numActionPerson=mrl_numActionPerson+1' style='margin-top:10px'>
                           &#x2795;
                         </button>
@@ -142,7 +141,7 @@
                         </button>
                       {{/unless}}
 
-                      {{#if answerInfo.actionPerson}}
+                      {{#if mraOutputs.answerInfo.actionPerson}}
                         <button style="height: 32px; text-align: center;" ng-show="$last" class='btn btn-danger btn-sm mra-btn-circle' ng-click='mrl_actionPersonArray.splice(-1);mrl_numActionPerson=mrl_numActionPerson-1' style='margin-top:10px'>
                           &#x2796;
                         </button>
@@ -158,23 +157,23 @@
                 <div class='row'>
                   <div class='col-xs-12'>
                     <label>Risk:</label>
-                    <label style="margin-left: 30px;" class='checkbox'><input type='checkbox' id='technicalRisk' onclick='$(this).attr("value", this.checked ? 1 : 0)' {{#if answerInfo.technicalRisk}}checked{{/if}} {{#if answerInfo.technicalRisk}}value='1'{{else}}value='0'{{/if}}>Technical</label>
-                    <label style="margin-left: 30px;" class='checkbox'><input type='checkbox' id='costRisk' onclick='$(this).attr("value", this.checked ? 1 : 0)' {{#if answerInfo.costRisk}}checked{{/if}} {{#if answerInfo.costRisk}}value='1'{{else}}value='0'{{/if}}>Cost</label>
-                    <label style="margin-left: 30px;" class='checkbox'><input type='checkbox' id='scheduleRisk' onclick='$(this).attr("value", this.checked ? 1 : 0)' {{#if answerInfo.scheduleRisk}}checked{{/if}} {{#if answerInfo.scheduleRisk}}value='1'{{else}}value='0'{{/if}}>Schedule</label>
+                    <label style="margin-left: 30px;" class='checkbox'><input type='checkbox' id='technicalRisk' onclick='$(this).attr("value", this.checked ? 1 : 0)' {{#if mraOutputs.answerInfo.technicalRisk}}checked{{/if}} {{#if mraOutputs.answerInfo.technicalRisk}}value='1'{{else}}value='0'{{/if}}>Technical</label>
+                    <label style="margin-left: 30px;" class='checkbox'><input type='checkbox' id='costRisk' onclick='$(this).attr("value", this.checked ? 1 : 0)' {{#if mraOutputs.answerInfo.costRisk}}checked{{/if}} {{#if mraOutputs.answerInfo.costRisk}}value='1'{{else}}value='0'{{/if}}>Cost</label>
+                    <label style="margin-left: 30px;" class='checkbox'><input type='checkbox' id='scheduleRisk' onclick='$(this).attr("value", this.checked ? 1 : 0)' {{#if mraOutputs.answerInfo.scheduleRisk}}checked{{/if}} {{#if mraOutputs.answerInfo.scheduleRisk}}value='1'{{else}}value='0'{{/if}}>Schedule</label>
                   </div>
                 </div>
             </div>
             <div class='col-md-4'>
               <label for='completionDate'>When:</label>
-              <input type='date' class='form-control' id='completionDate' placeholder='Date to complete action plan' {{#if answerInfo.completionDate}}value="{{answerInfo.completionDate}}"{{/if}}></input>
+              <input type='date' class='form-control' id='completionDate' placeholder='Date to complete action plan' {{#if mraOutputs.answerInfo.completionDate}}value="{{mraOutputs.answerInfo.completionDate}}"{{/if}}></input>
             </div>
           </div>
-          <div class='row'><div class='col-md-12'><label for='whatAction'>What:</label><textarea class='form-control' rows='5' id='whatAction' placeholder='What needs to be done to meet this objective?'>{{#if answerInfo.whatAction}}{{answerInfo.whatAction}}{{/if}}</textarea></div></div>
-          <div class='row'><div class='col-md-12'><label for='reason'>Reason:</label><textarea class='form-control' rows='5' id='reason' placeholder='Reason that criteria is not met'>{{#if answerInfo.reason}}{{answerInfo.reason}}{{/if}}</textarea></div></div>
+          <div class='row'><div class='col-md-12'><label for='whatAction'>What:</label><textarea class='form-control' rows='5' id='whatAction' placeholder='What needs to be done to meet this objective?'>{{#if mraOutputs.answerInfo.whatAction}}{{mraOutputs.answerInfo.whatAction}}{{/if}}</textarea></div></div>
+          <div class='row'><div class='col-md-12'><label for='reason'>Reason:</label><textarea class='form-control' rows='5' id='reason' placeholder='Reason that criteria is not met'>{{#if mraOutputs.answerInfo.reason}}{{mraOutputs.answerInfo.reason}}{{/if}}</textarea></div></div>
         </div>
 	       <div class = 'form-group well' ng-switch-when='3'>
            <label for='documentation'>Documentation:</label>
-           <textarea class='form-control' rows='5' id='documentation' placeholder='Document why this question is not applicable...'>{{#if answerInfo.documentation}}{{answerInfo.documentation}}{{/if}}</textarea>
+           <textarea class='form-control' rows='5' id='documentation' placeholder='Document why this question is not applicable...'>{{#if mraOutputs.answerInfo.documentation}}{{mraOutputs.answerInfo.documentation}}{{/if}}</textarea>
          </div>
        </div>
        <div class='col-md-2'></div>
@@ -184,7 +183,7 @@
        <div class='col-md-8'>
          <div class='form-group'>
            <label for='assumptions'>Assumptions:</label>
-           <textarea class='form-control' rows='5' id='assumptions' placeholder='Enter any assumptions here...'>{{#if answerInfo.assumptions}}{{answerInfo.assumptions}}{{/if}}</textarea>
+           <textarea class='form-control' rows='5' id='assumptions' placeholder='Enter any assumptions here...'>{{#if mraOutputs.answerInfo.assumptions}}{{mraOutputs.answerInfo.assumptions}}{{/if}}</textarea>
          </div>
        </div>
        <div class='col-md-2'></div>
@@ -193,21 +192,21 @@
       <div class='col-md-2'></div>
       <div class='col-md-8'>
         <label for='notes'>Notes:</label>
-        <textarea class='form-control' rows='5' id='notes' placeholder='Enter notes here...'>{{#if answerInfo.notes}}{{answerInfo.notes}}{{/if}}</textarea>
+        <textarea class='form-control' rows='5' id='notes' placeholder='Enter notes here...'>{{#if mraOutputs.answerInfo.notes}}{{mraOutputs.answerInfo.notes}}{{/if}}</textarea>
       </div>
       <div class='col-md-2'></div>
     </div>
     <div class='row'>
       <div class='col-md-2'></div>
       <div class='col-md-8'>
-        {{#if isRunningInElectron}}
+        {{#if mraOutputs.isRunningInElectron}}
         <label for='attachments'>Attachments:</label>
         <button class = 'btn btn-primary pull-right' style='margin:10px'  onclick='$("#functionToCall").val("addAttachment")' ng-click='run()'>Attach File</button>
         {{/if}}
       </div>
       <div class='col-md-2'></div>
     </div>
-    {{#each answerInfo.attachments}}
+    {{#each mraOutputs.answerInfo.attachments}}
     <div class='row'>
       <div class='col-md-2'></div>
       <div class='col-md-8'>
@@ -224,11 +223,11 @@
     {{/each}}
   </div>
 </div>
-  <input type='hidden' id='actionPerson' value='{{answerInfo.actionPersonFormatted}}'/>
+  <input type='hidden' id='actionPerson' value='{{mraOutputs.answerInfo.actionPersonFormatted}}'/>
   <input type='hidden' id='attachmentId' value=''/>
-  <input type='hidden' id='questionId' value='{{question.questionId}}'>
+  <input type='hidden' id='questionId' value='{{mraOutputs.question.questionId}}'>
   <input type='hidden' id='inputPage' value='questionnairePage'>
-  <input type='hidden' id='questionVisitList' value='{{question.questionVisitList}}'>
+  <input type='hidden' id='questionVisitList' value='{{mraOutputs.question.questionVisitList}}'>
 </div>
 
 <script type="text/javascript">

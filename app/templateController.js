@@ -9,8 +9,27 @@ app.controller('templateCtrl', function($scope, $compile){
 		var compiledHtml = "";
 
 		coreContext['isRunningInElectron'] = true;
+		var standaloneOutputs = {mraOutputs:
+			 								{definitions: coreContext['definitions'],
+	                    acronyms: coreContext['acronyms'],
+	                    threads: coreContext['threads'],
+	                    navigation: coreContext['navigation'],
+	                    assessment: coreContext['assessment'],
+	                    question: coreContext['question'],
+	                    answerInfo: coreContext['answerInfo'],
+	                    reviewInfo: coreContext['reviewInfo'],
+	                    actionPlan: coreContext['actionPlan'],
+	                    threadStatus: coreContext['threadStatus'],
+	                    assessmentNames: coreContext['assessmentNames'],
+	                    answersCSV: coreContext['answersCSV'],
+	                    isRunningInElectron: coreContext['isRunningInElectron'],
+	                    outputPage: coreContext['outputPage'],
+	                    outAssessmentPath: coreContext['outAssessmentPath'],
+	                    mraCss: coreContext['mraCss']
+	            }};
+
 		compiledTemplate = Handlebars.compile(headerTemplate+outputTemplate+footerTemplate);
-		handleBarHtml = compiledTemplate(coreContext);
+		handleBarHtml = compiledTemplate(standaloneOutputs);
 		compiledHtml = $compile(handleBarHtml)($scope);
 
 		$('.template-holder').html(compiledHtml);

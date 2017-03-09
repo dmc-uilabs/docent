@@ -13,7 +13,7 @@
       </div>
       <div class='col-xs-12'>
         <ul>
-          {{#each navigation}}
+          {{#each mraOutputs.navigation}}
             <a href ng-click='expandThread_{{threadId}} = !expandThread_{{threadId}}'>
               <div class='mra_arrow_right' ng-show='!expandThread_{{threadId}}'></div>
               <div class='mra_arrow_down' ng-show='expandThread_{{threadId}}'></div>

@@ -5,7 +5,7 @@
       <hr>
     </div>
     <div class='question' align='center'>
-  		{{assessment.scope}}
+  		{{mraOutputs.assessment.scope}}
   </div>
     <div align='center'>
       <table id='dashboardtable' class='table table-responsive' style='max-width:85%; background: #f5f5f5;' align='center'>
@@ -21,7 +21,7 @@
         <th class="t-centered">9</th>
         <th class="t-centered">10</th>
         <th>Completion Date</th>
-      {{#each threadStatus}}
+      {{#each mraOutputs.threadStatus}}
           <tr class="dash"><td class="dash">{{threadName}}</td><td class="dash">{{subThreadName}}</td>
             {{#each statuses}}
               <td class="dash t-centered" ng-show='{{this}}==0' style='background-color:#cfd8dc'></td>

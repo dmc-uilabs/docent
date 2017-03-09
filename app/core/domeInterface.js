@@ -62,23 +62,27 @@ writeOutDomeData = function(){
   domeTemplate = domeTemplate.replace(/\n/g, "");
 
   // Write updated variables out to DOME
+  coreContext['isRunningInElectron'] = 0;
+  coreContext['outAssessmentPath'] = assessmentPath;
+  var mraOutputs = {definitions: coreContext['definitions'],
+                    acronyms: coreContext['acronyms'],
+                    threads: coreContext['threads'],
+                    navigation: coreContext['navigation'],
+                    assessment: coreContext['assessment'],
+                    question: coreContext['question'],
+                    answerInfo: coreContext['answerInfo'],
+                    reviewInfo: coreContext['reviewInfo'],
+                    actionPlan: coreContext['actionPlan'],
+                    threadStatus: coreContext['threadStatus'],
+                    assessmentNames: coreContext['assessmentNames'],
+                    answersCSV: coreContext['answersCSV'],
+                    isRunningInElectron: coreContext['isRunningInElectron'],
+                    outputPage: coreContext['outputPage'],
+                    outAssessmentPath: coreContext['outAssessmentPath'],
+                    mraCss: coreContext['mraCss']
+            };
 
-  outputData = 'definitions=' + JSON.stringify(coreContext['definitions']) + "\n";
-  outputData += 'acronyms=' + JSON.stringify(coreContext['acronyms']) + "\n";
-  outputData += 'threads=' + JSON.stringify(coreContext['threads']) + "\n";
-  outputData += 'navigation=' + JSON.stringify(coreContext['navigation']) + "\n";
-  outputData += 'assessment=' + JSON.stringify(coreContext['assessment']) + "\n";
-  outputData += 'question=' + JSON.stringify(coreContext['question']) + "\n";
-  outputData += 'answerInfo=' + JSON.stringify(coreContext['answerInfo']) + "\n";
-  outputData += 'reviewInfo=' + JSON.stringify(coreContext['reviewInfo']) + "\n";
-  outputData += 'actionPlan=' + JSON.stringify(coreContext['actionPlan']) + "\n";
-  outputData += 'threadStatus=' + JSON.stringify(coreContext['threadStatus']) + "\n";
-  outputData += 'assessmentNames=' + JSON.stringify(coreContext['assessmentNames']) + "\n";
-  outputData += 'answersCSV=' + JSON.stringify(coreContext['answersCSV']) + "\n";
-  outputData += 'isRunningInElectron=' + 'false' + "\n";
-  outputData += 'mraCss=' + coreContext['mraCss'] + "\n";
-  outputData += 'outputPage=' + coreContext['outputPage'] + "\n";
-  outputData += 'outAssessmentPath=' + JSON.stringify(assessmentPath) + "\n";
+  outputData = 'mraOutputs=' + JSON.stringify(mraOutputs) + "\n";
   outputData += 'outputTemplate=' + domeTemplate + "\n";
 
   console.log(outputData);

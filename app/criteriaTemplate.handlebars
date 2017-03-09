@@ -62,47 +62,29 @@
 
 
 
-
-
         <div class='row'>
             <div class='col-xs-12'>
                 <table class='table table-responsive mra_divided_table' style='max-width:800px;' id='blackLinks' align='center'>
                         <th align='center'>Thread</th>
                         <th></th>
                         <th style="position: relative;">Sub Thread
-                            <!-- <div class="mrl_ms_level_locator">
-                                <div style="width: 100px;" class='mrl_ms_level mra_arrow_box'>Milestones:</div>
-                            </div> -->
                         </th>
                         <th style="position: relative;" level-id='mrl_0' ng-show='mrl_0 || mrl_all'>1</th>
                         <th style="position: relative;" level-id='mrl_1' ng-show='mrl_1 || mrl_all'>2</th>
                         <th style="position: relative;" level-id='mrl_2' ng-show='mrl_2 || mrl_all'>3</th>
                         <th style="position: relative;" level-id='mrl_3' ng-show='mrl_3 || mrl_all'>4</th>
                         <th style="position: relative;" level-id='mrl_4' ng-show='mrl_4 || mrl_all'>5
-
-                            <!-- <div class="mrl_ms_level_locator">
-                                <div class='mrl_ms_level mra_arrow_box'>A</div>
-                                <div class="mra_arrow_box_arrow_down"></div>
-                            </div> -->
                         </th>
                         <th style="position: relative;" level-id='mrl_5' ng-show='mrl_5 || mrl_all'>6</th>
                         <th style="position: relative;" level-id='mrl_6' ng-show='mrl_6 || mrl_all'>7
-                            <!-- <div class="mrl_ms_level_locator">
-                                <div class='mrl_ms_level mra_arrow_box'>B</div>
-                                <div class="mra_arrow_box_arrow_down"></div>
-                            </div> -->
                         </th>
                         <th style="position: relative;" level-id='mrl_7' ng-show='mrl_7 || mrl_all'>8</th>
                         <th style="position: relative;" level-id='mrl_8' ng-show='mrl_8 || mrl_all'>9
-                            <!-- <div class="mrl_ms_level_locator">
-                                <div class='mrl_ms_level mra_arrow_box'>B</div>
-                                <div class="mra_arrow_box_arrow_down"></div>
-                            </div> -->
 
                         </th>
                         <th style="position: relative;" level-id='mrl_9' ng-show='mrl_9 || mrl_all'>10</th>
 
-                        {{#each threads}}
+                        {{#each mraOutputs.threads}}
                             <tr>
 
                                 <td class='mra_divided_table_top_level' rowspan= {{numSubThreads}}>
@@ -111,8 +93,6 @@
                                 </td>
                                 <td class='mra_divided_table_top_level' rowspan= {{numSubThreads}}>
                                     <a href ng-click='showThread_{{threadId}} = !showThread_{{threadId}}'>
-                                        <!-- <font color='#5cb85c'><span class='glyphicon glyphicon-plus' ng-show='!showThread_{{threadId}}'></span></font>
-                                        <font color='#0E5492'><span class='glyphicon glyphicon-minus' ng-show='showThread_{{threadId}}'></span></font> -->
 
                                         <div class='mra_arrow_right' ng-show='!showThread_{{threadId}}'></div>
                                         <div class='mra_arrow_down' ng-show='showThread_{{threadId}}'></div>
