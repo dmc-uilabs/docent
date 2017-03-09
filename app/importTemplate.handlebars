@@ -13,7 +13,7 @@
       <div class='col-lg-10'>
         <table class='table table-responsive table-hover' align='center'>
           <th align='left'>Choose an assessment</th>
-          {{#each assessmentNames}}
+          {{#each mraOutputs.assessmentNames}}
               <tr>
                   <td align='left'>
                     <a href onclick='$("#inAssessmentPath").val("{{this}}");$("#functionToCall").val("getStartPage")' ng-click='run()'>{{this}}</a><br>

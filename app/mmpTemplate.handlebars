@@ -9,11 +9,11 @@
         <div class='col-md-9'>
         </div>
         <div id="csvExportDiv" class='col-md-3'>
-          <span style="display: none;" id="actionPlanCSVString">{{answersCSV}}</span>
+          <span style="display: none;" id="actionPlanCSVString">{{mraOutputs.answersCSV}}</span>
           <button id="exportCSV" class='btn btn-primary pull-right' style='margin:10px'>Export</button>
         </div>
       </div>
-      {{#each actionPlan}}
+      {{#each mraOutputs.actionPlan}}
       <div class='row well'>
         <div class='col-xs-12'>
           <div class='row'>

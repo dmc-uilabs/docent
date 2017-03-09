@@ -10,33 +10,33 @@
           {{assessment.scope}}
         </div>
         <div id="csvExportDiv" class='col-sm-3'>
-          <span style="display: none;" id="reviewCSVString">{{answersCSV}}</span>
+          <span style="display: none;" id="reviewCSVString">{{mraOutputs.answersCSV}}</span>
           <button id="exportCSV" class='btn btn-primary pull-right' style='margin:10px'>Export</button>
         </div>
       </div>
       <div class='row'>
         <div class='col-md-2'>
           <b>Target Level</b><br>
-          {{assessment.targetLevel}}
+          {{mraOutputs.assessment.targetLevel}}
         </div>
         <div class='col-md-2'>
           <b>Target Date</b><br>
-          {{assessment.targetDate}}
+          {{mraOutputs.assessment.targetDate}}
         </div>
         <div class='col-md-2'>
           <b>Location</b><br>
-          {{assessment.location}}
+          {{mraOutputs.assessment.location}}
         </div>
         <div class='col-md-6'>
           <b>Team Members</b><br>
-          {{#each assessment.teamMembers}}
+          {{#each mraOutputs.assessment.teamMembers}}
             {{name}} - {{role}}<br>
           {{/each}}
         </div>
       </div>
     </div>
     <hr>
-    {{#each reviewInfo}}
+    {{#each mraOutputs.reviewInfo}}
       <div class='row well' style='margin:10px;'>
         <div class='col-xs-12'>
           <div class='row'>
