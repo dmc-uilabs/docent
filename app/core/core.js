@@ -1079,7 +1079,6 @@ getAttachmentsForQuestion = function(questionId){
 
 saveAnswer = function(answer){
 
-  // if(assessmentDb === undefined){
   if(!assessmentDbDefined()){
     importAssessment(assessmentPath);
   }
@@ -1152,7 +1151,6 @@ saveAnswer = function(answer){
   if(isRunningInElectron){
     saveAssessmentLocal(assessmentPath);
   }
-
 }
 
 updateAssessment = function(assessmentValues){

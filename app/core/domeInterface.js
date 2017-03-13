@@ -18,9 +18,10 @@ needToImportAssessment = function(inputPage, functionToCall){
   if(inputPage == 'questionnairePage'){
     return true;
   }
-  // TODO: getStartPage condition needs more conditions...
+
   if( functionToCall == 'getNextQuestionnairePage' ||
       functionToCall == 'getQuestionnairePageFromNavigation' ||
+      functionToCall == 'updateStartGetQuestionnairePage' ||
       functionToCall == 'getMmpPage' ||
       functionToCall == 'getDashboardPage' ||
       functionToCall == 'getReviewPage' ||
@@ -42,6 +43,7 @@ needToSaveAssessment = function(inputPage, functionToCall){
   if( inputPage == 'startPage' ||
       inputPage == 'questionnairePage' ||
       functionToCall == 'saveStartGetQuestionnairePage' ||
+      functionToCall == 'updateStartGetQuestionnairePage' ||
       functionToCall == 'saveAssessment' ||
       functionToCall == 'addAttachment' ||
       functionToCall == 'deleteAttachment'){
@@ -127,7 +129,21 @@ returnTeamMembers = function() {
 callDomeFunction = function(inputPage, functionToCall){
   // Save input values based on the current page parameter
   if(inputPage == 'startPage'){
-    if(functionToCall != 'startPageImportAssessment'){
+    if(functionToCall == 'updateStartGetQuestionnairePage'){
+      var assessmentValues = {};
+      assessmentValues['scope'] = domeInputs['scope'];
+      // Workaround since the value is coming through with a trailing 0 after the decimal
+      assessmentValues['targetLevel'] = Math.floor(domeInputs['targetLevel']);
+      assessmentValues['location'] = domeInputs['location'];
+      assessmentValues['targetDate'] = domeInputs['targetDate'];
+      assessmentValues['path'] = domeInputs['inAssessmentPath'];
+      assessmentValues['teamMembers'] = returnTeamMembers();
+      assessmentPath = domeInputs['inAssessmentPath'];
+
+      updateAssessment(assessmentValues);
+    }
+    if(!(functionToCall == 'startPageImportAssessment' ||
+     functionToCall == 'updateStartGetQuestionnairePage')){
       var assessmentValues = {};
       assessmentValues['scope'] = domeInputs['scope'];
       // Workaround since the value is coming through with a trailing 0 after the decimal
@@ -230,6 +246,9 @@ callDomeFunction = function(inputPage, functionToCall){
   }
   if(functionToCall == 'getSkippedPage'){
     getSkippedPage();
+  }
+  if(functionToCall == 'updateStartGetQuestionnairePage'){
+    getNextQuestionnairePage();
   }
   if(functionToCall == 'startPageImportAssessment'){
     var dmcProjectId = domeInputs['dmcProjectId'];
