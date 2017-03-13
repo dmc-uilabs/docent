@@ -145,6 +145,37 @@ app.controller('templateCtrl', function($scope, $compile){
 			getNextQuestionnairePage();
 			updateTemplate();
 		}
+		if(functionToCall == 'updateStartGetQuestionnairePage'){
+			var assessmentValues = {};
+
+			assessmentValues.scope = document.getElementById('scope').value;
+			assessmentValues.targetLevel = document.getElementById('targetLevel').value;
+			assessmentValues.location = document.getElementById('location').value;
+			assessmentValues.targetDate = document.getElementById('targetDate').value;
+
+			var teamMemberNamesJson = document.getElementById('teamMemberNames').value;
+			var teamMemberNames = [];
+			if(teamMemberNamesJson.length > 0){
+				teamMemberNames = JSON.parse(teamMemberNamesJson);
+			}
+
+			var teamMemberRolesJson = document.getElementById('teamMemberRoles').value;
+			var teamMemberRoles = [];
+			if(teamMemberRolesJson.length > 0){
+				teamMemberRoles = JSON.parse(teamMemberRolesJson);
+			}
+
+			var teamMembers = [];
+
+			for(var i=0; i<teamMemberNames.length; i++){
+				teamMembers.push({name:teamMemberNames[i], role:teamMemberRoles[i]});
+			}
+			assessmentValues.teamMembers = teamMembers;
+
+      updateAssessment(assessmentValues);
+			getNextQuestionnairePage();
+			updateTemplate();
+		}
 		if(functionToCall == 'getMmpPage'){
 			getMmpPage();
 			updateTemplate();
