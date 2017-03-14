@@ -140,7 +140,7 @@
   <input type='hidden' id='teamMemberRoles' value=''/>
 </div>
 
-{{#unless assessment.versionId}}
+
   <script>
     $(document).ready(function() {
 
@@ -155,11 +155,13 @@
       document.onkeyup = function() {
         if (highlightPerformed) { highlightMissingFields(formFields) };
         enableStartButtonIfValid(startButton, formFields);
+        updateTeamMembers();
       };
 
       document.onclick = function() {
         if (highlightPerformed) { highlightMissingFields(formFields) };
         enableStartButtonIfValid(startButton, formFields);
+        updateTeamMembers();
       };
 
       startButtonWrapper.onmouseover = function(){
@@ -222,6 +224,21 @@
       }
     };
 
+    function updateTeamMembers() {
+      var memberNames = $("[id^=mrl_teamMemberName]");
+      var memberRoles = $("[id^=mrl_teamMemberRole]");
+
+      memberNames = memberNames.map(function(){
+        return $(this).val();
+      }).get();
+
+      memberRoles = memberRoles.map(function(){
+        return $(this).val();
+      }).get();
+
+      $("#teamMemberNames").val(JSON.stringify(memberNames));
+      $("#teamMemberRoles").val(JSON.stringify(memberRoles));
+
+    };
 
   </script>
-{{/unless}}
