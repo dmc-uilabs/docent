@@ -29,7 +29,7 @@
                         <a href class='mra_dropdownitem' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getNavigationPage")' ng-click='run()'>Navigate</a>
                         <a href class='mra_dropdownitem' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getSkippedPage")' ng-click='run()'>Skipped Questions</a>
                         <a href class='mra_dropdownitem' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getNotApplicablePage")' ng-click='run()'>N/A Questions</a>
-                        <a href class='mra_dropdownitem' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("saveAssessment")' ng-click='run()'>Save</a>
+                        {{#if mraOutputs.isRunningInElectron}}<a href class='mra_dropdownitem' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("saveAssessment")' ng-click='run()'>Save</a>{{/if}}
 
                     </div>
                 </div>

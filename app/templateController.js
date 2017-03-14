@@ -254,6 +254,7 @@ app.controller('templateCtrl', function($scope, $compile){
 					});
 				}else{
 					createAssessmentFromStartPage(assessmentPath);
+					alert("File saved to "+assessmentPath);
 				}
 			}
 		}
