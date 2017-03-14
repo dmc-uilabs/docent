@@ -171,6 +171,8 @@
         }
       };
 
+      updateTeamMembers();
+
     });
 
     function getFormFieldsToValidate() {
@@ -225,6 +227,7 @@
     };
 
     function updateTeamMembers() {
+      console.log('RUN updateTeamMembers');
       var memberNames = $("[id^=mrl_teamMemberName]");
       var memberRoles = $("[id^=mrl_teamMemberRole]");
 
