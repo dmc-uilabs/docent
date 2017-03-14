@@ -860,6 +860,10 @@ getSubThreadLevelStatus = function(subThreadLevelId, mrlLevel, targetLevel){
       }
       // 2 -> No
       if(answerVal == 2){
+        // Don't mark the subthreadlevel as red if the level is above target
+        if(Number(mrlLevel) > Number(targetLevel)){
+          return statusObject;
+        }
         completionDate=answerValues[0][1];
         statusObject['status'] = 2;
         statusObject['completionDate'] = completionDate;
