@@ -1570,7 +1570,7 @@ returnHelpItems = function() {
     },
     {
       helpTitle: "How can I find questions I marked 'not applicable'?",
-      helpText: ["Select the 'Skipped' option from the 'Assessment' menu."
+      helpText: ["Select the 'N/A Questions' option from the 'Assessment' menu."
       ]
     }
   ];
