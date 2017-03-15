@@ -227,7 +227,6 @@
     };
 
     function updateTeamMembers() {
-      console.log('RUN updateTeamMembers');
       var memberNames = $("[id^=mrl_teamMemberName]");
       var memberRoles = $("[id^=mrl_teamMemberRole]");
 
@@ -241,7 +240,6 @@
 
       $("#teamMemberNames").val(JSON.stringify(memberNames));
       $("#teamMemberRoles").val(JSON.stringify(memberRoles));
-
     };
 
   </script>
