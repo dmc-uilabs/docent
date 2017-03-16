@@ -103,33 +103,31 @@
                 <label for='version'>Deskbook Version:</label>
                 <span ng-show='versionRequired'>{{versionRequired}}</span>
                 <select class='selectpicker form-control' id='version'>
-                    <option title='v2.4' value='1' selected='selected'>V2.4 - August 2015</option>
+                    <option title='v2016' value='1' selected='selected'>2016</option>
                 </select>
             </div>
             {{#unless mraOutputs.isRunningInElectron}}
               <div class='form-group'>
                 <label for='assessmentName'>Name of Assessment:</label>
                 <span ng-show='assessmentNameRequired'>{{assessmentNameRequired}}</span>
-                <input type='text' class='form-control' id='inAssessmentPath' value='{{mraOutputs.outAssessmentPath}}'></input>
+                <input type='text' class='form-control' id='inAssessmentPath' value='{{mraOutputs.outAssessmentPath}}' {{#if mraOutputs.outAssessmentPath}}readonly{{/if}}></input>
               </div>
             {{/unless}}
             <div id="startButtonWrapper" style="border-top: 1px solid transparent; width:60px;">
-              <button id="startButton" class='btn btn-primary btn-large' style='margin-bottom:5px' onclick='$("#teamMemberNames").val(JSON.stringify($("[id^=mrl_teamMemberName]").map(function(){return $(this).val();}).get()));$("#teamMemberRoles").val(JSON.stringify($("[id^=mrl_teamMemberRole]").map(function(){return $(this).val();}).get()));$("#functionToCall").val("saveStartGetQuestionnairePage")' ng-show='{{#if mraOutputs.outAssessmentPath}}false{{else}}true{{/if}}' ng-click='run()'>Start</button>
-              <button id="startButton" class='btn btn-primary btn-large' style='margin-bottom:5px' onclick='$("#teamMemberNames").val(JSON.stringify($("[id^=mrl_teamMemberName]").map(function(){return $(this).val();}).get()));$("#teamMemberRoles").val(JSON.stringify($("[id^=mrl_teamMemberRole]").map(function(){return $(this).val();}).get()));$("#functionToCall").val("updateStartGetQuestionnairePage")' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' ng-click='run()'>Continue</button>
+              <button id="startButton" class='btn btn-primary btn-large' style='margin-bottom:5px' onclick='$("#functionToCall").val("saveStartGetQuestionnairePage")' ng-show='{{#if mraOutputs.outAssessmentPath}}false{{else}}true{{/if}}' ng-click='run()'>Start</button>
+              <button id="startButton" class='btn btn-primary btn-large' style='margin-bottom:5px' onclick='$("#functionToCall").val("updateStartGetQuestionnairePage")' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' ng-click='run()'>Continue</button>
             </div>
             <br>
         </div>
       </div>
 
-
-
         <div class='col-sm-6'>
           <div class="mra_panel">
           <h3>Continue Existing Assessment</h3>
-          <p>Use this option to start working on an existing assessment. You will be required to import your assessment data.</p>
+          <p>Use this option to start working on an existing assessment.</p>
           <br>
-          <button style='display:inline;' type='button' class='btn btn-primary' style='margin-bottom:10px' onclick='$("#functionToCall").val("getHelpPage")' ng-click='run()'>Help Importing</button>
-          <button style='display:inline;' type='button' class='btn btn-success' style='margin-bottom:10px' onclick='$("#functionToCall").val("startPageImportAssessment")' ng-click='run()'>Import Assessment</button>
+          <button style='display:inline;' type='button' class='btn btn-primary' style='margin-bottom:10px' onclick='$("#functionToCall").val("getHelpPage")' ng-click='run()'>Help</button>
+          <button style='display:inline;' type='button' class='btn btn-success' style='margin-bottom:10px' onclick='$("#functionToCall").val("startPageImportAssessment")' ng-click='run()'>{{#if mraOutputs.isRunningInElectron}}Open Assessment{{else}}View Assessments{{/if}}</button>
         </div>
       </div>
     </div>
@@ -140,7 +138,7 @@
   <input type='hidden' id='teamMemberRoles' value=''/>
 </div>
 
-{{#unless assessment.versionId}}
+
   <script>
     $(document).ready(function() {
 
@@ -155,11 +153,13 @@
       document.onkeyup = function() {
         if (highlightPerformed) { highlightMissingFields(formFields) };
         enableStartButtonIfValid(startButton, formFields);
+        updateTeamMembers();
       };
 
       document.onclick = function() {
         if (highlightPerformed) { highlightMissingFields(formFields) };
         enableStartButtonIfValid(startButton, formFields);
+        updateTeamMembers();
       };
 
       startButtonWrapper.onmouseover = function(){
@@ -168,6 +168,8 @@
           highlightMissingFields(formFields);
         }
       };
+
+      updateTeamMembers();
 
     });
 
@@ -222,6 +224,20 @@
       }
     };
 
+    function updateTeamMembers() {
+      var memberNames = $("[id^=mrl_teamMemberName]");
+      var memberRoles = $("[id^=mrl_teamMemberRole]");
+
+      memberNames = memberNames.map(function(){
+        return $(this).val();
+      }).get();
+
+      memberRoles = memberRoles.map(function(){
+        return $(this).val();
+      }).get();
+
+      $("#teamMemberNames").val(JSON.stringify(memberNames));
+      $("#teamMemberRoles").val(JSON.stringify(memberRoles));
+    };
 
   </script>
-{{/unless}}
