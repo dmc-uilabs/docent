@@ -2,9 +2,8 @@
   <div class="mra_panel">
     <div class="mra_page_title">
       <h2>Help</h2>
-      <hr>
     </div>
-    {{#each helpMenuItems}}
+    {{#each mraOutputs.helpMenuItems}}
       <div class='row'>
         <div class='col-xs-12' ng-init="show{{@index}} = false">
           <h4> <a href='' ng-click="show{{@index}} = !show{{@index}}">{{helpTitle}}</a></h4>
