@@ -114,8 +114,8 @@
               </div>
             {{/unless}}
             <div id="startButtonWrapper" style="border-top: 1px solid transparent; width:60px;">
-              <button id="startButton" class='btn btn-primary btn-large' style='margin-bottom:5px' onclick='$("#teamMemberNames").val(JSON.stringify($("[id^=mrl_teamMemberName]").map(function(){return $(this).val();}).get()));$("#teamMemberRoles").val(JSON.stringify($("[id^=mrl_teamMemberRole]").map(function(){return $(this).val();}).get()));$("#functionToCall").val("saveStartGetQuestionnairePage")' ng-show='{{#if mraOutputs.outAssessmentPath}}false{{else}}true{{/if}}' ng-click='run()'>Start</button>
-              <button id="startButton" class='btn btn-primary btn-large' style='margin-bottom:5px' onclick='$("#teamMemberNames").val(JSON.stringify($("[id^=mrl_teamMemberName]").map(function(){return $(this).val();}).get()));$("#teamMemberRoles").val(JSON.stringify($("[id^=mrl_teamMemberRole]").map(function(){return $(this).val();}).get()));$("#functionToCall").val("updateStartGetQuestionnairePage")' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' ng-click='run()'>Continue</button>
+              <button id="startButton" class='btn btn-primary btn-large' style='margin-bottom:5px' onclick='$("#functionToCall").val("saveStartGetQuestionnairePage")' ng-show='{{#if mraOutputs.outAssessmentPath}}false{{else}}true{{/if}}' ng-click='run()'>Start</button>
+              <button id="startButton" class='btn btn-primary btn-large' style='margin-bottom:5px' onclick='$("#functionToCall").val("updateStartGetQuestionnairePage")' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' ng-click='run()'>Continue</button>
             </div>
             <br>
         </div>
@@ -138,7 +138,7 @@
   <input type='hidden' id='teamMemberRoles' value=''/>
 </div>
 
-{{#unless assessment.versionId}}
+
   <script>
     $(document).ready(function() {
 
@@ -153,11 +153,13 @@
       document.onkeyup = function() {
         if (highlightPerformed) { highlightMissingFields(formFields) };
         enableStartButtonIfValid(startButton, formFields);
+        updateTeamMembers();
       };
 
       document.onclick = function() {
         if (highlightPerformed) { highlightMissingFields(formFields) };
         enableStartButtonIfValid(startButton, formFields);
+        updateTeamMembers();
       };
 
       startButtonWrapper.onmouseover = function(){
@@ -166,6 +168,8 @@
           highlightMissingFields(formFields);
         }
       };
+
+      updateTeamMembers();
 
     });
 
@@ -220,6 +224,20 @@
       }
     };
 
+    function updateTeamMembers() {
+      var memberNames = $("[id^=mrl_teamMemberName]");
+      var memberRoles = $("[id^=mrl_teamMemberRole]");
+
+      memberNames = memberNames.map(function(){
+        return $(this).val();
+      }).get();
+
+      memberRoles = memberRoles.map(function(){
+        return $(this).val();
+      }).get();
+
+      $("#teamMemberNames").val(JSON.stringify(memberNames));
+      $("#teamMemberRoles").val(JSON.stringify(memberRoles));
+    };
 
   </script>
-{{/unless}}
