@@ -284,6 +284,12 @@ callDomeFunction = function(inputPage, functionToCall){
   if(functionToCall == 'downloadAttachment'){
     // TODO: fill this out
   }
+  if(functionToCall == 'deleteAssessment'){
+    var dmcProjectId = domeInputs['dmcProjectId'];
+    var assessmentPath = domeInputs['inAssessmentPath'];
+    deleteAssessmentS3(dmcProjectId, assessmentPath);
+    return;
+  }
   // Need to ensure that we have saved the assessment
   // before calling this
   if(needToSaveAssessment(inputPage, functionToCall)){
@@ -312,6 +318,7 @@ getAssessmentFromS3 = function(dmcProjectId, path, inputPage, functionToCall){
           assessmentDb = new sqlite.Database(data.Body);
           callDomeFunction(inputPage, functionToCall);
         }
+
       });
 };
 
@@ -392,6 +399,31 @@ deleteAttachmentS3 = function(questionId, attachmentId){
   assessmentDb.run("DELETE FROM attachment  \
                     WHERE question_id=\""+questionId+"\"\
                     AND id=\""+attachmentId+"\"");
+}
+
+deleteAssessmentS3 = function(dmcProjectId, assessmentPath){
+  var AWS = require('aws-sdk');
+  AWS.config.loadFromPath('./credentials.json');
+  var s3 = new AWS.S3();
+  var params = {
+    Bucket:dmcBucketName,
+    Key:dmcProjectId+"/"+assessmentPath+"/index.mra"
+  };
+
+  // Check inputs before deleting...
+  if(dmcProjectId.length == 0 || assessmentPath.length == 0){
+    console.log("Invalid assessment to delete "+params.Key);
+    return;
+  }
+
+  s3.deleteObject(params, function(error, data){
+      if(error){
+        console.log("ERROR deleting assessment: "+error);
+      }
+  });
+
+  getAvailableAssessmentsFromS3(dmcProjectId);
+  return;
 }
 
 downloadAttachmentS3 = function(dmcProjectId, path){
