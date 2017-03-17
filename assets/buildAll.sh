@@ -20,6 +20,11 @@ echo -n "mraCss=\"" >> "$OUTPUT_FILE"
 tr -d '\n' < ./app/mra.css | tr -d '\r' | sed 's/"/\\"/g' >> "$OUTPUT_FILE"
 echo $'\";' >> "$OUTPUT_FILE"
 
+# Add in the help.js file
+echo -n "helpItems=" >> "$OUTPUT_FILE"
+#tr -d '\n' < ./app/help.js | tr -d '\r' | sed 's/"/\\"/g' >> "$OUTPUT_FILE"
+tr -d '\n' < ./app/help.js | tr -d '\r' | tr -s " " >> "$OUTPUT_FILE"
+
 # Run the script that creates the inputTemplate.handlebars file for DOME variable
 ./assets/createInputTemplate.sh
 
