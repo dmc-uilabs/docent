@@ -588,7 +588,7 @@ getReviewInfo = function(){
       reviewItem['scheduleRisk'] = reviewValues[i][7];
       reviewItem['completionDate'] = reviewValues[i][8];
       reviewItem['reason'] = reviewValues[i][9];
-      reviewItem['whatAction'] = replaceNewlinesWithBreaks(reviewValues[i][10]);
+      reviewItem['whatAction'] = reviewValues[i][10];
       reviewItem['documentation'] = reviewValues[i][11];
 
       if(reviewItem['answer'] == 2){
@@ -1758,10 +1758,6 @@ ToolTipAdder.prototype.updatedText = function() {
   if (this.textSuffix) { outputString+=this.textSuffix }
 
   return outputString
-}
-
-replaceNewlinesWithBreaks = function(originalText) {
-  return originalText ? originalText.replace(/(\r\n|\n|\r)/gm, '<br>') : originalText;
 }
 
 // Initialization
