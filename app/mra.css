@@ -437,3 +437,7 @@ td.red{
 .glyphicon {
   font-size:20px;
 }
+
+.preserveNewlines {
+  white-space: pre-wrap;
+}

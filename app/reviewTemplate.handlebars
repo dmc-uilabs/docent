@@ -49,7 +49,7 @@
           </div>
           {{#if evidence}}
             <div class='row' ng-if='{{answer}}==1'>
-              <b>Objective Evidence: </b><p>{{evidence}}</p>
+              <b>Objective Evidence: </b><p class="preserveNewlines">{{evidence}}</p>
             </div>
           {{/if}}
           <div class='row' ng-if='{{answer}}==2'>
@@ -71,23 +71,23 @@
                 </ul>
               {{/if}}
             {{#if reason}}
-              <b>Reason: </b><p>{{reason}}</p>
+              <b>Reason: </b><p class="preserveNewlines">{{reason}}</p>
             {{/if}}
             {{#if whatAction}}
-              <b>Action: </b><p>{{whatAction}}</p>
+              <b>Action: </b><p class="preserveNewlines">{{whatAction}}</p>
             {{/if}}
           </div>
           {{#if documentation}}
             <div class='row' ng-if='{{answer}}==3'>
-              <b>Documentation: </b><p>{{documentation}}</p>
+              <b>Documentation: </b><p class="preserveNewlines">{{documentation}}</p>
             </div>
           {{/if}}
           <div class='row'>
             {{#if assumptions}}
-              <b>Assumptions: </b><p>{{assumptions}}</p>
+              <b>Assumptions: </b><p class="preserveNewlines">{{assumptions}}</p>
             {{/if}}
             {{#if notes}}
-              <b>Notes: </b><p>{{notes}}</p>
+              <b>Notes: </b><p class="preserveNewlines">{{notes}}</p>
             {{/if}}
           </div>
           {{#each attachments}}
