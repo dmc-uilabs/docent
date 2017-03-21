@@ -9,6 +9,7 @@ var inputPage = "";
 var domeInputs = {};
 var needToSaveAssessment = false;
 var dmcBucketName = 'dmcmra';
+var dmcIndexName = 'index.mra';
 
 /*
 * Determines whether the assessment needs to be imported
@@ -154,7 +155,10 @@ callDomeFunction = function(inputPage, functionToCall){
       assessmentValues['path'] = domeInputs['inAssessmentPath'];
       assessmentValues['teamMembers'] = returnTeamMembers();
       assessmentPath = domeInputs['inAssessmentPath'];
-      createAssessment(assessmentValues);
+
+      if(assessmentPath.length > 0){
+        createAssessment(assessmentValues);
+      }
     }
   }
 
@@ -301,6 +305,18 @@ callDomeFunction = function(inputPage, functionToCall){
   }
 }
 
+getAssessmentKeyS3 = function(dmcProjectId, path){
+  var dmcEnv = process.env.DMC_ENV;
+  console.log("DMC ENV: "+dmcEnv);
+  // TODO: pick this up from environment
+  dmcEnv = "dev";
+  if(dmcEnv  === undefined){
+    return dmcProjectId + "/" + path + "/" + dmcIndexName;
+  }
+  else{
+      return dmcEnv + "/" + dmcProjectId + "/" + path + "/" + dmcIndexName;
+  }
+}
 /*
 * Should be called only for DMC version
 */
@@ -308,7 +324,7 @@ getAssessmentFromS3 = function(dmcProjectId, path, inputPage, functionToCall){
   var AWS = require('aws-sdk');
   AWS.config.loadFromPath('./credentials.json');
   var s3 = new AWS.S3();
-  var key = dmcProjectId+"/"+path + "/index.mra";
+  var key = getAssessmentKeyS3(dmcProjectId, path);
   s3.getObject({Bucket:dmcBucketName,Key:key},
       function(error,data){
         if(error != null){
@@ -327,12 +343,17 @@ getAssessmentFromS3 = function(dmcProjectId, path, inputPage, functionToCall){
 * Should be called only for DMC version
 */
 saveAssessmentToS3 = function(dmcProjectId, path){
+  // Check if we have a valid path
+  if(path.length == 0){
+    writeOutDomeData();
+    return;
+  }
   var AWS = require('aws-sdk');
   AWS.config.loadFromPath('./credentials.json');
   var s3 = new AWS.S3();
   var exportData = assessmentDb.export();
   var buffer = new Buffer(exportData);
-  var key = dmcProjectId + "/" + path + "/index.mra";
+  var key = getAssessmentKeyS3(dmcProjectId, path);
 
   uploadObject = {Bucket:dmcBucketName,
                   Key:key,
@@ -352,9 +373,13 @@ getAvailableAssessmentsFromS3 = function(dmcProjectId){
   var AWS = require('aws-sdk');
   AWS.config.loadFromPath('./credentials.json');
   var s3 = new AWS.S3();
+  var dmcEnv = process.env.DMC_ENV;
+  console.log("DMC ENV: "+dmcEnv);
+  // TODO: pick this up from environment
+  dmcEnv = "dev";
   var params = {
     Bucket:dmcBucketName,
-    Prefix:dmcProjectId+"/"
+    Prefix:dmcEnv+"/"+dmcProjectId+"/"
   };
   s3.listObjects(params, function(error, data){
     if(error){
@@ -362,13 +387,15 @@ getAvailableAssessmentsFromS3 = function(dmcProjectId){
     }else{
       var assessmentNames = [];
       for(var i=0; i<data.Contents.length; i++){
-        if(data.Contents[i].Key.endsWith('index.mra')){
+        if(data.Contents[i].Key.endsWith(dmcIndexName)){
           var name = data.Contents[i].Key;
-          // Remove the dmcProjectId from the beginning of the path
-          var regex = new RegExp("^"+dmcProjectId+"\/");
+          var prefix = dmcEnv + "\/" + dmcProjectId;
+          // Remove the prefix from the beginning of the path
+          var regex = new RegExp("^"+prefix+"\/");
           name = name.replace(regex, "");
           // Remove index.mra from the end of the path
-          name = name.replace(/\/index.mra$/, "");
+          regex = new RegExp("\/"+dmcIndexName+"$");
+          name = name.replace(regex, "");
           assessmentNames.push(name);
         }
       }
@@ -408,7 +435,7 @@ deleteAssessmentS3 = function(dmcProjectId, assessmentPath){
   var s3 = new AWS.S3();
   var params = {
     Bucket:dmcBucketName,
-    Key:dmcProjectId+"/"+assessmentPath+"/index.mra"
+    Key:getAssessmentKeyS3(dmcProjectId, assessmentPath)
   };
 
   // Check inputs before deleting...
