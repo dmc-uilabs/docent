@@ -231,11 +231,12 @@ getNextQuestionIdForSubThread = function(subThreadId, targetLevel, answers){
   // No unanswered questions exist, and no questions were skipped
   // So, either all were Yes or N/A, or there were no questions at this level
   // Regardless, try the next level up
-  while(subThreadReturnObject.questionId == -1
+  var questionLevel = Number(targetLevel) +1;
+  if(subThreadReturnObject.questionId == -1
     && subThreadReturnObject.skippedQuestionId == -1
-    && targetLevel < 10){
-    targetLevel++;
-    subThreadReturnObject = getNextQuestionIdForSubThreadLevel(mrlLevelQuestions[targetLevel], answers);
+    && questionLevel < 10){
+    subThreadReturnObject = getNextQuestionIdForSubThreadLevel(mrlLevelQuestions[questionLevel], answers);
+    console.log(subThreadReturnObject);
     // Since this is a level above just
     // move to the next subThread, we don't
     // really care that we failed
@@ -257,7 +258,7 @@ getNextQuestionIdForSubThread = function(subThreadId, targetLevel, answers){
     return -1;
   }
 
-  // In what cases do we get here?
+  // If we are more than 1 level above target but still less than 10
   return -1;
 }
 
