@@ -894,7 +894,21 @@ getSubThreadLevelStatus = function(subThreadLevelId, mrlLevel, targetLevel){
 
 getMmpInfo = function(){
   var actions = [];
-  var actionResults = assessmentDb.exec("SELECT question_id, answer, assumptions, notes, evidence, technical_risk, cost_risk, schedule_risk, completion_date, reason, what_action, documentation FROM answer WHERE answer = 2");
+  var actionResults = assessmentDb.exec("SELECT  \
+                    a.question_id, \
+                    a.answer, \
+                    a.assumptions, \
+                    a.notes, \
+                    a.evidence, \
+                    a.technical_risk, \
+                    a.cost_risk, \
+                    a.schedule_risk, \
+                    a.completion_date, \
+                    a.reason, \
+                    a.what_action, \
+                    a.documentation \
+                    FROM answer a \
+                    WHERE a.answer = 2");
 
   if(actionResults.length > 0){
     var actionValues = actionResults[0].values;
@@ -926,9 +940,17 @@ getMmpInfo = function(){
 
       action['attachments'] = getAttachmentsForQuestion(action['questionId']);
 
-      questionResults = criteriaDb.exec("SELECT question_text FROM question where question_id =" + action['questionId']);
+      questionResults = criteriaDb.exec("SELECT a.question_text, b.mrl_level, c.name, d.name \
+                FROM question a, sub_thread_level b, sub_thread c, thread d \
+                WHERE a.question_id ='" + action['questionId'] +"'\
+                AND a.sub_thread_level_id = b.sub_thread_level_id \
+                AND b.sub_thread_id = c.sub_thread_id \
+                AND c.thread_id = d.thread_id");
       if(questionResults.length > 0){
         action['questionText'] = questionResults[0].values[0][0];
+        action['mrlLevel'] = questionResults[0].values[0][1];
+        action['subThreadName'] = questionResults[0].values[0][2];
+        action['threadName'] = questionResults[0].values[0][3];
       }
       action['actionPerson'] = actionPerson;
       actions.push(action);
