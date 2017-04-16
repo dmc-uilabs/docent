@@ -6,7 +6,6 @@
   "main": "app/main.js",
   "scripts": {
     "start": "electron .",
-    "build-mra": "electron-packager . mra --out=dist --asar --ignore=dist --all",
     "build-all": "./assets/buildAll.sh"
   },
   "window": {
