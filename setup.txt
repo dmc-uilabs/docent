@@ -1,3 +1,8 @@
+The credentials file is not included in the
+github repository.  It should be copied to
+docent/app/core/credentials.json
+after cloning the repository.
+
 From top level directory run:
 >npm install
->npm run build-mra
+>npm run build-all
