@@ -3,7 +3,15 @@
     <p class="instruction">Use this option to start a new assessment.</p>
     <form>
         <label>Team Members</label>
+
+        {{#unless mraOutputs.assessment.teamMembers}}
         <div class="memberSection" ng-init='mrl_teamMemberArray=["0"];mrl_numTeamMembers=1'>
+        {{/unless}}
+
+        {{#if mraOutputs.assessment.teamMembers}}
+        <div class="memberSection" ng-init='mrl_teamMemberArray=[];mrl_numTeamMembers=0'>
+        {{/if}}
+
           {{#each mraOutputs.assessment.teamMembers}}
             <div class="row memberRow">
                 <div class="col-sm-5">
@@ -87,9 +95,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12" id="startButtonWrapper">
-                <button id="startButton" class="btn btn-primary pull-right" onclick='$("#functionToCall").val("saveStartGetQuestionnairePage")' ng-show='{{#if mraOutputs.outAssessmentPath}}false{{else}}true{{/if}}' ng-click='run()'>Start</button>
-            </div>
+          <div id="startButtonWrapper">
+            <button id="startButton" class="btn btn-primary pull-right" onclick='$("#functionToCall").val("saveStartGetQuestionnairePage")' ng-show='{{#if mraOutputs.outAssessmentPath}}false{{else}}true{{/if}}' ng-click='run()'>Start</button>
+          </div>
         </div>
         <div class="continueSection">
             <div class="row">
