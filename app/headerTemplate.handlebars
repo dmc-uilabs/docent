@@ -19,46 +19,48 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right hidden-xs">
         <li class="dropdown hidden-xs">
-          <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
+          <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-show='"{{mraOutputs.outputPage}}"!="startPage" || {{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onmouseover="if (typeof(updateActionPersonWithCurrent) == 'function') {updateActionPersonWithCurrent();}">Menu <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Start</a></li>
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Navigate</a></li>
-            <li><a href="#">Actions</a></li>
-            <li><a href="#">Skipped Questions</a></li>
-            <li><a href="#">N/A Questions</a></li>
-            <li><a href="#">Review</a></li>
-            <li><a href="#">Save</a></li>
+            <li><a href onclick='$("#functionToCall").val("getStartPage")' ng-show='"{{mraOutputs.outputPage}}"!="startPage"' ng-click='run()'>Start</a></li>
+            <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getNextQuestionnairePage")' ng-show='"{{mraOutputs.outputPage}}"!="startPage"' ng-click='run()'>Continue</a></li>
+            <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getDashboardPage")' ng-click='run()'>Dashboard</a></li>
+            <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getNavigationPage")' ng-click='run()'>Navigate</a></li>
+            <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getMmpPage")' ng-click='run()'>Action Items</a></li>
+            <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getSkippedPage")'>Skipped Questions</a></li>
+            <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getNotApplicablePage")' ng-click='run()'>N/A Questions</a></li>
+            <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getReviewPage")' ng-click='run()'>Review</a></li>
+            {{#if mraOutputs.isRunningInElectron}}<li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("saveAssessment")' ng-click='run()'>Save</a></li>{{/if}}
           </ul>
         </li>
         <li class="dropdown hidden-xs">
           <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Help <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Criteria</a></li>
-            <li><a href="#">Definitions</a></li>
-            <li><a href="#">Acronyms</a></li>
-            <li><a href="#">Help</a></li>
+            <li><a href onclick='$("#functionToCall").val("getCriteriaPage")' ng-click='run()'>Criteria</a></li>
+            <li><a href onclick='$("#functionToCall").val("getDefinitionsPage")' ng-click='run()'>Definitions</a></li>
+            <li><a href onclick='$("#functionToCall").val("getAcronymsPage")' ng-click='run()'>Acronyms</a></li>
+            <li><a href onclick='$("#functionToCall").val("getHelpPage")' ng-click='run()'>Help</a></li>
           </ul>
         </li>
         </ul>
         <ul class="nav navbar-nav visible-xs">
 
 
-                        <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">Navigate</a></li>
-                        <li><a href="#">Actions</a></li>
-                        <li><a href="#">Skipped Questions</a></li>
-                        <li><a href="#">N/A Questions</a></li>
-                        <li><a href="#">Review</a></li>
-                        <li><a href="#">Save</a></li>
+                        <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getDashboardPage")' ng-click='run()'>Dashboard</a></li>
+                        <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getNavigationPage")' ng-click='run()'>Navigate</a></li>
+                        <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getMmpPage")' ng-click='run()'>Action Items</a></li>
+                        <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getSkippedPage")'>Skipped Questions</a></li>
+                        <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getNotApplicablePage")' ng-click='run()'>N/A Questions</a></li>
+                        <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getReviewPage")' ng-click='run()'>Review</a></li>
+                        {{#if mraOutputs.isRunningInElectron}}<li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("saveAssessment")' ng-click='run()'>Save</a></li>{{/if}}
 
-                        <li><a href="#">Criteria</a></li>
-                        <li><a href="#">Definitions</a></li>
-                        <li><a href="#">Acronyms</a></li>
-                        <li><a href="#">Help</a></li>
+                        <li><a href onclick='$("#functionToCall").val("getCriteriaPage")' ng-click='run()'>Criteria</a></li>
+                        <li><a href onclick='$("#functionToCall").val("getDefinitionsPage")' ng-click='run()'>Definitions</a></li>
+                        <li><a href onclick='$("#functionToCall").val("getAcronymsPage")' ng-click='run()'>Acronyms</a></li>
+                        <li><a href onclick='$("#functionToCall").val("getHelpPage")' ng-click='run()'>Help</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
   </div>
+  <input type='hidden' id='functionToCall' value='getStartPage'/>
 </nav>
 </header>
