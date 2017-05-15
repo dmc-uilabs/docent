@@ -62,5 +62,9 @@
   </div><!-- /.container-fluid -->
   </div>
   <input type='hidden' id='functionToCall' value='getStartPage'/>
+  <input type='hidden' id='dmcProjectId' value='\{{projectData.id}}' />
+  {{#if mraOutputs.outputPage}}
+    <span ng-if='"{{mraOutputs.outputPage}}"!="startPage"'><input type='hidden' id='inAssessmentPath' value='{{mraOutputs.outAssessmentPath}}'/></span>
+  {{/if}}
 </nav>
 </header>
