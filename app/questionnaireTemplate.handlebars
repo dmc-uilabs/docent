@@ -29,7 +29,7 @@
                         <textarea class="form-control" id="evidence" rows="5" placeholder='Enter objective evidence here...'>{{#if mraOutputs.answerInfo.evidence}}{{mraOutputs.answerInfo.evidence}}{{/if}}</textarea>
                     </div>
 
-                    <div ng-switch-when='2' ng-init='mrl_actionPersonArray=["0"];mrl_numActionPerson=1'>
+                    <div class="mrl_actionPersons" ng-switch-when='2' ng-init='mrl_actionPersonArray=["0"];mrl_numActionPerson=1'>
                         <h3 class="section-heading">Action Plan</h3>
 
                         <div class="row">
@@ -46,14 +46,14 @@
                         <div class="row">
                           <div class="col-md-8">
                               <div class="form-group">
-                                  <label for="answer-evidence">Who</label>
+                                  <label>Who</label>
                                   <!-- Loop for existing team members -->
                                   {{#each mraOutputs.answerInfo.actionPerson}}
-                                    <input style="margin-bottom: 5px;" type="text" class="form-control mrl_actionPersonName" name="member[]" onchange='updateActionPersonWithCurrent()'/>
+                                    <input style="margin-bottom: 5px;" type="text" class="form-control mrl_actionPersonName" name="member[]" value='{{this}}'/>
                                   {{/each}}
                                   <!-- Loop for newly added team members -->
                                   <div ng-repeat='x in mrl_actionPersonArray'>
-                                    <input style="margin-bottom: 5px;" type="text" class="form-control mrl_actionPersonName" name="member[]" onchange='updateActionPersonWithCurrent()'/>
+                                    <input style="margin-bottom: 5px;" type="text" class="form-control mrl_actionPersonName" name="member[]"/>
                                   </div>
                               </div>
                           </div>
@@ -96,11 +96,11 @@
                         </div>
                         <div class="form-group">
                             <label for="answer-evidence">What</label>
-                            <textarea class="form-control" id="answer-evidence" rows="5" id='whatAction' placeholder='What needs to be done to meet this objective?'>{{#if mraOutputs.answerInfo.whatAction}}{{mraOutputs.answerInfo.whatAction}}{{/if}}</textarea>
+                            <textarea class="form-control" rows="5" id='whatAction' placeholder='What needs to be done to meet this objective?'>{{#if mraOutputs.answerInfo.whatAction}}{{mraOutputs.answerInfo.whatAction}}{{/if}}</textarea>
                         </div>
                         <div class="form-group">
                             <label for="answer-evidence">Reason</label>
-                            <textarea class="form-control" id="answer-evidence" rows="5" id='reason' placeholder='Reason that criteria is not met'>{{#if mraOutputs.answerInfo.reason}}{{mraOutputs.answerInfo.reason}}{{/if}}</textarea>
+                            <textarea class="form-control" rows="5" id='reason' placeholder='Reason that criteria is not met'>{{#if mraOutputs.answerInfo.reason}}{{mraOutputs.answerInfo.reason}}{{/if}}</textarea>
                         </div>
                     </div>
 
@@ -124,25 +124,20 @@
                 </div>
 
             </form>
+
             <div class="attachments">
-                <dl class="attachments-list">
-                    <dt>Attachments</dt>
-                    {{#each mraOutputs.answerInfo.attachments}}
-                        <dd><a href onclick='$("#functionToCall").val("downloadAttachment");$("#attachmentId").val("{{id}}")' ng-click='run()'>Filename.pdf</a><span class="attachment-remove" onclick='$("#functionToCall").val("deleteAttachment");$("#attachmentId").val("{{id}}")'
-                                ng-click='run()'></span></dd>
-                    {{/each}}
-                </dl>
-
-
-                {{#if mraOutputs.isRunningInElectron}}
-                    <label for='attachments'>Attachments:</label>
-                    <span class="btn btn-default" onclick='$("#functionToCall").val("addAttachment")' ng-click='run()'>Attach File</span>
-                {{/if}}
-
-
-
-
+              <dl class="attachments-list">
+                <dt>Attachments</dt>
+                {{#each mraOutputs.answerInfo.attachments}}
+                    <dd><a href="javascript:void(0)" onclick='$("#functionToCall").val("downloadAttachment");$("#attachmentId").val("{{id}}")' ng-click='run()'>{{attachmentName}}</a><span class="attachment-remove" onclick='$("#functionToCall").val("deleteAttachment");$("#attachmentId").val("{{id}}")'
+                            ng-click='run()'></span></dd>
+                {{/each}}
+              </dl>
+              {{#if mraOutputs.isRunningInElectron}}
+                <span class="btn btn-default" onclick='$("#functionToCall").val("addAttachment")' ng-click='run()'>Attach File</span>
+              {{/if}}
             </div>
+
         </div>
 
 
@@ -157,7 +152,7 @@
 
 
         <input type='hidden' id='actionPerson' value='{{mraOutputs.answerInfo.actionPersonFormatted}}' />
-        <input type='hidden' id='attachmentId' value='' />
+        <input type='hidden' id='attachmentId' value=''/>
         <input type='hidden' id='questionId' value='{{mraOutputs.question.questionId}}'>
         <input type='hidden' id='inputPage' value='questionnairePage'>
 
@@ -174,24 +169,14 @@
       }
 
       $(document).ready(function() {
-          var scopeText = $("#scopeText");
-          var scopePanel = $("#scopePanel");
 
-          var scopeTextCopy = scopeText
-              .clone()
-              .css({
-                  display: 'inline',
-                  width: 'auto',
-                  visibility: 'hidden'
-              })
-              .removeClass('.mra-truncate')
-              .appendTo('#scopePanel');
+          document.onkeyup = function() {
+            updateActionPersonWithCurrent();
+          };
 
-          if (scopeTextCopy.width() > scopeText.width()) {
-              $("#moreLessLinks").css('display', '');
-          }
-
-          scopeTextCopy.remove();
+          document.onclick = function() {
+            updateActionPersonWithCurrent();
+          };
 
           updateActionPersonWithCurrent();
       });
