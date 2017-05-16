@@ -7811,7 +7811,11 @@ td.red {
     text-transform: uppercase;
     font-size: 12px;
     letter-spacing: 0.9px;
-    font-family: "poppinsbold"
+    font-family: "poppinsbold";
+    background: none;
+    border: none;
+    color: #3e66a5;
+    margin-bottom: 15px;
 }
 
 #docent .criteria-controls:before {
