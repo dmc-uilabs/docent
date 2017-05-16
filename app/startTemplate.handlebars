@@ -110,8 +110,8 @@
                     <p>Use this option to start working on an existing assessment. You will be required to import your assessment data.</p>
                 </div>
                 <div class="col-sm-6">
-                    <button class="btn btn-primary ">Help Importing</button>
-                    <button class="btn btn-primary">Import Assessment</button>
+                    <button class="btn btn-primary" onclick='$("#functionToCall").val("getHelpPage")' ng-click='run()' >Help Importing</button>
+                    <button class="btn btn-primary" onclick='$("#functionToCall").val("startPageImportAssessment")' ng-click='run()'>{{#if mraOutputs.isRunningInElectron}}Open Assessment{{else}}View Assessments{{/if}}</button>
                 </div>
             </div>
         </div>
