@@ -8234,13 +8234,13 @@ td.red {
 
 #docent header#subheader .breadcrumb a {
     color: white;
-    font-weight: light;
-    text-decoration: underline
+    font-weight: bolder;
+    /*text-decoration: underline*/
 }
 
 #docent header#subheader .breadcrumb .active {
     font-weight: normal;
-    font-family: "poppinsbold", sans-serif;
+    /*font-family: "poppinsbold", sans-serif;*/
     color: white
 }
 
