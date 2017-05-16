@@ -1,0 +1,28 @@
+<div>
+    <div class='container-fluid'>
+      <div class='mra_panel'>
+        <div class="mra_page_title">
+          <h2>Definitions</h2>
+          <hr>
+        </div>
+        <div class='row'>
+            <div class='col-md-1'></div>
+            <div class='col-md-10'>
+
+                <table class='table table-responsive table-hover' align='center'>
+
+                        {{#each mraOutputs.definitions}}
+                            <tr>
+                                <td>{{term}}</td>
+                                <td>{{definition}}</td>
+                            </tr>
+                        {{/each}}
+
+                </table>
+            </div>
+            <div class='col-md-1'></div>
+        </div>
+    </div>
+  </div>
+    <input type='hidden' id='inputPage' value='definitionPage'>
+</div>
