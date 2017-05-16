@@ -26,64 +26,84 @@
 
                     <div class="form-group" ng-switch-when='1'>
                         <label for="evidence">Objective Evidence</label>
-                        <textarea class="form-control" id="evidence" rows="5">{{#if mraOutputs.answerInfo.evidence}}{{mraOutputs.answerInfo.evidence}}{{/if}}</textarea>
+                        <textarea class="form-control" id="evidence" rows="5" placeholder='Enter objective evidence here...'>{{#if mraOutputs.answerInfo.evidence}}{{mraOutputs.answerInfo.evidence}}{{/if}}</textarea>
                     </div>
 
                     <div ng-switch-when='2'>
-                      <h3 class="section-heading">Action Plan</h3>
+                        <h3 class="section-heading">Action Plan</h3>
 
-                      <div class="row">
+                        <div class="row">
+                          <div class="col-md-8">
+                            <button class="addButton" ng-click='mrl_actionPersonArray.push(mrl_numActionPerson);mrl_numActionPerson=mrl_numActionPerson+1'><span class="glyphicon glyphicon-plus-sign"></span>Add Action Person</button>
+                          </div>
+                        </div>
+
+
+                        <div class="row" ng-init='mrl_actionPersonArray=["0"];mrl_numActionPerson=1'>
                           <div class="col-md-8">
                               <div class="form-group">
                                   <label for="answer-evidence">Who</label>
-                                  <input type="text" class="form-control" name="member[]" />
+                                  <!-- Loop for existing team members -->
+                                  <!-- {{#each mraOutputs.answerInfo.actionPerson}}
+                                    <input style="margin-bottom: 5px;" type="text" class="form-control" name="member[]" />
+                                  {{/each}} -->
+                                  <!-- Loop for newly added team members -->
+                                  <div ng-repeat='x in mrl_actionPersonArray'>
+                                    <input style="margin-bottom: 5px;" type="text" class="form-control" name="member[]" />
+                                    <button class="removeButton" ng-show='$last && mrl_actionPersonArray.length > 1' ng-click='mrl_actionPersonArray.splice(-1);mrl_numActionPerson=mrl_numActionPerson-1'><span class="glyphicon glyphicon-minus-sign"></span></button>
+                                  </div>
                               </div>
-
                           </div>
+
+
+
                           <div class="col-md-4">
                               <label for="answer-evidence">When</label>
                               <div class="form-group">
-                                  <input type="date" class="form-control">
+                                  <input type="date" class="form-control" id='completionDate' {{#if mraOutputs.answerInfo.completionDate}} value="{{mraOutputs.answerInfo.completionDate}}" {{/if}}>
 
                               </div>
                           </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-xs-12">
-                              <label for="answer-evidence">Risk</label>
-                              <div class="form-group">
 
-                                  <div class="checkbox-inline  ">
-                                      <label>
-                    					  	      <input type="checkbox"> Technical
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <label for="answer-evidence">Risk</label>
+                                <div class="form-group">
+
+                                    <div class="checkbox-inline  ">
+                                        <label>
+                    					  	      <input type="checkbox" id='technicalRisk' onclick='$(this).attr("value", this.checked ? 1 : 0)' {{#if mraOutputs.answerInfo.technicalRisk}}checked{{/if}} {{#if mraOutputs.answerInfo.technicalRisk}}value='1'{{else}}value='0'{{/if}}> Technical
                     					  	    </label>
-                                  </div>
-                                  <div class="checkbox-inline">
-                                      <label>
-                    					  	        <input type="checkbox"> Cost
+                                    </div>
+                                    <div class="checkbox-inline">
+                                        <label>
+                    					  	        <input type="checkbox" id='costRisk' onclick='$(this).attr("value", this.checked ? 1 : 0)' {{#if mraOutputs.answerInfo.costRisk}}checked{{/if}} {{#if mraOutputs.answerInfo.costRisk}}value='1'{{else}}value='0'{{/if}}> Cost
                     					  	      </label>
-                                  </div>
-                                  <div class="checkbox-inline">
-                                      <label>
-                    					  	          <input type="checkbox"> Schedule
+                                    </div>
+                                    <div class="checkbox-inline">
+                                        <label>
+                    					  	          <input type="checkbox" id='scheduleRisk' onclick='$(this).attr("value", this.checked ? 1 : 0)' {{#if mraOutputs.answerInfo.scheduleRisk}}checked{{/if}} {{#if mraOutputs.answerInfo.scheduleRisk}}value='1'{{else}}value='0'{{/if}}> Schedule
                     					  	        </label>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                          <label for="answer-evidence">What</label>
-                          <textarea class="form-control" id="answer-evidence" rows="5"></textarea>
-                      </div>
-                      <div class="form-group">
-                          <label for="answer-evidence">Reason</label>
-                          <textarea class="form-control" id="answer-evidence" rows="5"></textarea>
-                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="answer-evidence">What</label>
+                            <textarea class="form-control" id="answer-evidence" rows="5" id='whatAction' placeholder='What needs to be done to meet this objective?'>{{#if mraOutputs.answerInfo.whatAction}}{{mraOutputs.answerInfo.whatAction}}{{/if}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="answer-evidence">Reason</label>
+                            <textarea class="form-control" id="answer-evidence" rows="5" id='reason' placeholder='Reason that criteria is not met'>{{#if mraOutputs.answerInfo.reason}}{{mraOutputs.answerInfo.reason}}{{/if}}</textarea>
+                        </div>
                     </div>
 
                     <div ng-switch-when='3'>
-                      <label for="evidence">Documentation</label>
-                      <textarea class="form-control" id="documentation" rows="5" placeholder='Document why this question is not applicable...'>{{#if mraOutputs.answerInfo.documentation}}{{mraOutputs.answerInfo.documentation}}{{/if}}</textarea>
+                        <label for="evidence">Documentation</label>
+                        <textarea class="form-control" id="documentation" rows="5" placeholder='Document why this question is not applicable...'>{{#if mraOutputs.answerInfo.documentation}}{{mraOutputs.answerInfo.documentation}}{{/if}}</textarea>
                     </div>
 
                     <hr/>
@@ -91,12 +111,12 @@
                     <!-- Always have these two -->
                     <div class="form-group">
                         <label for="assumptions">Assumptions</label>
-                        <textarea class="form-control" id="assumptions" rows="5" placeholder="Enter any assumptions here..."></textarea>
+                        <textarea class="form-control" rows="5" placeholder="Enter any assumptions here..." id='assumptions' placeholder='Enter any assumptions here...'>{{#if mraOutputs.answerInfo.assumptions}}{{mraOutputs.answerInfo.assumptions}}{{/if}}</textarea>
                     </div>
 
                     <div class="form-group">
                         <label for="notes">Notes</label>
-                        <textarea class="form-control" id="notes" rows="5" placeholder="Enter any notes here..."></textarea>
+                        <textarea class="form-control" id="notes" rows="5" placeholder='Enter notes here...'>{{#if mraOutputs.answerInfo.notes}}{{mraOutputs.answerInfo.notes}}{{/if}}</textarea>
                     </div>
                 </div>
 
@@ -104,12 +124,20 @@
             <div class="attachments">
                 <dl class="attachments-list">
                     <dt>Attachments</dt>
-                    <dd><a href="#">Filename.pdf</a><span class="attachment-remove"></span></dd>
-                    <dd><a href="#">Filename.pdf</a><span class="attachment-remove"></span></dd>
-                    <dd><a href="#">Filename.pdf</a><span class="attachment-remove"></span></dd>
-                    <dd><a href="#">Filename.pdf</a><span class="attachment-remove"></span></dd>
+                    {{#each mraOutputs.answerInfo.attachments}}
+                        <dd><a href onclick='$("#functionToCall").val("downloadAttachment");$("#attachmentId").val("{{id}}")' ng-click='run()'>Filename.pdf</a><span class="attachment-remove" onclick='$("#functionToCall").val("deleteAttachment");$("#attachmentId").val("{{id}}")'
+                                ng-click='run()'></span></dd>
+                    {{/each}}
                 </dl>
-                <span class="btn btn-default">Attach File</span>
+
+
+                {{#if mraOutputs.isRunningInElectron}}
+                    <label for='attachments'>Attachments:</label>
+                    <span class="btn btn-default" onclick='$("#functionToCall").val("addAttachment")' ng-click='run()'>Attach File</span>
+                {{/if}}
+
+
+
 
             </div>
         </div>
@@ -120,14 +148,46 @@
             <div class="navigation-controls">
                 <div class="btn btn-primary"> <span class="glyphicon glyphicon-triangle-left"></span>Previous</div>
                 <div class="btn btn-primary" ng-show='!(selectOption==1 || selectOption==2 || selectOption==3)' onclick='$("#functionToCall").val("getNextQuestionnairePage")' ng-click='run()'>Skip<span class="glyphicon glyphicon-triangle-right"></div>
-                <div class="btn btn-primary" ng-show='(selectOption==1 || selectOption==2 || selectOption==3)' onclick='$("#functionToCall").val("getNextQuestionnairePage")' ng-click='run()'>Next<span class="glyphicon glyphicon-triangle-right"></div>
-
-			</span>
-                </div>
-
-                <input type='hidden' id='actionPerson' value='{{mraOutputs.answerInfo.actionPersonFormatted}}' />
-                <input type='hidden' id='attachmentId' value='' />
-                <input type='hidden' id='questionId' value='{{mraOutputs.question.questionId}}'>
-                <input type='hidden' id='inputPage' value='questionnairePage'>
-
+                <div class="btn btn-primary" ng-show='(selectOption==1 || selectOption==2 || selectOption==3)' onclick='$("#functionToCall").val("getNextQuestionnairePage")' ng-click='run()'>Next<span class="glyphicon glyphicon-triangle-right"></div></span>
             </div>
+        </div>
+
+
+        <input type='hidden' id='actionPerson' value='{{mraOutputs.answerInfo.actionPersonFormatted}}' />
+        <input type='hidden' id='attachmentId' value='' />
+        <input type='hidden' id='questionId' value='{{mraOutputs.question.questionId}}'>
+        <input type='hidden' id='inputPage' value='questionnairePage'>
+
+  <script type="text/javascript">
+      function updateActionPersonWithCurrent() {
+
+          var actionPersonList = $(".mrl_actionPersonName").map(function(x) {
+              return $(".mrl_actionPersonName")[x].value;
+          }).get();
+
+          actionPersonList = JSON.stringify(actionPersonList);
+
+          $("#actionPerson").val(actionPersonList);
+      }
+
+      $(document).ready(function() {
+          var scopeText = $("#scopeText");
+          var scopePanel = $("#scopePanel");
+
+          var scopeTextCopy = scopeText
+              .clone()
+              .css({
+                  display: 'inline',
+                  width: 'auto',
+                  visibility: 'hidden'
+              })
+              .removeClass('.mra-truncate')
+              .appendTo('#scopePanel');
+
+          if (scopeTextCopy.width() > scopeText.width()) {
+              $("#moreLessLinks").css('display', '');
+          }
+
+          scopeTextCopy.remove();
+      });
+  </script>
