@@ -14,28 +14,90 @@
             <form>
                 <div class="form-group">
                     <label for="answerValue">Answer</label>
-                    <select class="form-control" id="answerValue">
+                    <select class="form-control" id="answerValue" ng-model='selectOption' ng-init='selectOption={{#if mraOutputs.answerInfo.answer}}"{{mraOutputs.answerInfo.answer}}"{{else}}"0"{{/if}}'>
                       <option value='0'>Select...</option>
                       <option value='1'>Yes</option>
                       <option value='2'>No</option>
                       <option value='3'>Not Applicable</option>
 					          </select>
                 </div>
-                <div class="form-group">
-                    <label for="evidence">Objective Evidence</label>
-                    <textarea class="form-control" id="evidence" rows="5">{{#if mraOutputs.answerInfo.evidence}}{{mraOutputs.answerInfo.evidence}}{{/if}}</textarea>
-                </div>
 
-                <hr/>
+                <div ng-switch='selectOption'>
 
-                <div class="form-group">
-                    <label for="assumptions">Assumptions</label>
-                    <textarea class="form-control" id="assumptions" rows="5" placeholder="Enter any assumptions here..."></textarea>
-                </div>
+                    <div class="form-group" ng-switch-when='1'>
+                        <label for="evidence">Objective Evidence</label>
+                        <textarea class="form-control" id="evidence" rows="5">{{#if mraOutputs.answerInfo.evidence}}{{mraOutputs.answerInfo.evidence}}{{/if}}</textarea>
+                    </div>
 
-                <div class="form-group">
-                    <label for="notes">Notes</label>
-                    <textarea class="form-control" id="notes" rows="5" placeholder="Enter any notes here..."></textarea>
+                    <div ng-switch-when='2'>
+                      <h3 class="section-heading">Action Plan</h3>
+
+                      <div class="row">
+                          <div class="col-md-8">
+                              <div class="form-group">
+                                  <label for="answer-evidence">Who</label>
+                                  <input type="text" class="form-control" name="member[]" />
+                              </div>
+
+                          </div>
+                          <div class="col-md-4">
+                              <label for="answer-evidence">When</label>
+                              <div class="form-group">
+                                  <input type="date" class="form-control">
+
+                              </div>
+                          </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-xs-12">
+                              <label for="answer-evidence">Risk</label>
+                              <div class="form-group">
+
+                                  <div class="checkbox-inline  ">
+                                      <label>
+                    					  	      <input type="checkbox"> Technical
+                    					  	    </label>
+                                  </div>
+                                  <div class="checkbox-inline">
+                                      <label>
+                    					  	        <input type="checkbox"> Cost
+                    					  	      </label>
+                                  </div>
+                                  <div class="checkbox-inline">
+                                      <label>
+                    					  	          <input type="checkbox"> Schedule
+                    					  	        </label>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <label for="answer-evidence">What</label>
+                          <textarea class="form-control" id="answer-evidence" rows="5"></textarea>
+                      </div>
+                      <div class="form-group">
+                          <label for="answer-evidence">Reason</label>
+                          <textarea class="form-control" id="answer-evidence" rows="5"></textarea>
+                      </div>
+                    </div>
+
+                    <div ng-switch-when='3'>
+                      <label for="evidence">Documentation</label>
+                      <textarea class="form-control" id="documentation" rows="5" placeholder='Document why this question is not applicable...'>{{#if mraOutputs.answerInfo.documentation}}{{mraOutputs.answerInfo.documentation}}{{/if}}</textarea>
+                    </div>
+
+                    <hr/>
+
+                    <!-- Always have these two -->
+                    <div class="form-group">
+                        <label for="assumptions">Assumptions</label>
+                        <textarea class="form-control" id="assumptions" rows="5" placeholder="Enter any assumptions here..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Notes</label>
+                        <textarea class="form-control" id="notes" rows="5" placeholder="Enter any notes here..."></textarea>
+                    </div>
                 </div>
 
             </form>
@@ -63,8 +125,8 @@
 			</span>
                 </div>
 
-                <input type='hidden' id='actionPerson' value='{{mraOutputs.answerInfo.actionPersonFormatted}}'/>
-                <input type='hidden' id='attachmentId' value=''/>
+                <input type='hidden' id='actionPerson' value='{{mraOutputs.answerInfo.actionPersonFormatted}}' />
+                <input type='hidden' id='attachmentId' value='' />
                 <input type='hidden' id='questionId' value='{{mraOutputs.question.questionId}}'>
                 <input type='hidden' id='inputPage' value='questionnairePage'>
 
