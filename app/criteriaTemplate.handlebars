@@ -1,194 +1,272 @@
-<div>
-    <div class='container-fluid'>
-      <div class='mra_panel'>
-        <div class="mra_page_title">
-          <h2>Criteria</h2>
-          <hr>
-        </div>
-        <div class='row'>
-            <div class='col-md-2 text-center' id='blackLinks'><br><a href='http://www.dodmrl.com/MRL_Deskbook_2016.pdf'>MRL Deskbook: 2016</a></div>
-            <div class='col-md-8 text-center'>
-                Show Levels<br>
-                <form>
-                    <label class='checkbox-inline'><input type='checkbox' ng-init='mrl_all=true' ng-model='mrl_all'>All</label>
-                    <label class='checkbox-inline'><input type='checkbox' ng-checked='mrl_all' ng-model='mrl_0'>1</label>
-                    <label class='checkbox-inline'><input type='checkbox' ng-checked='mrl_all' ng-model='mrl_1'>2</label>
-                    <label class='checkbox-inline'><input type='checkbox' ng-checked='mrl_all' ng-model='mrl_2'>3</label>
-                    <label class='checkbox-inline'><input type='checkbox' ng-checked='mrl_all' ng-model='mrl_3'>4</label>
-                    <label class='checkbox-inline'><input type='checkbox' ng-checked='mrl_all' ng-model='mrl_4'>5</label>
-                    <label class='checkbox-inline'><input type='checkbox' ng-checked='mrl_all' ng-model='mrl_5'>6</label>
-                    <label class='checkbox-inline'><input type='checkbox' ng-checked='mrl_all' ng-model='mrl_6'>7</label>
-                    <label class='checkbox-inline'><input type='checkbox' ng-checked='mrl_all' ng-model='mrl_7'>8</label>
-                    <label class='checkbox-inline'><input type='checkbox' ng-checked='mrl_all' ng-model='mrl_8'>9</label>
-                    <label class='checkbox-inline'><input type='checkbox' ng-checked='mrl_all' ng-model='mrl_9'>10</label>
-                </form>
-            </div>
-            <div class='col-md-2'></div>
-        </div>
+<div class="container" id="mainContent">
+		<div class="row">
+		<div class="col-sm-6">
+			<a class="document-link" href="#"><span class="glyphicon glyphicon-file"></span> MRL Desktop V2.4</a>
+		</div>
+		<div class="col-sm-6 milestoneCol">
+			<span class="dl-label">Milestones</span>
+			<dl class="milestoneList">
+				<dt>A</dt>
+				<dd>MRL 5</dd>
+				<dt>B</dt>
+				<dd>MRL 7</dd>
+				<dt>C</dt>
+				<dd>MRL 9</dd>
+			</dl>
 
-        <div class='row'>
-            <div class='col-xs-12'>
-                <table id="mrl_milestone_table" class='table table-responsive' style='max-width:800px;' id='blackLinks' align='center'>
-                        <th></th>
-                        <th align='center'>Milestones:</th>
-                        <th style="position: relative;">1</th>
-                        <th style="position: relative;">2</th>
-                        <th style="position: relative;">3</th>
-                        <th style="position: relative;">4</th>
-                        <th style="position: relative; border-left: 1px solid #88b7d5;">5
-                            <div class="mrl_ms_level_locator">
-                                <div class='mrl_ms_level mra_arrow_box'>A</div>
-                                <div class="mra_arrow_box_arrow_down"></div>
-                            </div>
-                        </th>
-                        <th style="position: relative;">6</th>
-                        <th style="position: relative; border-left: 1px solid #88b7d5">7
-                            <div class="mrl_ms_level_locator">
-                                <div class='mrl_ms_level mra_arrow_box'>B</div>
-                                <div class="mra_arrow_box_arrow_down"></div>
-                            </div>
-                        </th>
-                        <th style="position: relative;">8</th>
-                        <th style="position: relative; border-left: 1px solid #88b7d5">9
-                            <div class="mrl_ms_level_locator">
-                                <div class='mrl_ms_level mra_arrow_box'>C</div>
-                                <div class="mra_arrow_box_arrow_down"></div>
-                            </div>
-                        </th>
-                        <th style="position: relative;">10</th>
-                </table>
-            </div>
-        </div>
+		</div>
+		</div>
 
+	<div class="criteria-filter-head">
+		<div class="filter-top">
+		<div class="row">
+			<div class="col-xs-12">
+				<button class="criteria-controls filter-button collapsed" data-toggle="collapse" data-target="#collapseFilter">Filter</button>
+					<div class="expand-controls pull-right">
+			<!-- <a href="#" class="criteria-controls expand-all"><span class="glyphicon glyphicon-collapse-down"></span> Expand all</a>
+			<a href="#" class="criteria-controls collapse-all"><span class="glyphicon glyphicon-collapse-up"></span> Collapse all</a> -->
+			</div>
+			</div>
 
+		</div>
+		</div>
+		<div class="criteria-filter-container collapse" id="collapseFilter">
+		<!-- <div class="filter-block">
+		<div class="row">
+			<div class="col-xs-12">
+			<div class="filter-label">Filter by Thread</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox"> Technology Maturity
+				    </label>
+				  </div>
+				  <div class="checkbox">
+				      <label>
+				        <input type="checkbox"> Technology &amp; Industrial Base
+				      </label>
+				    </div>
+				    <div class="checkbox">
+				        <label>
+				          <input type="checkbox"> Design
+				        </label>
+				      </div>
+			</div>
 
-        <div class='row'>
-            <div class='col-xs-12'>
-                <table class='table table-responsive mra_divided_table' style='max-width:800px;' id='blackLinks' align='center'>
-                        <th align='center'>Thread</th>
-                        <th></th>
-                        <th style="position: relative;">Sub Thread
-                        </th>
-                        <th style="position: relative;" level-id='mrl_0' ng-show='mrl_0 || mrl_all'>1</th>
-                        <th style="position: relative;" level-id='mrl_1' ng-show='mrl_1 || mrl_all'>2</th>
-                        <th style="position: relative;" level-id='mrl_2' ng-show='mrl_2 || mrl_all'>3</th>
-                        <th style="position: relative;" level-id='mrl_3' ng-show='mrl_3 || mrl_all'>4</th>
-                        <th style="position: relative;" level-id='mrl_4' ng-show='mrl_4 || mrl_all'>5
-                        </th>
-                        <th style="position: relative;" level-id='mrl_5' ng-show='mrl_5 || mrl_all'>6</th>
-                        <th style="position: relative;" level-id='mrl_6' ng-show='mrl_6 || mrl_all'>7
-                        </th>
-                        <th style="position: relative;" level-id='mrl_7' ng-show='mrl_7 || mrl_all'>8</th>
-                        <th style="position: relative;" level-id='mrl_8' ng-show='mrl_8 || mrl_all'>9
+			<div class="col-sm-3">
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox"> Technology Maturity
+				    </label>
+				  </div>
+				  <div class="checkbox">
+				      <label>
+				        <input type="checkbox"> Technology &amp; Industrial Base
+				      </label>
+				    </div>
+				    <div class="checkbox">
+				        <label>
+				          <input type="checkbox"> Design
+				        </label>
+				      </div>
+			</div>
 
-                        </th>
-                        <th style="position: relative;" level-id='mrl_9' ng-show='mrl_9 || mrl_all'>10</th>
+			<div class="col-sm-3">
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox"> Technology Maturity
+				    </label>
+				  </div>
+				  <div class="checkbox">
+				      <label>
+				        <input type="checkbox"> Technology &amp; Industrial Base
+				      </label>
+				    </div>
+				    <div class="checkbox">
+				        <label>
+				          <input type="checkbox"> Design
+				        </label>
+				      </div>
+			</div>
 
-                        {{#each mraOutputs.threads}}
-                            <tr>
+			<div class="col-sm-3">
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox"> Manufacturing Management
+				    </label>
+				  </div>
+				 </div>
+			</div>
+		</div> -->
+		<div class="filter-block form-inline">
+		<div class="row ">
 
-                                <td class='mra_divided_table_top_level' rowspan= {{numSubThreads}}>
-                                  <a href ng-click='showThread_{{threadId}} = !showThread_{{threadId}}'>
-                                    {{name}}</a>
-                                </td>
-                                <td class='mra_divided_table_top_level' rowspan= {{numSubThreads}}>
-                                    <a href ng-click='showThread_{{threadId}} = !showThread_{{threadId}}'>
+		<div class="col-xs-12">
+		<div class="filter-label">Filter by MRL</div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-init='mrl_all=true' ng-model='mrl_all'>All</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_0'>1</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_1'>2</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_2'>3</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_3'>4</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_4'>5</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_5'>6</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_6'>7</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_7'>8</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_8'>9</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_9'>10</label>
+      </div>
+		</div>
+		</div>
+		</div>
+		</div>
+	</div>
+	<div class="criteria-list">
+      {{#each mraOutputs.threads}}
+		 <div class="navigation-group">
+			      <h4 class="group-title">
+			        <button role="button" data-toggle="collapse" data-target="#collapseThread{{@index}}" aria-expanded="true" aria-controls="collapseThread{{@index}}" class="collapse-item collapsed">
+			          {{name}}
+			        </button>
+			      </h4>
 
-                                        <div class='mra_arrow_right' ng-show='!showThread_{{threadId}}'></div>
-                                        <div class='mra_arrow_down' ng-show='showThread_{{threadId}}'></div>
+			    <ul id="collapseThread{{@index}}" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+            {{#each subThreads}}
+			     <li>
+			     	<button role="button" data-toggle="collapse" data-target="#collapseSubThread_{{@../index}}_{{@index}}" aria-expanded="true" aria-controls="collapseSubThread_{{@../index}}_{{@index}}" class="collapse-item collapsed">
+			     	  {{name}}
+			     	</button>
+			     	<dl id="collapseSubThread_{{@../index}}_{{@index}}" class="collapse">
+              {{#each subThreadLevels}}
+                {{#if criteriaText}}
+    							<dt level-id="mrl_{{@index}}">MRL {{mrlLevel}}</dt>
+    							<dd level-id="mrl_{{@index}}">{{{criteriaText}}}</dd>
+                {{/if}}
+              {{/each}}
+			     	</dl>
+			     	<!-- <ul id="collapseTwo" class="collapse">
+							<li><a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="collapse-item collapsed">
+			     	  Technology Transition to Production
+			     	</a>
+							<ul id="collapseThree" class="collapse">
+								<li><a href="#">Question 1</a></li>
 
+								<li><a href="#">Question 2</a></li>
 
-                                    </a>
-                                </td>
+								<li><a href="#">Question 3</a></li>
 
-                                {{#each subThreads}}
-                                    {{#if @index}}
-                                        <tr>
-                                    {{/if}}
-                                    <td ng-show='showThread_{{../threadId}}'>
-                                        <h5>{{name}}</h5></td>
-                                    {{#each subThreadLevels}}
-                                        <td level-id="mrl_{{@index}}" ng-show='showThread_{{../../threadId}} && (mrl_{{@index}} || mrl_all)'>
-                                            <h5>{{{criteriaText}}}</h5></td>
-                                    {{/each}}
-                                    </tr>
-                                {{/each}}
-                        {{/each}}
-                </table>
-            </div>
-        </div>
-        <input type='hidden' id='inputPage' value='criteriaPage'>
-    </div>
+								<li><a href="#">Question 4</a></li>
 
-  </div>
+							</ul>
+			     	</li>
+							<li>3</li>
+							<li>4</li>
+							<li>5</li>
+			     	</ul> -->
+			     	</li>
+            {{/each}}
+			    </ul>
 
-    <script type="text/javascript">
-        $(document).ready(function() {
+			 </div>
+       {{/each}}
 
-            var checkBoxes = document.querySelectorAll('input[ng-model*=mrl_]');
-            var tds = document.querySelectorAll('[level-id*=mrl_]');
+	</div>
 
-            for (var i=0; i<checkBoxes.length; i++) {
-              var checkBox = checkBoxes[i];
+  <input type='hidden' id='inputPage' value='criteriaPage'>
 
-              var ngModel = checkBox.getAttribute('ng-model');
+<script type="text/javascript">
+  $(document).ready(function() {
 
-              if (ngModel == 'mrl_all') {
-                  checkBox.addEventListener("click", allClicked);
-              } else {
-                  checkBox.addEventListener("click", singleLevelClicked);
-              };
+      var checkBoxes = document.querySelectorAll('input[ng-model*=mrl_]');
+      var tds = document.querySelectorAll('[level-id*=mrl_]');
 
-            };
+      for (var i=0; i<checkBoxes.length; i++) {
+        var checkBox = checkBoxes[i];
 
-            function allClicked(event) {
+        var ngModel = checkBox.getAttribute('ng-model');
 
-                if (!event.target.checked) {
-
-                    for (var j=0; j<tds.length; j++) {
-                      var td = tds[j];
-                      td.style.display = "none";
-                    };
-
-                } else {
-
-                    for (var j=0; j<tds.length; j++) {
-                      var td = tds[j];
-                      td.style.display = "";
-                      td.checked = true;
-                    };
-
-                    for (var k=0; k<checkBoxes.length; k++) {
-                      var box = checkBoxes[k];
-                      box.checked = true;
-                    };
-
-                };
-
-            };
-
-        });
-
-        function singleLevelClicked(event) {
-            var allCheckbox = document.querySelector('[ng-model=mrl_all]');
-            allCheckbox.checked = false;
-
-            var clickedLevel = this.getAttribute('ng-model');
-            var levelTDs = document.querySelectorAll('[level-id=' + clickedLevel + ']');
-            var clickedOn = event.target.checked;
-
-            for (l=0; l<levelTDs.length; l++) {
-              var box = levelTDs[l];
-              changeDisplay(box, clickedOn);
-            };
-
+        if (ngModel == 'mrl_all') {
+            checkBox.addEventListener("click", allClicked);
+        } else {
+            checkBox.addEventListener("click", singleLevelClicked);
         };
 
-        function changeDisplay(element, on) {
-            if (!on) {
-                element.style.display = "none"
-            } else {
-                element.style.display = ""
-            };
-        }
-    </script>
+      };
+
+      function allClicked(event) {
+
+
+          if (!event.target.checked) {
+
+              for (var j=0; j<tds.length; j++) {
+                var td = tds[j];
+                td.style.display = "none";
+              };
+
+          } else {
+
+              for (var j=0; j<tds.length; j++) {
+                var td = tds[j];
+                td.style.display = "";
+                td.checked = true;
+              };
+
+              for (var k=0; k<checkBoxes.length; k++) {
+                var box = checkBoxes[k];
+                box.checked = true;
+              };
+
+          };
+
+      };
+
+  });
+
+  function singleLevelClicked(event) {
+
+
+      var allCheckbox = document.querySelector('[ng-model=mrl_all]');
+      allCheckbox.checked = false;
+
+      var clickedLevel = this.getAttribute('ng-model');
+      var levelTDs = document.querySelectorAll('[level-id=' + clickedLevel + ']');
+      var clickedOn = event.target.checked;
+
+      for (l=0; l<levelTDs.length; l++) {
+        var box = levelTDs[l];
+        changeDisplay(box, clickedOn);
+      };
+
+  };
+
+  function changeDisplay(element, on) {
+      if (!on) {
+          element.style.display = "none"
+      } else {
+          element.style.display = ""
+      };
+  }
+</script>

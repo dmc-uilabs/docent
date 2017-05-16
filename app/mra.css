@@ -7584,16 +7584,18 @@ td.red {
     font-family: 'didact_gothicregular'
 }
 
-#docent a.collapse-item {
+#docent button.collapse-item {
     text-decoration: none;
+    color: #000;
+    background: none;
+    border: none;
+}
+
+#docent button.collapse-item:focus {
     color: #000
 }
 
-#docent a.collapse-item:focus {
-    color: #000
-}
-
-#docent a.collapse-item:before {
+#docent button.collapse-item:before {
     -moz-osx-font-smoothing: grayscale;
     display: inline-block;
     font-family: "Glyphicons Halflings";
@@ -7609,7 +7611,7 @@ td.red {
     color: #3e66a5
 }
 
-#docent a.collapse-item.collapsed:before {
+#docent button.collapse-item.collapsed:before {
     content: ""
 }
 

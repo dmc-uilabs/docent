@@ -524,7 +524,7 @@ getCriteriaMatrixData = function(){
       if(j==0){
         subThreadsArray = [];
       }
-      contents = criteriaDb.exec("SELECT criteria_text FROM sub_thread_level where sub_thread_id="+subThreadValues[j][0]);
+      contents = criteriaDb.exec("SELECT criteria_text, mrl_level FROM sub_thread_level where sub_thread_id="+subThreadValues[j][0]);
       subThreadLevelValues = contents[0].values;
       for(var k = 0; k<subThreadLevelValues.length; k++){
         if(k == 0){
@@ -532,8 +532,9 @@ getCriteriaMatrixData = function(){
         }
 
         var criteriaTextWithTT = addTooltips(contents[0].values[k][0])
+        var mrlLevel = contents[0].values[k][1]
 
-        subThreadLevelsArray.push({criteriaText:criteriaTextWithTT});
+        subThreadLevelsArray.push({criteriaText:criteriaTextWithTT, mrlLevel:mrlLevel});
       }
       subThreadsArray.push({name:subThreadValues[j][1], subThreadLevels:subThreadLevelsArray});
     }

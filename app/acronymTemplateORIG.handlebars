@@ -1,0 +1,27 @@
+<div>
+    <div class='container-fluid'>
+      <div class='mra_panel'>
+        <div class="mra_page_title">
+          <h2>Acronyms</h2>
+          <hr>
+        </div>
+        <div class='row'>
+            <div class='col-md-2'></div>
+            <div class='col-md-8'>
+                <table class='table table-responsive table-hover' align='center'>
+
+                        {{#each mraOutputs.acronyms}}
+                            <tr>
+                                <td>{{acronym}}</td>
+                                <td>{{value}}</td>
+                            </tr>
+                        {{/each}}
+
+                </table>
+            </div>
+            <div class='col-md-2'></div>
+        </div>
+    </div>
+  </div>
+    <input type='hidden' id='inputPage' value='acronymPage'>
+</div>
