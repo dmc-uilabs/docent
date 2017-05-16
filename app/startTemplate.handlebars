@@ -97,6 +97,7 @@
         <div class="row">
           <div id="startButtonWrapper">
             <button id="startButton" class="btn btn-primary pull-right" onclick='$("#functionToCall").val("saveStartGetQuestionnairePage")' ng-show='{{#if mraOutputs.outAssessmentPath}}false{{else}}true{{/if}}' ng-click='run()'>Start</button>
+            <button id="startButton" class="btn btn-primary pull-right" onclick='$("#functionToCall").val("getNextQuestionnairePage")' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' ng-click='run()'>Continue</button>
           </div>
         </div>
         <div class="continueSection">
