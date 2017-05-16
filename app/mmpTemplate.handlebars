@@ -1,111 +1,105 @@
-<div class='container-fluid'>
-  <div class="mra_panel">
-    <div class="mra_page_title">
-      <h2>Action Items</h2>
-      <hr>
+<header id="subheader">
+  <div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+    <ol class="breadcrumb">
+      <li class="active">Action Items</li>
+    </ol>
+    <span class="collapse-link visible-xs xs-expand-link" data-toggle="collapse" data-target="#subheader-collapseable" aria-expanded="false" aria-controls="subheader-collapseable"><span class="glyphicon glyphicon-triangle-bottom"></span></span>
     </div>
-    <div class='container'>
-      <div class='row'>
-        <div class='col-md-9'>
-        </div>
-        <div id="csvExportDiv" class='col-md-3'>
-          <span style="display: none;" id="actionPlanCSVString">{{mraOutputs.answersCSV}}</span>
-          <button id="exportCSV" class='btn btn-primary pull-right' style='margin:10px'>Export</button>
-        </div>
-      </div>
-      {{#each mraOutputs.actionPlan}}
-      <div class='row well'>
-        <div class='col-xs-12'>
-          <div class='row'>
-            <div class='col-xs-12'>
-              <h5>{{threadName}}/{{subThreadName}}/{{mrlLevel}}</h5>
-              <h4><a href onclick='$("#functionToCall").val("getQuestionnairePageFromNavigation");$("#navQuestionId").val({{questionId}})' ng-click='run()'>{{questionText}}</a></h4>
-            </div>
-          </div>
-          <div class='row'>
-            <div class='col-md-3'>
-              {{#if completionDate}}
-                <div class='row'>
-                  <div class='col-xs-12'>
-                    <b>Completion Date</b>
-                    <ul>
-                      <li style='list-style-type:none'>{{completionDate}}</li>
-                    </ul>
-                  </div>
-                </div>
-              {{/if}}
-              <div class='row'>
-                <div class='col-xs-12'>
-                  <div ng-show='"{{costRisk}}"=="1"'><b>Cost Risk</b></div>
-                  <div ng-show='"{{scheduleRisk}}"=="1"'><b>Schedule Risk</b></div>
-                  <div ng-show='"{{technicalRisk}}"=="1"'><b>Technical Risk</b></div>
-                </div>
+    <div class="col-sm-6 hidden-xs">
+      <div class="row">
+      <div class="col-xs-12 meta">
+                Target MRL: {{mraOutputs.assessment.targetLevel}} <span class="text-divider">|</span>Target Date: {{mraOutputs.assessment.targetDate}}
               </div>
-              {{#if actionPerson}}
-                <div class='row'>
-                  <div class='col-xs-12'>
-                    <b>Team Members</b>
-                    <ul>
-                      {{#each actionPerson}}
-                      <li style='list-style-type:none'>{{name}}</li>
-                      {{/each}}
-                    </ul>
-                  </div>
-                </div>
-              {{/if}}
-            </div>
-            <div class='col-md-9'>
-              {{#if reason}}
-                <div class='row'>
-                  <div class='col-xs-12'>
-                    <b>Reason: </b><p class="preserveNewlines">{{reason}}</p>
-                  </div>
-                </div>
-              {{/if}}
-              {{#if whatAction}}
-                <div class='row'>
-                  <div class='col-xs-12'>
-                    <b>Action: </b><p class="preserveNewlines">{{whatAction}}</p>
-                  </div>
-                </div>
-              {{/if}}
-              {{#if assumptions}}
-                <div class='row'>
-                  <div class='col-xs-12'>
-                    <b>Assumptions: </b><p class="preserveNewlines">{{assumptions}}</p>
-                  </div>
-                </div>
-              {{/if}}
-              {{#if notes}}
-                <div class='row'>
-                  <div class='col-xs-12'>
-                    <b>Notes: </b><p class="preserveNewlines">{{notes}}</p>
-                  </div>
-                </div>
-              {{/if}}
-            </div>
-          </div>
-          {{#each attachments}}
-            <div class='row'>
-              <div class='col-xs-12'>
-                <button style="height: 32px; text-align: center;" class='btn btn-success btn-sm mra-btn-circle' onclick='$("#functionToCall").val("downloadAttachment");$("#attachmentId").val("{{id}}")' ng-click='run()' style='margin-top:10px'>
-                  &#11015;
-                </button>
-                {{attachmentName}}
-              </div>
-            </div>
-          {{/each}}
-        </div>
       </div>
-      {{else}}
-      <p>No action items</p>
-      {{/each}}
+
     </div>
-    <input type='hidden' id='inputPage' value='mmpPage'>
-    <input type='hidden' id='navQuestionId' value='0'>
-    <input type='hidden' id='attachmentId' value=''/>
   </div>
+
+
+
+  <div class="collapse"  id="subheader-collapseable">
+  <div class="row visible-xs">
+    <div class="col-xs-12">
+    Target MRL: {{mraOutputs.assessment.targetLevel}}<span class="text-divider">|</span>Target Date: {{mraOutputs.assessment.targetDate}}
+    </div>
+  </div>
+  </div>
+  </div>
+</header>
+
+
+
+
+
+<div class="container" id="mainContent">
+	<div class="row">
+	<div class="col-xs-12">
+	<div class="pull-right"><a href="javascript:void(0)" id="exportCSV" class="btn-link"><span class="glyphicon glyphicon-export"></span> Export</a></div>
+	</div>
+	</div>
+
+  <div id="csvExportDiv" class='col-md-3'>
+    <span style="display: none;" id="actionPlanCSVString">{{mraOutputs.answersCSV}}</span>
+    <!-- <button id="exportCSV" class='btn btn-primary pull-right' style='margin:10px'>Export</button> -->
+  </div>
+
+{{#each mraOutputs.actionPlan}}
+	<div class="actionItem">
+	<p><b>{{threadName}}</b> / {{subThreadName}} / {{mrlLevel}}</p>
+  <h5><a href onclick='$("#functionToCall").val("getQuestionnairePageFromNavigation");$("#navQuestionId").val({{questionId}})' ng-click='run()'>{{questionText}}</a></h5>
+
+  <div class="row">
+    <div class="col-xs-6">
+    	<dl>
+        <dt>Reason:</dt>
+        <dd>{{reason}}</dd>
+        <dt>Action</dt>
+        <dd>{{whatAction}}</dd>
+        <dt>Assumptions: </dt>
+        <dd>{{assumptions}}</dd>
+        <dt>Notes</dt>
+        <dd>{{notes}}</dd>
+      </dl>
+    </div>
+
+    <div class="col-xs-6">
+      <dl>
+        {{#if completionDate}}
+      		<dt>Completion Date:</dt>
+      		<dd>{{completionDate}}</dd>
+        {{/if}}
+    		<!-- <dt>Cost Risk: </dt>
+    		<dd>None</dd>
+    		<dt>Schedule Risk</dt>
+    		<dd>None</dd>
+    		<dt>Technical Risk</dt>
+    		<dd>none</dd> -->
+        <dt>Risks:</dt>
+        <dd ng-show='"{{costRisk}}"=="1"'>Cost Risk</dd>
+        <dd ng-show='"{{scheduleRisk}}"=="1"'>Schedule Risk</dd>
+        <dd ng-show='"{{technicalRisk}}"=="1"'>Technical Risk</dd>
+    		<dt>Team Members</dt>
+        {{#each actionPerson}}
+          <dd style='list-style-type:none'>{{name}}</dd>
+        {{/each}}
+    		<dt>Attachements</dt>
+        {{#each attachments}}
+    		  <dd><a href="javascript:void(0)" onclick='$("#functionToCall").val("downloadAttachment");$("#attachmentId").val("{{id}}")' ng-click='run()'>Operaiton-inspection-Q2_2017.pdf</a></dd>
+        {{/each}}
+    	</dl>
+    </div>
+  </div>
+
+	</div>
+{{/each}}
+
 </div>
+
+<input type='hidden' id='inputPage' value='mmpPage'>
+<input type='hidden' id='navQuestionId' value='0'>
+<input type='hidden' id='attachmentId' value=''/>
 
 <script>
   $( document ).ready(function() {

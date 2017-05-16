@@ -1,0 +1,144 @@
+<div class='container-fluid'>
+  <div class="mra_panel">
+    <div class="mra_page_title">
+      <h2>Action Items</h2>
+      <hr>
+    </div>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-9'>
+        </div>
+        <div id="csvExportDiv" class='col-md-3'>
+          <span style="display: none;" id="actionPlanCSVString">{{mraOutputs.answersCSV}}</span>
+          <button id="exportCSV" class='btn btn-primary pull-right' style='margin:10px'>Export</button>
+        </div>
+      </div>
+      {{#each mraOutputs.actionPlan}}
+      <div class='row well'>
+        <div class='col-xs-12'>
+          <div class='row'>
+            <div class='col-xs-12'>
+              <h5>{{threadName}}/{{subThreadName}}/{{mrlLevel}}</h5>
+              <h4><a href onclick='$("#functionToCall").val("getQuestionnairePageFromNavigation");$("#navQuestionId").val({{questionId}})' ng-click='run()'>{{questionText}}</a></h4>
+            </div>
+          </div>
+          <div class='row'>
+            <div class='col-md-3'>
+              {{#if completionDate}}
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <b>Completion Date</b>
+                    <ul>
+                      <li style='list-style-type:none'>{{completionDate}}</li>
+                    </ul>
+                  </div>
+                </div>
+              {{/if}}
+              <div class='row'>
+                <div class='col-xs-12'>
+                  <div ng-show='"{{costRisk}}"=="1"'><b>Cost Risk</b></div>
+                  <div ng-show='"{{scheduleRisk}}"=="1"'><b>Schedule Risk</b></div>
+                  <div ng-show='"{{technicalRisk}}"=="1"'><b>Technical Risk</b></div>
+                </div>
+              </div>
+              {{#if actionPerson}}
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <b>Team Members</b>
+                    <ul>
+                      {{#each actionPerson}}
+                      <li style='list-style-type:none'>{{name}}</li>
+                      {{/each}}
+                    </ul>
+                  </div>
+                </div>
+              {{/if}}
+            </div>
+            <div class='col-md-9'>
+              {{#if reason}}
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <b>Reason: </b><p class="preserveNewlines">{{reason}}</p>
+                  </div>
+                </div>
+              {{/if}}
+              {{#if whatAction}}
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <b>Action: </b><p class="preserveNewlines">{{whatAction}}</p>
+                  </div>
+                </div>
+              {{/if}}
+              {{#if assumptions}}
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <b>Assumptions: </b><p class="preserveNewlines">{{assumptions}}</p>
+                  </div>
+                </div>
+              {{/if}}
+              {{#if notes}}
+                <div class='row'>
+                  <div class='col-xs-12'>
+                    <b>Notes: </b><p class="preserveNewlines">{{notes}}</p>
+                  </div>
+                </div>
+              {{/if}}
+            </div>
+          </div>
+          {{#each attachments}}
+            <div class='row'>
+              <div class='col-xs-12'>
+                <button style="height: 32px; text-align: center;" class='btn btn-success btn-sm mra-btn-circle' onclick='$("#functionToCall").val("downloadAttachment");$("#attachmentId").val("{{id}}")' ng-click='run()' style='margin-top:10px'>
+                  &#11015;
+                </button>
+                {{attachmentName}}
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+      {{else}}
+      <p>No action items</p>
+      {{/each}}
+    </div>
+    <input type='hidden' id='inputPage' value='mmpPage'>
+    <input type='hidden' id='navQuestionId' value='0'>
+    <input type='hidden' id='attachmentId' value=''/>
+  </div>
+</div>
+
+<script>
+  $( document ).ready(function() {
+    var exportButton = document.getElementById('exportCSV');
+    exportButton.addEventListener('click', function() {
+      downloadCSV();
+    });
+  });
+
+  function downloadCSV() {
+    var csv = generateCSVString();
+
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'MRA_action_items.csv';
+    hiddenElement.style.display = 'none';
+    document.querySelector('#csvExportDiv').appendChild(hiddenElement);
+    hiddenElement.click();
+  }
+
+  function generateCSVString() {
+    var csv = (document.getElementById('actionPlanCSVString')).textContent;
+
+    csv = JSON.parse(csv);
+
+    for (var i=0; i < csv.length; i++) {
+      csv[i] = csv[i].join(',');
+    }
+
+    csv = csv.join("");
+
+    return csv;
+  }
+
+</script>
