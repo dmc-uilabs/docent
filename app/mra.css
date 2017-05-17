@@ -8227,7 +8227,7 @@ td.red {
 
 #docent header#subheader .container {
     position: relative;
-    min-height: 110px
+    min-height: 50px
 }
 
 #docent header#subheader .breadcrumb {

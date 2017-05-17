@@ -1,20 +1,50 @@
-<div class='container-fluid'>
-  <div class="mra_panel">
-    <div class="mra_page_title">
-      <h2>Help</h2>
+<header id="subheader">
+  <div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+    <ol class="breadcrumb">
+      <li class="active">Help</li>
+    </ol>
+    <span class="collapse-link visible-xs xs-expand-link" data-toggle="collapse" data-target="#subheader-collapseable" aria-expanded="false" aria-controls="subheader-collapseable"><span class="glyphicon glyphicon-triangle-bottom"></span></span>
     </div>
-    {{#each mraOutputs.helpMenuItems}}
-      <div class='row'>
-        <div class='col-xs-12' ng-init="show{{@index}} = false">
-          <h4> <a href='' ng-click="show{{@index}} = !show{{@index}}">{{helpTitle}}</a></h4>
-          <ul ng-if="show{{@index}}" style="margin-bottom: 20px">
-            {{#each helpText}}
-              <li>{{{this}}}</li>
-            {{/each}}
-          </ul>
+
+    {{#if mraOutputs.assessment.targetLevel}}
+      <div class="col-sm-6 hidden-xs">
+        <div class="row">
+        <div class="col-xs-12 meta">
+                  Target MRL: {{mraOutputs.assessment.targetLevel}} <span class="text-divider">|</span>Target Date: {{mraOutputs.assessment.targetDate}}
+                </div>
         </div>
+
       </div>
-    {{/each}}
+    {{/if}}
   </div>
+
+
+  {{#if mraOutputs.assessment.targetLevel}}
+    <div class="collapse"  id="subheader-collapseable">
+    <div class="row visible-xs">
+      <div class="col-xs-12">
+          Target MRL: {{mraOutputs.assessment.targetLevel}}<span class="text-divider">|</span>Target Date: {{mraOutputs.assessment.targetDate}}
+      </div>
+    </div>
+    </div>
+  {{/if}}
+
+  </div>
+</header>
+
+<div class="container" id="mainContent">
+  {{#each mraOutputs.helpMenuItems}}
+		<div class="faqQuestion">
+		<div style="margin-bottom: 10px;" class="collapse-link" data-toggle="collapse" data-target="#help{{@index}}" aria-expanded="false" aria-controls="help{{@index}}">{{helpTitle}}</div>
+
+  		<dl class="collapse" id="help{{@index}}">
+        {{#each helpText}}
+          <dd>{{{this}}}</dd>
+        {{/each}}
+      </dl>
+
+		</div>
+  {{/each}}
 </div>
-<input type='hidden' id='inputPage' value='helpPage'></div>
