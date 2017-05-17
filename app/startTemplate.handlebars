@@ -14,7 +14,7 @@
 
           {{#each mraOutputs.assessment.teamMembers}}
             <div class="row memberRow">
-                <div class="col-sm-5">
+                <div class="col-sm-6">
                     <input type="text" class="form-control" id='mrl_teamMemberName{{@index}}' value='{{name}}'/>
                 </div>
                 <div class="col-sm-5">
@@ -27,14 +27,14 @@
           {{/each}}
 
             <div class="row memberRow" ng-repeat='x in mrl_teamMemberArray'>
-                <div class="col-sm-5">
+                <div class="col-sm-6">
                     <input type="text" class="form-control" id='mrl_teamMemberName' placeholder="Member Name" />
                 </div>
                 <div class="col-sm-5">
                     <input type="text" class="form-control" id='mrl_teamMemberRole' placeholder="Member Role" />
                 </div>
-                <div class="col-sm-2">
-                    <button class="removeButton" ng-show='$last && mrl_teamMemberArray.length > 1' ng-click='mrl_teamMemberArray.splice(-1);mrl_numTeamMembers=mrl_numTeamMembers-1'><span class="glyphicon glyphicon-minus-sign"></span></button>
+                <div class="col-sm-1">
+                    <button style="vertical-align: text-top;" class="removeButton" ng-show='$last && mrl_teamMemberArray.length > 1' ng-click='mrl_teamMemberArray.splice(-1);mrl_numTeamMembers=mrl_numTeamMembers-1'><span class="glyphicon glyphicon-minus-sign"></span></button>
                 </div>
             </div>
 
