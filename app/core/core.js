@@ -1607,7 +1607,7 @@ buildDictionary = function() {
 }
 
 stripAcronyms = function(term) {
-  var rx =  new RegExp(/ \([A-Z]+\)$/,'ig')
+  var rx =  new RegExp(/ \([A-Z]+\)$/ig)
   return term.replace(rx,'')
 }
 
