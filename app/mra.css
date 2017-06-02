@@ -1,1 +1,1253 @@
-@font-face{font-family:"didact_gothicregular";src:url("../fonts/didactgothic-regular-webfont.woff2") format("woff2"),url("../fonts/didactgothic-regular-webfont.woff") format("woff");font-weight:normal;font-style:normal}@font-face{font-family:"poppinsbold";src:url("../fonts/poppins-bold-webfont.woff2") format("woff2"),url("../fonts/poppins-bold-webfont.woff") format("woff");font-weight:bold;font-style:normal}body{background-color:#fff;font-family:"didact_gothicregular",sans-serif;margin:0}body .attachments .attachments-list{margin-top:110px;margin-bottom:0}body .attachments .attachments-list dt{margin-bottom:20px;font-size:16px;font-weight:normal;line-height:1.0;letter-spacing:0.2px}body .attachments .attachments-list dd{font-size:15px;line-height:1.33;letter-spacing:0.5px;padding-right:34px;position:relative;margin-bottom:10px}body .attachments .attachments-list dd a{color:#686868}body .attachments .attachments-list dd .attachment-remove{cursor:pointer;color:#ff5252;position:absolute;top:0;right:0;display:block;width:10px;height:10px;font-size:10px}body .attachments .attachments-list dd .attachment-remove:after{content:"";font-family:"Glyphicons Halflings"}body .attachments .btn{margin-top:40px;border-radius:0}body [data-toggle="tooltip"]{color:#305194}body .question-header{margin-bottom:40px}body .question-header h4{margin-top:0px;border:none;font-family:"didact_gothicregular";font-weight:normal;font-size:14px}body .question-header h1{font-weight:normal;font-size:30px;line-height:1.4;margin-bottom:20px;font-family:"didact_gothicregular"}body .question-header p{font-size:16px;line-height:1.5;letter-spacing:0.2px;margin-top:15px}body form label{font-weight:normal;font-family:"didact_gothicregular";font-size:16px;line-height:1.0;letter-spacing:0.2px}body h3{text-transform:uppercase;font-weight:normal;font-size:14px;font-family:"poppinsbold", sans-serif;margin-bottom:30px}body .navigation-controls{text-align:right}body .navigation-controls .btn{display:inline-block}body .navigation-controls .glyphicon{font-size:11px}@media (max-width: 1199px){body .navigation-controls .btn{width:100%}}@media (max-width: 991px){body .navigation-controls .btn{width:auto}}body .groupContent{padding-bottom:45px;font-size:18px;font-family:"didact_gothicregular"}body .groupContent .row{padding-top:25px}body .groupContent .col-sm-3{font-family:'poppinsbold';font-size:16px}body .checkbox-inline label{line-height:normal;margin:0}@media (max-width: 991px){body .navigation-controls{margin-top:40px}}@media (max-width: 767px){body header#subheader .progress{margin:0}body .navigation-controls{text-align:center}body .navigation-controls .btn:first-of-type{float:left}body .navigation-controls .btn:last-of-type{float:right}body .question-header h1{font-size:22px;line-height:38px}}body dl.definitions dt{margin-bottom:18px;font-family:'poppinsbold';font-weight:normal;font-size:16px;line-height:0.88}body dl.definitions dd{border-bottom:1px solid #dcdcdc;padding-bottom:30px;margin-bottom:40px;line-height:1.44;font-size:18px;font-family:'didact_gothicregular'}body a.collapse-item{text-decoration:none;color:#000}body a.collapse-item:focus{color:#000}body a.collapse-item:before{-moz-osx-font-smoothing:grayscale;display:inline-block;font-family:"Glyphicons Halflings";font-style:normal;font-weight:400;line-height:1;position:relative;top:1px;font-size:10px;top:-1px;left:-2px;content:"";color:#3e66a5}body a.collapse-item.collapsed:before{content:""}body .navigation-group{border-bottom:1px solid #dcdcdc;font-size:18px}body .navigation-group:first-of-type{border-top:1px solid #dcdcdc}body .navigation-group .group-title{border:none}body .navigation-group li{padding:10px 0}body .navigation-group ul{list-style:none;margin:0;padding-left:20px}body .navigation-group ul ul{border-top:none}@media (max-width: 767px){body .navigation-group{font-size:16px}}body .export{background:none;text-transform:uppercase;color:#3e66a5;float:right;font-family:"poppinsbold";font-weight:normal;font-size:12px;letter-spacing:0.9px;margin-bottom:30px}body .export:hover{color:#4D7ECC}body .export:active{color:#1E3F73}body .export .glyphicon{margin-right:10px}body .export:after{display:block;width:100%;content:" ";clear:both;visibility:hidden}body .review-block{border-bottom:1px solid #dcdcdc;padding:30px 0}body .review-block h2{font-family:"didact_gothicregular";font-weight:normal;margin:0 0 30px 0;font-size:20px}body .review-block dl{margin:0}body .review-block dt{margin-top:30px;font-family:"poppinsbold";font-size:14px;letter-spacing:0.86px}body .review-block dd{margin-top:10px;font-size:16px}body .status,body .status-no,body .status-skipped,body .status-yes,body .status-na{display:inline-block;padding:8px;font-family:"poppinsbold";font-size:14px;line-height:14px;letter-spacing:0.2px;color:#fff;text-transform:uppercase}body .status-no{background-color:#ed4749}body .status-skipped{background-color:#a4a4a4}body .status-yes{background-color:#65d62b}body .status-na{background-color:#626262}body .criteria-list dl{margin:20px 0px 0px 15px;font-size:16px}body .criteria-list dl dt{font-family:"poppinsbold"}body .criteria-list dl dd{margin-bottom:20px}body .criteria-list .navigation-group:first-of-type{border-top:none}body .dl-label{font-family:"poppinsbold";text-transform:uppercase;font-size:12px;display:inline-block}body .milestoneCol{text-align:right}body .milestoneList{margin-left:10px;display:block;float:right}body .milestoneList dt,body .milestoneList dd{display:block;float:left;line-height:22px;height:22px}body .milestoneList dt{background-color:#3e66a5;color:white;text-transform:uppercase;text-align:center;border-radius:11px;padding-top:1px;font-size:11px;height:22px;width:22px;margin-right:5px;margin-left:20px}body .milestoneList dd{font-size:14px;padding-top:2px;letter-spacing:0.3px}@media (max-width: 767px){body .milestoneCol{text-align:left;padding-top:10px;padding-bottom:10px}body .milestoneList{display:inline}}body .criteria-controls{text-transform:uppercase;font-size:12px;letter-spacing:0.9px;font-family:"poppinsbold"}body .criteria-controls:before{-moz-osx-font-smoothing:grayscale;display:inline-block;font-family:"Glyphicons Halflings";font-style:normal;font-weight:400;line-height:1;position:relative;top:1px;top:-1px;left:-2px;color:#3e66a5}body .criteria-controls.filter-button:before{content:"";margin-right:2px}body .criteria-controls.filter-button.collapsed:before{content:""}body .criteria-controls.filter-button:before{font-size:10px}body .criteria-controls.collapse-all{margin-left:10px}body .expand-controls{text-align:right}body .filter-block{border-top:1px solid #dcdcdc;padding-top:20px;padding-bottom:20px}body .filter-block .filter-label{font-size:14px;margin-bottom:25px}body .criteria-filter-head{border-bottom:1px solid #dcdcdc}body .filter-block.form-inline .checkbox{margin-left:30px}body .filter-block.form-inline .checkbox input{margin-right:5px;top:-1px}@media (max-width: 767px){body .filter-block.form-inline .checkbox{margin-left:0}}body .filter-block.form-inline .filter-label+.checkbox{margin-left:0}body .progress-table{font-fadmily:"didact_gothicregular";font-size:16px;border-spacing:4px;border-collapse:separate}body .progress-table th{font-size:12px;line-height:20px}body .progress-table tr>th:first-of-type,body .progress-table tr>td:first-of-type{padding-left:0}body .progress-table tr>th:last-of-type,body .progress-table tr>td:last-of-type{padding-right:0}body .progress-table thead th:last-of-type,body .progress-table tr>td:last-of-type{text-transform:uppercase;text-align:right}body .progress-table{border-spacing:0;border-collapse:collapse}body .progress-table tbody>tr>td{vertical-align:middle;padding-left:0;padding-right:0;width:44px}body .progress-table tbody>tr>td:first-of-type{padding-right:8px;width:auto}body .progress-table tbody>tr>td:last-of-type{padding-left:8px;width:auto}body .progress-table>thead>tr>th{border:none;text-align:center;font-weight:bold;font-family:"poppinsbold"}body .progress-table tr>td:first-of-type{min-width:200px}body .progress-table td .indicator{width:35px;height:40px;display:block;background-color:#ebebeb;margin:2px auto}body .progress-table td .indicator:after{line-height:40px;font-family:'Glyphicons Halflings';display:block;color:white;text-align:center}body .progress-table td .indicator.correct{background-color:#65d62b}body .progress-table td .indicator.correct:after{content:""}body .progress-table td .indicator.incorrect{background-color:#ed4749}body .progress-table td .indicator.incorrect:after{content:""}body .progress-table td .indicator.incomplete{background-color:#626262}body .progress-table td .indicator.incomplete:after{content:"−"}body .mobile-cards .progress-table{width:auto;margin:0px 0 20px;border:none;border-spacing:0}body .mobile-cards .progress-table th{text-align:center;font-weight:bold;font-family:"poppinsbold";width:10%}body .mobile-cards .progress-table th:last-of-type{text-align:center}body .mobile-cards .progress-table tr>td:first-of-type{min-width:0px}body .mobile-cards .progress-table td{border-right:4px solid white;width:10%}body .mobile-cards .progress-table td:last-of-type{border-right:none}body .dashboard-controls .btn{margin-right:20px}@media (max-width: 767px){body .dashboard-controls{margin-top:10px}body .dashboard-controls .btn{display:block}body .navigation-group .group-title{margin:10px 0;padding:10px;display:block}body .navigation-group .group-title a{display:block;font-size:14px}body .navigation-group .navigation-content{padding-left:25px;padding-bottom:20px}body .navigation-group .navigation-content h3{border-top:1px solid #dcdcdc;padding:20px 0 0px;font-size:14px;text-transform:none}body .navigation-group .navigation-content time{display:block;padding:10px 0 20px}}body .addButton{background:none;border:none;color:#65d62b;font-family:"poppinsbold";text-align:left;padding:0;margin:0;position:relative;font-size:14px;display:inline-block;margin-bottom:34px;padding-left:50px;line-height:30px}body .addButton .glyphicon{height:30px;display:inline-block;font-size:30px;position:absolute;left:0px;line-height:30px}body .removeButton{background:none;font-size:30px;border:none;color:#ed4749;padding:0;border:none;height:30px}body .memberRow{margin-bottom:20px}body .continueSection{border-top:1px solid #dcdcdc;clear:both;padding-top:33px;margin-top:40px}body .instruction{color:#949494;font-size:16px}@media (max-width: 767px){body .memberRow{position:relative;margin-bottom:20px}body .memberRow .col-sm-5{margin-right:40px}body .memberRow .col-sm-5:first-of-type{margin-bottom:10px}body .memberRow .col-sm-2{position:absolute;top:0px;right:0px}}@-moz-document url-prefix(){body fieldset{display:table-cell}}body h1,body h2,body h3,body h4,body h5,body h6{font-weight:normal;font-family:"poppinsbold";margin:0}body .section-heading{margin-bottom:20px}body p{line-height:24px;font-size:16px;margin-bottom:30px;clear:both}body h2{font-size:22px}body h4{border-top:1px solid #dcdcdc;border-bottom:1px solid #dcdcdc;font-family:"poppinsbold";font-size:12px;line-height:0.83;letter-spacing:0.2px;text-transform:uppercase;padding:18px 0}body a{color:#3e66a5;text-decoration:none}body a:active,body a:focus{color:#4D7ECC;text-decoration:none}body a:hover{text-decoration:none;color:#1E3F73}body header{background:#000;color:#fff}body header#primaryheader{padding-bottom:30px}body header#primaryheader .navbar-toggle{margin-right:0;margin-top:10px}body header#primaryheader nav.navbar{margin-bottom:0px}body header#primaryheader .topWrap{border-bottom:1px solid #494949}body header#primaryheader .row{padding-bottom:30px}@media (max-width: 767px){body header#primaryheader#primaryheader{padding-bottom:10px}}body header#subheader #subheader-collapseable .row{padding-top:10px}body header#subheader .container{position:relative;min-height:110px}body header#subheader .breadcrumb{background:transparent;padding:0;margin:0;font-size:22px;letter-spacing:0.8px}body header#subheader .breadcrumb a{color:white;font-weight:light;text-decoration:underline}body header#subheader .breadcrumb .active{font-weight:normal;font-family:"poppinsbold", sans-serif;color:white}body header#subheader .breadcrumb>li+li::before{font-family:"didact_gothicregular", sans-serif}body header#subheader .progress{margin-bottom:0px;border-radius:0px;margin-right:15px;margin-left:15px}@media (max-width: 767px){body header#subheader .container{min-height:0;padding-bottom:10px}body header#subheader.has-progress .container{padding-bottom:40px}body header#subheader .progress{margin:0}body header#subheader .xs-expand-link{position:absolute;right:15px;top:0;cursor:pointer;font-size:10px;line-height:20px}body header#subheader .breadcrumb{font-size:16px;line-height:20px;margin-right:20px}}body header#subheader .meta{font-size:15px;line-height:14px;text-align:right;margin-bottom:15px}body header#subheader .collapse-link{text-decoration:underline;cursor:pointer}body .navbar.navbar-default{background:transparent;border:none}body .navbar.navbar-default .navbar-brand{color:#fff;margin-top:10px;margin-bottom:10px;padding-left:0}body .navbar.navbar-default .navbar-nav>li:last-of-type>a{padding-right:0}body .navbar.navbar-default .navbar-nav>li>a{line-height:40px}body .navbar.navbar-default a.dropdown-toggle{color:#fff}body .navbar.navbar-default a.dropdown-toggle:hover,body .navbar.navbar-default a.dropdown-toggle:focus{color:white}body .navbar.navbar-default .dropdown.open a.dropdown-toggle{background:none}body .navbar.navbar-default .dropdown-menu{background:#305194;text-align:right;padding:0}body .navbar.navbar-default .dropdown-menu a{color:#fff;line-height:14px;font-size:16px;padding:15px 25px 15px 20px}body .navbar.navbar-default .dropdown-menu a:hover,body .navbar.navbar-default .dropdown-menu a.active,body .navbar.navbar-default .dropdown-menu a:focus,body .navbar.navbar-default .dropdown-menu a:active{background-color:#33558a}body .faqQuestion{padding-bottom:12px}body .faqQuestion .collapse-link{font-size:16px;pading-bottom:18px}body .faqQuestion p{font-size:18px}body #mainContent{padding-top:30px;padding-bottom:30px}body #mainContent .collapse-link{color:#3e66a5;font-family:"poppinsbold";cursor:pointer}body #mainContent .collapse-link:hover{color:#4D7ECC}body #mainContent .collapse-link:active,body #mainContent .collapse-link:focus{color:#1E3F73}body #mainContent .sidebar{right:15px;top:30px;max-width:263px}body .progress{background-image:linear-gradient(-65deg, #616161 25%, transparent 25%, transparent 50%, #616161 50%, #616161 75%, transparent 75%, transparent);background-size:10px 20px;background-color:#595959;position:absolute;left:0;right:0;bottom:0}body .progress .progress-bar{background:#305194}body .btn-primary{border-radius:0px;margin-bottom:10px}body .btn-primary:hover,body .btn-primary.active,body .btn-primary:focus,body .btn-primary:active{background-color:#305194}body hr{border-color:#dcdcdc;margin:50px 0}body .btn{text-transform:uppercase;font-weight:normal;font-size:12px;line-height:1.0;letter-spacing:0.9px;padding:13px 25px 11px 25px;font-family:"poppinsbold", sans-serif}body .input-group-btn .btn{padding:6px 12px;line-height:1.42857;font-size:14px;background:#fbfbfb;border:1px solid #ccc;border-left:none;border-radius:0px;color:black}body .input-group-btn .btn:hover{background:#fbfbfb;color:black}body input,body textarea,body .form-control{border-radius:0;background-color:#fbfbfb;border-color:#dcdcdc}body form label{margin-bottom:13px}body .form-group{margin-bottom:40px}body .btn-default{background:#000;border:none;color:white}body .btn-default:hover{background:#000;color:white}body .jumpmenu{margin-bottom:68px}body .jumpmenu .jump-desktop{line-height:35px}@media (max-width: 767px){body .jumpmenu{margin-bottom:20px}body .jumpmenu .form-group{margin-bottom:15px}body .jumpmenu .input-group-addon.jump-label{background:transparent;border:none}}@media (max-width: 768px){body .nav.navbar-nav{text-align:center}body .nav.navbar-nav>li>a{color:white;font-size:20px;font-family:"poppinsbold";font-weight:normal;padding-top:20px;padding-bottom:20px}}body dl.inline-list{padding-bottom:30px;border-bottom:1px solid #dcdcdc;margin:0}body dl.inline-list dt,body dl.inline-list dd{float:left;margin-bottom:12px}body dl.inline-list dd{margin-left:10px}body dl.inline-list dt{clear:both;font-family:"poppinsbold"}body dl.inline-list:after{clear:both;display:block;content:""}body .navbar-default .navbar-collapse{border-color:#494949}body .navbar-default .navbar-toggle{border:none;background-image:url(../images/menu-close.png);height:52px;width:42px;background-position:center right;background-repeat:no-repeat}body .navbar-default .navbar-toggle:hover,body .navbar-default .navbar-toggle:focus,body .navbar-default .navbar-toggle:active{background-color:transparent;border:none}body .navbar-default .navbar-toggle.collapsed{background-image:url(../images/menu.png)}body .navbar-default .navbar-toggle.collapsed:hover,body .navbar-default .navbar-toggle.collapsed:focus,body .navbar-default .navbar-toggle.collapsed:active{background-color:transparent;border:none}body .acronymTable{font-size:18px;font-family:'didact_gothicregular';line-height:25px}body .acronymTable .col-sm-3{font-weight:normal;font-family:'poppinsbold';text-transform:uppercase;font-size:16px}body .row-striped>div:nth-of-type(odd){background-color:#fff;padding:5px 15px}body .row-striped>div:nth-of-type(even){background-color:#ebebeb;padding:5px 15px}body .actionItem{padding:30px 0;border-top:1px solid #dcdcdc;font-size:16px}body .actionItem p{font-size:18px;font-family:"didact_gothicregular";margin:0}body .actionItem dt{font-family:"poppinsbold";font-size:14px;padding-bottom:10px;padding-top:30px}body .actionItem dd{font-family:"didact_gothicregular"}body .tooltipContainer{position:relative}body .tooltipContainer:hover .test-tooltip{opacity:1;visibility:visible}body .tooltipContainer .test-tooltip{position:absolute;font-size:14px;background:#fff;width:400px;top:40px;left:0;border:1px solid #444;padding:10px;box-shadow:2px 2px 10px #444;opacity:0;visibility:hidden;transition-property:all;transition-duration:0.3s}body .jumpmenu{font-size:16px}body .jumpmenu a{margin-left:4px;margin-right:4px}body a.btn-link{margin-bottom:30px;font-weight:bold;text-transform:uppercase;font-size:12px;font-family:"poppinsbold";letter-spacing:1px;display:block;text-decoration:none}body a.btn-link:focus,body a.btn-link:active,body a.btn-link:hover{text-decoration:none}body .text-divider{padding-left:10px;padding-right:10px}
+@font-face {
+    font-family: "didact_gothicregular";
+    src: url("../fonts/didactgothic-regular-webfont.woff2") format("woff2"), url("../fonts/didactgothic-regular-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal
+}
+
+@font-face {
+    font-family: "poppinsbold";
+    src: url("../fonts/poppins-bold-webfont.woff2") format("woff2"), url("../fonts/poppins-bold-webfont.woff") format("woff");
+    font-weight: bold;
+    font-style: normal
+}
+
+#docent {
+    background-color: #fff;
+    font-family: "didact_gothicregular", sans-serif;
+    margin: 0
+}
+
+#docent .attachments .attachments-list {
+    margin-top: 110px;
+    margin-bottom: 0
+}
+
+#docent .attachments .attachments-list dt {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.0;
+    letter-spacing: 0.2px
+}
+
+#docent .attachments .attachments-list dd {
+    font-size: 15px;
+    line-height: 1.33;
+    letter-spacing: 0.5px;
+    padding-right: 34px;
+    position: relative;
+    margin-bottom: 10px
+}
+
+#docent .attachments .attachments-list dd a {
+    color: #686868
+}
+
+#docent .attachments .attachments-list dd .attachment-remove {
+    cursor: pointer;
+    color: #ff5252;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 10px;
+    height: 10px;
+    font-size: 10px
+}
+
+#docent .attachments .attachments-list dd .attachment-remove:after {
+    content: "";
+    font-family: "Glyphicons Halflings"
+}
+
+#docent .attachments .btn {
+    margin-top: 40px;
+    border-radius: 0
+}
+
+#docent .container {
+  background: inherit;
+  max-width: 90%;
+}
+
+#docent [data-toggle="tooltip"] {
+    color: #305194
+}
+
+#docent .question-header {
+    margin-bottom: 40px
+}
+
+#docent .question-header h4 {
+    margin-top: 0px;
+    border: none;
+    font-family: "didact_gothicregular";
+    font-weight: normal;
+    font-size: 14px
+}
+
+#docent .question-header h1 {
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    font-family: "didact_gothicregular"
+}
+
+#docent .question-header p {
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.2px;
+    margin-top: 15px
+}
+
+#docent form label {
+    font-weight: normal;
+    font-family: "didact_gothicregular";
+    font-size: 16px;
+    line-height: 1.0;
+    letter-spacing: 0.2px
+}
+
+#docent h3 {
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 14px;
+    font-family: "poppinsbold", sans-serif;
+    margin-bottom: 30px
+}
+
+#docent .navigation-controls {
+    text-align: right
+}
+
+#docent .navigation-controls .btn {
+    display: inline-block
+}
+
+#docent .navigation-controls .glyphicon {
+    font-size: 11px
+}
+
+@media (max-width: 1199px) {
+    #docent .navigation-controls .btn {
+        width: 100%
+    }
+}
+
+@media (max-width: 991px) {
+    #docent .navigation-controls .btn {
+        width: auto
+    }
+}
+
+#docent .groupContent {
+    padding-bottom: 45px;
+    font-size: 18px;
+    font-family: "didact_gothicregular"
+}
+
+#docent .groupContent .row {
+    padding-top: 25px
+}
+
+#docent .groupContent .col-sm-3 {
+    font-family: 'poppinsbold';
+    font-size: 16px
+}
+
+#docent .checkbox-inline label {
+    line-height: normal;
+    margin: 0
+}
+
+@media (max-width: 991px) {
+    #docent .navigation-controls {
+        margin-top: 40px
+    }
+}
+
+@media (max-width: 767px) {
+    #docent header#subheader .progress {
+        margin: 0
+    }
+    #docent .navigation-controls {
+        text-align: center
+    }
+    #docent .navigation-controls .btn:first-of-type {
+        float: left
+    }
+    #docent .navigation-controls .btn:last-of-type {
+        float: right
+    }
+    #docent .question-header h1 {
+        font-size: 22px;
+        line-height: 38px
+    }
+}
+
+#docent dl.definitions dt {
+    margin-bottom: 18px;
+    font-family: 'poppinsbold';
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 0.88
+}
+
+#docent dl.definitions dd {
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 30px;
+    margin-bottom: 40px;
+    line-height: 1.44;
+    font-size: 18px;
+    font-family: 'didact_gothicregular'
+}
+
+#docent a.collapse-item {
+    text-decoration: none;
+    color: #000
+}
+
+#docent a.collapse-item:focus {
+    color: #000
+}
+
+#docent a.collapse-item:before {
+    -moz-osx-font-smoothing: grayscale;
+    display: inline-block;
+    font-family: "Glyphicons Halflings";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    position: relative;
+    top: 1px;
+    font-size: 10px;
+    top: -1px;
+    left: -2px;
+    content: "";
+    color: #3e66a5
+}
+
+#docent a.collapse-item.collapsed:before {
+    content: ""
+}
+
+#docent .navigation-group {
+    border-bottom: 1px solid #dcdcdc;
+    font-size: 18px
+}
+
+#docent .navigation-group:first-of-type {
+    border-top: 1px solid #dcdcdc
+}
+
+#docent .navigation-group .group-title {
+    border: none
+}
+
+#docent .navigation-group li {
+    padding: 10px 0
+}
+
+#docent .navigation-group ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 20px
+}
+
+#docent .navigation-group ul ul {
+    border-top: none
+}
+
+@media (max-width: 767px) {
+    #docent .navigation-group {
+        font-size: 16px
+    }
+}
+
+#docent .export {
+    background: none;
+    text-transform: uppercase;
+    color: #3e66a5;
+    float: right;
+    font-family: "poppinsbold";
+    font-weight: normal;
+    font-size: 12px;
+    letter-spacing: 0.9px;
+    margin-bottom: 30px
+}
+
+#docent .export:hover {
+    color: #4D7ECC
+}
+
+#docent .export:active {
+    color: #1E3F73
+}
+
+#docent .export .glyphicon {
+    margin-right: 10px
+}
+
+#docent .export:after {
+    display: block;
+    width: 100%;
+    content: " ";
+    clear: both;
+    visibility: hidden
+}
+
+#docent .review-block {
+    border-bottom: 1px solid #dcdcdc;
+    padding: 30px 0
+}
+
+#docent .review-block h2 {
+    font-family: "didact_gothicregular";
+    font-weight: normal;
+    margin: 0 0 30px 0;
+    font-size: 20px
+}
+
+#docent .review-block dl {
+    margin: 0
+}
+
+#docent .review-block dt {
+    margin-top: 30px;
+    font-family: "poppinsbold";
+    font-size: 14px;
+    letter-spacing: 0.86px
+}
+
+#docent .review-block dd {
+    margin-top: 10px;
+    font-size: 16px
+}
+
+#docent .status, #docent .status-no, #docent .status-skipped, #docent .status-yes, #docent .status-na {
+    display: inline-block;
+    padding: 8px;
+    font-family: "poppinsbold";
+    font-size: 14px;
+    line-height: 14px;
+    letter-spacing: 0.2px;
+    color: #fff;
+    text-transform: uppercase
+}
+
+#docent .status-no {
+    background-color: #ed4749
+}
+
+#docent .status-skipped {
+    background-color: #a4a4a4
+}
+
+#docent .status-yes {
+    background-color: #65d62b
+}
+
+#docent .status-na {
+    background-color: #626262
+}
+
+#docent .criteria-list dl {
+    margin: 20px 0px 0px 15px;
+    font-size: 16px
+}
+
+#docent .criteria-list dl dt {
+    font-family: "poppinsbold"
+}
+
+#docent .criteria-list dl dd {
+    margin-bottom: 20px
+}
+
+#docent .criteria-list .navigation-group:first-of-type {
+    border-top: none
+}
+
+#docent .dl-label {
+    font-family: "poppinsbold";
+    text-transform: uppercase;
+    font-size: 12px;
+    display: inline-block
+}
+
+#docent .milestoneCol {
+    text-align: right
+}
+
+#docent .milestoneList {
+    margin-left: 10px;
+    display: block;
+    float: right
+}
+
+#docent .milestoneList dt, #docent .milestoneList dd {
+    display: block;
+    float: left;
+    line-height: 22px;
+    height: 22px
+}
+
+#docent .milestoneList dt {
+    background-color: #3e66a5;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 11px;
+    padding-top: 1px;
+    font-size: 11px;
+    height: 22px;
+    width: 22px;
+    margin-right: 5px;
+    margin-left: 20px
+}
+
+#docent .milestoneList dd {
+    font-size: 14px;
+    padding-top: 2px;
+    letter-spacing: 0.3px
+}
+
+@media (max-width: 767px) {
+    #docent .milestoneCol {
+        text-align: left;
+        padding-top: 10px;
+        padding-bottom: 10px
+    }
+    #docent .milestoneList {
+        display: inline
+    }
+}
+
+#docent .criteria-controls {
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.9px;
+    font-family: "poppinsbold"
+}
+
+#docent .criteria-controls:before {
+    -moz-osx-font-smoothing: grayscale;
+    display: inline-block;
+    font-family: "Glyphicons Halflings";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    position: relative;
+    top: 1px;
+    top: -1px;
+    left: -2px;
+    color: #3e66a5
+}
+
+#docent .criteria-controls.filter-button:before {
+    content: "";
+    margin-right: 2px
+}
+
+#docent .criteria-controls.filter-button.collapsed:before {
+    content: ""
+}
+
+#docent .criteria-controls.filter-button:before {
+    font-size: 10px
+}
+
+#docent .criteria-controls.collapse-all {
+    margin-left: 10px
+}
+
+#docent .expand-controls {
+    text-align: right
+}
+
+#docent .filter-block {
+    border-top: 1px solid #dcdcdc;
+    padding-top: 20px;
+    padding-bottom: 20px
+}
+
+#docent .filter-block .filter-label {
+    font-size: 14px;
+    margin-bottom: 25px
+}
+
+#docent .criteria-filter-head {
+    border-bottom: 1px solid #dcdcdc
+}
+
+#docent .filter-block.form-inline .checkbox {
+    margin-left: 30px
+}
+
+#docent .filter-block.form-inline .checkbox input {
+    margin-right: 5px;
+    top: -1px
+}
+
+@media (max-width: 767px) {
+    #docent .filter-block.form-inline .checkbox {
+        margin-left: 0
+    }
+}
+
+#docent .filter-block.form-inline .filter-label+.checkbox {
+    margin-left: 0
+}
+
+#docent .progress-table {
+    font-fadmily: "didact_gothicregular";
+    font-size: 16px;
+    border-spacing: 4px;
+    border-collapse: separate
+}
+
+#docent .progress-table th {
+    font-size: 12px;
+    line-height: 20px
+}
+
+#docent .progress-table tr>th:first-of-type, #docent .progress-table tr>td:first-of-type {
+    padding-left: 0
+}
+
+#docent .progress-table tr>th:last-of-type, #docent .progress-table tr>td:last-of-type {
+    padding-right: 0
+}
+
+#docent .progress-table thead th:last-of-type, #docent .progress-table tr>td:last-of-type {
+    text-transform: uppercase;
+    text-align: right
+}
+
+#docent .progress-table {
+    border-spacing: 0;
+    border-collapse: collapse
+}
+
+#docent .progress-table tbody>tr>td {
+    vertical-align: middle;
+    padding-left: 0;
+    padding-right: 0;
+    width: 44px
+}
+
+#docent .progress-table tbody>tr>td:first-of-type {
+    padding-right: 8px;
+    width: auto
+}
+
+#docent .progress-table tbody>tr>td:last-of-type {
+    padding-left: 8px;
+    width: auto
+}
+
+#docent .progress-table>thead>tr>th {
+    border: none;
+    text-align: center;
+    font-weight: bold;
+    font-family: "poppinsbold"
+}
+
+#docent .progress-table tr>td:first-of-type {
+    min-width: 200px
+}
+
+#docent .progress-table td .indicator {
+    width: 35px;
+    height: 40px;
+    display: block;
+    background-color: #ebebeb;
+    margin: 2px auto
+}
+
+#docent .progress-table td .indicator:after {
+    line-height: 40px;
+    font-family: 'Glyphicons Halflings';
+    display: block;
+    color: white;
+    text-align: center
+}
+
+#docent .progress-table td .indicator.correct {
+    background-color: #65d62b
+}
+
+#docent .progress-table td .indicator.correct:after {
+    content: ""
+}
+
+#docent .progress-table td .indicator.incorrect {
+    background-color: #ed4749
+}
+
+#docent .progress-table td .indicator.incorrect:after {
+    content: ""
+}
+
+#docent .progress-table td .indicator.incomplete {
+    background-color: #626262
+}
+
+#docent .progress-table td .indicator.incomplete:after {
+    content: "−"
+}
+
+#docent .mobile-cards .progress-table {
+    width: auto;
+    margin: 0px 0 20px;
+    border: none;
+    border-spacing: 0
+}
+
+#docent .mobile-cards .progress-table th {
+    text-align: center;
+    font-weight: bold;
+    font-family: "poppinsbold";
+    width: 10%
+}
+
+#docent .mobile-cards .progress-table th:last-of-type {
+    text-align: center
+}
+
+#docent .mobile-cards .progress-table tr>td:first-of-type {
+    min-width: 0px
+}
+
+#docent .mobile-cards .progress-table td {
+    border-right: 4px solid white;
+    width: 10%
+}
+
+#docent .mobile-cards .progress-table td:last-of-type {
+    border-right: none
+}
+
+#docent .dashboard-controls .btn {
+    margin-right: 20px
+}
+
+@media (max-width: 767px) {
+    #docent .dashboard-controls {
+        margin-top: 10px
+    }
+    #docent .dashboard-controls .btn {
+        display: block
+    }
+    #docent .navigation-group .group-title {
+        margin: 10px 0;
+        padding: 10px;
+        display: block
+    }
+    #docent .navigation-group .group-title a {
+        display: block;
+        font-size: 14px
+    }
+    #docent .navigation-group .navigation-content {
+        padding-left: 25px;
+        padding-bottom: 20px
+    }
+    #docent .navigation-group .navigation-content h3 {
+        border-top: 1px solid #dcdcdc;
+        padding: 20px 0 0px;
+        font-size: 14px;
+        text-transform: none
+    }
+    #docent .navigation-group .navigation-content time {
+        display: block;
+        padding: 10px 0 20px
+    }
+}
+
+#docent .addButton {
+    background: none;
+    border: none;
+    color: #65d62b;
+    font-family: "poppinsbold";
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 34px;
+    padding-left: 50px;
+    line-height: 30px
+}
+
+#docent .addButton .glyphicon {
+    height: 30px;
+    display: inline-block;
+    font-size: 30px;
+    position: absolute;
+    left: 0px;
+    line-height: 30px
+}
+
+#docent .removeButton {
+    background: none;
+    font-size: 30px;
+    border: none;
+    color: #ed4749;
+    padding: 0;
+    border: none;
+    height: 30px
+}
+
+#docent .memberRow {
+    margin-bottom: 20px
+}
+
+#docent .continueSection {
+    border-top: 1px solid #dcdcdc;
+    clear: both;
+    padding-top: 33px;
+    margin-top: 40px
+}
+
+#docent .instruction {
+    color: #949494;
+    font-size: 16px
+}
+
+@media (max-width: 767px) {
+    #docent .memberRow {
+        position: relative;
+        margin-bottom: 20px
+    }
+    #docent .memberRow .col-sm-5 {
+        margin-right: 40px
+    }
+    #docent .memberRow .col-sm-5:first-of-type {
+        margin-bottom: 10px
+    }
+    #docent .memberRow .col-sm-2 {
+        position: absolute;
+        top: 0px;
+        right: 0px
+    }
+}
+
+@-moz-document url-prefix() {
+    #docent fieldset {
+        display: table-cell
+    }
+}
+
+#docent h1, #docent h2, #docent h3, #docent h4, #docent h5, #docent h6 {
+    font-weight: normal;
+    font-family: "poppinsbold";
+    margin: 0
+}
+
+#docent .section-heading {
+    margin-bottom: 20px
+}
+
+#docent p {
+    line-height: 24px;
+    font-size: 16px;
+    margin-bottom: 30px;
+    clear: both
+}
+
+#docent h2 {
+    font-size: 22px
+}
+
+#docent h4 {
+    border-top: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+    font-family: "poppinsbold";
+    font-size: 12px;
+    line-height: 0.83;
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    padding: 18px 0
+}
+
+#docent a {
+    color: #3e66a5;
+    text-decoration: none
+}
+
+#docent a:active, #docent a:focus {
+    color: #4D7ECC;
+    text-decoration: none
+}
+
+#docent a:hover {
+    text-decoration: none;
+    color: #1E3F73
+}
+
+#docent header {
+    background: #000;
+    color: #fff
+}
+
+#docent header#primaryheader {
+    padding-bottom: 30px
+}
+
+#docent header#primaryheader .navbar-toggle {
+    margin-right: 0;
+    margin-top: 10px
+}
+
+#docent header#primaryheader nav.navbar {
+    margin-bottom: 0px
+}
+
+#docent header#primaryheader .topWrap {
+    border-bottom: 1px solid #494949
+}
+
+#docent header#primaryheader .row {
+    padding-bottom: 30px
+}
+
+@media (max-width: 767px) {
+    #docent header#primaryheader#primaryheader {
+        padding-bottom: 10px
+    }
+}
+
+#docent header#subheader #subheader-collapseable .row {
+    padding-top: 10px
+}
+
+#docent header#subheader .container {
+    position: relative;
+    min-height: 110px
+}
+
+#docent header#subheader .breadcrumb {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    font-size: 22px;
+    letter-spacing: 0.8px
+}
+
+#docent header#subheader .breadcrumb a {
+    color: white;
+    font-weight: light;
+    text-decoration: underline
+}
+
+#docent header#subheader .breadcrumb .active {
+    font-weight: normal;
+    font-family: "poppinsbold", sans-serif;
+    color: white
+}
+
+#docent header#subheader .breadcrumb>li+li::before {
+    font-family: "didact_gothicregular", sans-serif
+}
+
+#docent header#subheader .progress {
+    margin-bottom: 0px;
+    border-radius: 0px;
+    margin-right: 15px;
+    margin-left: 15px
+}
+
+@media (max-width: 767px) {
+    #docent header#subheader .container {
+        min-height: 0;
+        padding-bottom: 10px
+    }
+    #docent header#subheader.has-progress .container {
+        padding-bottom: 40px
+    }
+    #docent header#subheader .progress {
+        margin: 0
+    }
+    #docent header#subheader .xs-expand-link {
+        position: absolute;
+        right: 15px;
+        top: 0;
+        cursor: pointer;
+        font-size: 10px;
+        line-height: 20px
+    }
+    #docent header#subheader .breadcrumb {
+        font-size: 16px;
+        line-height: 20px;
+        margin-right: 20px
+    }
+}
+
+#docent header#subheader .meta {
+    font-size: 15px;
+    line-height: 14px;
+    text-align: right;
+    margin-bottom: 15px
+}
+
+#docent header#subheader .collapse-link {
+    text-decoration: underline;
+    cursor: pointer
+}
+
+#docent .navbar.navbar-default {
+    background: transparent;
+    border: none
+}
+
+#docent .navbar.navbar-default .navbar-brand {
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 0
+}
+
+#docent .navbar.navbar-default .navbar-nav>li:last-of-type>a {
+    padding-right: 0
+}
+
+#docent .navbar.navbar-default .navbar-nav>li>a {
+    line-height: 40px
+}
+
+#docent .navbar.navbar-default a.dropdown-toggle {
+    color: #fff
+}
+
+#docent .navbar.navbar-default a.dropdown-toggle:hover, #docent .navbar.navbar-default a.dropdown-toggle:focus {
+    color: white
+}
+
+#docent .navbar.navbar-default .dropdown.open a.dropdown-toggle {
+    background: none
+}
+
+#docent .navbar.navbar-default .dropdown-menu {
+    background: #305194;
+    text-align: right;
+    padding: 0
+}
+
+#docent .navbar.navbar-default .dropdown-menu a {
+    color: #fff;
+    line-height: 14px;
+    font-size: 16px;
+    padding: 15px 25px 15px 20px
+}
+
+#docent .navbar.navbar-default .dropdown-menu a:hover, #docent .navbar.navbar-default .dropdown-menu a.active, #docent .navbar.navbar-default .dropdown-menu a:focus, #docent .navbar.navbar-default .dropdown-menu a:active {
+    background-color: #33558a
+}
+
+#docent .faqQuestion {
+    padding-bottom: 12px
+}
+
+#docent .faqQuestion .collapse-link {
+    font-size: 16px;
+    pading-bottom: 18px
+}
+
+#docent .faqQuestion p {
+    font-size: 18px
+}
+
+#docent #mainContent {
+    padding-top: 30px;
+    padding-bottom: 30px
+}
+
+#docent #mainContent .collapse-link {
+    color: #3e66a5;
+    font-family: "poppinsbold";
+    cursor: pointer
+}
+
+#docent #mainContent .collapse-link:hover {
+    color: #4D7ECC
+}
+
+#docent #mainContent .collapse-link:active, #docent #mainContent .collapse-link:focus {
+    color: #1E3F73
+}
+
+#docent #mainContent .sidebar {
+    right: 15px;
+    top: 30px;
+    max-width: 263px
+}
+
+#docent .progress {
+    background-image: linear-gradient(-65deg, #616161 25%, transparent 25%, transparent 50%, #616161 50%, #616161 75%, transparent 75%, transparent);
+    background-size: 10px 20px;
+    background-color: #595959;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0
+}
+
+#docent .progress .progress-bar {
+    background: #305194
+}
+
+#docent .btn-primary {
+    border-radius: 0px;
+    margin-bottom: 10px
+}
+
+#docent .btn-primary:hover, #docent .btn-primary.active, #docent .btn-primary:focus, #docent .btn-primary:active {
+    background-color: #305194
+}
+
+#docent hr {
+    border-color: #dcdcdc;
+    margin: 50px 0
+}
+
+#docent .btn {
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 1.0;
+    letter-spacing: 0.9px;
+    padding: 13px 25px 11px 25px;
+    font-family: "poppinsbold", sans-serif
+}
+
+#docent .input-group-btn .btn {
+    padding: 6px 12px;
+    line-height: 1.42857;
+    font-size: 14px;
+    background: #fbfbfb;
+    border: 1px solid #ccc;
+    border-left: none;
+    border-radius: 0px;
+    color: black
+}
+
+#docent .input-group-btn .btn:hover {
+    background: #fbfbfb;
+    color: black
+}
+
+#docent input, #docent textarea, #docent .form-control {
+    border-radius: 0;
+    background-color: #fbfbfb;
+    border-color: #dcdcdc
+}
+
+#docent form label {
+    margin-bottom: 13px
+}
+
+#docent .form-group {
+    margin-bottom: 40px
+}
+
+#docent .btn-default {
+    background: #000;
+    border: none;
+    color: white
+}
+
+#docent .btn-default:hover {
+    background: #000;
+    color: white
+}
+
+#docent .jumpmenu {
+    margin-bottom: 68px
+}
+
+#docent .jumpmenu .jump-desktop {
+    line-height: 35px
+}
+
+@media (max-width: 767px) {
+    #docent .jumpmenu {
+        margin-bottom: 20px
+    }
+    #docent .jumpmenu .form-group {
+        margin-bottom: 15px
+    }
+    #docent .jumpmenu .input-group-addon.jump-label {
+        background: transparent;
+        border: none
+    }
+}
+
+@media (max-width: 768px) {
+    #docent .nav.navbar-nav {
+        text-align: center
+    }
+    #docent .nav.navbar-nav>li>a {
+        color: white;
+        font-size: 20px;
+        font-family: "poppinsbold";
+        font-weight: normal;
+        padding-top: 20px;
+        padding-bottom: 20px
+    }
+}
+
+#docent dl.inline-list {
+    padding-bottom: 30px;
+    border-bottom: 1px solid #dcdcdc;
+    margin: 0
+}
+
+#docent dl.inline-list dt, #docent dl.inline-list dd {
+    float: left;
+    margin-bottom: 12px
+}
+
+#docent dl.inline-list dd {
+    margin-left: 10px
+}
+
+#docent dl.inline-list dt {
+    clear: both;
+    font-family: "poppinsbold"
+}
+
+#docent dl.inline-list:after {
+    clear: both;
+    display: block;
+    content: ""
+}
+
+#docent .navbar-default .navbar-collapse {
+    border-color: #494949
+}
+
+#docent .navbar-default .navbar-toggle {
+    border: none;
+    background-image: url(../images/menu-close.png);
+    height: 52px;
+    width: 42px;
+    background-position: center right;
+    background-repeat: no-repeat
+}
+
+#docent .navbar-default .navbar-toggle:hover, #docent .navbar-default .navbar-toggle:focus, #docent .navbar-default .navbar-toggle:active {
+    background-color: transparent;
+    border: none
+}
+
+#docent .navbar-default .navbar-toggle.collapsed {
+    background-image: url(../images/menu.png)
+}
+
+#docent .navbar-default .navbar-toggle.collapsed:hover, #docent .navbar-default .navbar-toggle.collapsed:focus, #docent .navbar-default .navbar-toggle.collapsed:active {
+    background-color: transparent;
+    border: none
+}
+
+#docent .acronymTable {
+    font-size: 18px;
+    font-family: 'didact_gothicregular';
+    line-height: 25px
+}
+
+#docent .acronymTable .col-sm-3 {
+    font-weight: normal;
+    font-family: 'poppinsbold';
+    text-transform: uppercase;
+    font-size: 16px
+}
+
+#docent .row-striped>div:nth-of-type(odd) {
+    background-color: #fff;
+    padding: 5px 15px
+}
+
+#docent .row-striped>div:nth-of-type(even) {
+    background-color: #ebebeb;
+    padding: 5px 15px
+}
+
+#docent .actionItem {
+    padding: 30px 0;
+    border-top: 1px solid #dcdcdc;
+    font-size: 16px
+}
+
+#docent .actionItem p {
+    font-size: 18px;
+    font-family: "didact_gothicregular";
+    margin: 0
+}
+
+#docent .actionItem dt {
+    font-family: "poppinsbold";
+    font-size: 14px;
+    padding-bottom: 10px;
+    padding-top: 30px
+}
+
+#docent .actionItem dd {
+    font-family: "didact_gothicregular"
+}
+
+#docent .tooltipContainer {
+    position: relative
+}
+
+#docent .tooltipContainer:hover .test-tooltip {
+    opacity: 1;
+    visibility: visible
+}
+
+#docent .tooltipContainer .test-tooltip {
+    position: absolute;
+    font-size: 14px;
+    background: #fff;
+    width: 400px;
+    top: 40px;
+    left: 0;
+    border: 1px solid #444;
+    padding: 10px;
+    box-shadow: 2px 2px 10px #444;
+    opacity: 0;
+    visibility: hidden;
+    transition-property: all;
+    transition-duration: 0.3s
+}
+
+#docent .jumpmenu {
+    font-size: 16px
+}
+
+#docent .jumpmenu a {
+    margin-left: 4px;
+    margin-right: 4px
+}
+
+#docent a.btn-link {
+    margin-bottom: 30px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-family: "poppinsbold";
+    letter-spacing: 1px;
+    display: block;
+    text-decoration: none
+}
+
+#docent a.btn-link:focus, #docent a.btn-link:active, #docent a.btn-link:hover {
+    text-decoration: none
+}
+
+#docent .text-divider {
+    padding-left: 10px;
+    padding-right: 10px
+}
