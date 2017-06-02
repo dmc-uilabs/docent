@@ -910,6 +910,10 @@
     padding-left: 0
 }
 
+#docent .navbar-nav {
+  margin: 20px -15px 0px -15px;
+}
+
 #docent .navbar.navbar-default .navbar-nav>li:last-of-type>a {
     padding-right: 0
 }
