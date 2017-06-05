@@ -57,7 +57,7 @@
 		<div class="filter-top">
 		<div class="row">
 			<div class="col-xs-12">
-				<button class="criteria-controls filter-button collapsed" data-toggle="collapse" data-target="#collapseFilter">Filter</button>
+				<a class="criteria-controls filter-button collapsed" data-toggle="collapse" data-target="#collapseFilter">Filter</a>
 					<!-- <div class="expand-controls pull-right">
 			<a href="javascript:void(0)" class="criteria-controls expand-all"><span class="glyphicon glyphicon-collapse-down"></span> Expand all</a>
 			<a href="javascript:void(0)" class="criteria-controls collapse-all"><span class="glyphicon glyphicon-collapse-up"></span> Collapse all</a>
@@ -184,17 +184,17 @@
       {{#each mraOutputs.threads}}
 		 <div class="navigation-group">
 			      <h4 class="group-title">
-			        <button role="button" data-toggle="collapse" data-target="#collapseThread{{@index}}" aria-expanded="true" aria-controls="collapseThread{{@index}}" class="collapse-item collapsed">
+			        <a role="button" data-toggle="collapse" data-target="#collapseThread{{@index}}" aria-expanded="true" aria-controls="collapseThread{{@index}}" class="collapse-item collapsed">
 			          {{name}}
-			        </button>
+			        </a>
 			      </h4>
 
 			    <ul id="collapseThread{{@index}}" class="collapse" role="tabpanel" aria-labelledby="headingOne">
             {{#each subThreads}}
 			     <li>
-			     	<button role="button" data-toggle="collapse" data-target="#collapseSubThread_{{@../index}}_{{@index}}" aria-expanded="true" aria-controls="collapseSubThread_{{@../index}}_{{@index}}" class="collapse-item collapsed">
+			     	<a role="button" data-toggle="collapse" data-target="#collapseSubThread_{{@../index}}_{{@index}}" aria-expanded="true" aria-controls="collapseSubThread_{{@../index}}_{{@index}}" class="collapse-item collapsed">
 			     	  {{name}}
-			     	</button>
+			     	</a>
 			     	<dl id="collapseSubThread_{{@../index}}_{{@index}}" class="collapse">
               {{#each subThreadLevels}}
                 {{#if criteriaText}}

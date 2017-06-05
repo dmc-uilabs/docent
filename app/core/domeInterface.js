@@ -82,7 +82,8 @@ writeOutDomeData = function(){
                     isRunningInElectron: coreContext['isRunningInElectron'],
                     outputPage: coreContext['outputPage'],
                     outAssessmentPath: coreContext['outAssessmentPath'],
-                    mraCss: coreContext['mraCss'],
+                    // mraCss: coreContext['mraCss'],
+                    mraCss: encodeURI(coreContext['mraCss']),
                     helpMenuItems: coreContext['helpMenuItems']
             };
 
