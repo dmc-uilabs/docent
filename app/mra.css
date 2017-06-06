@@ -1,17 +1,3 @@
-@font-face {
-    font-family: "Didact Gothic";
-    src: url("../fonts/didactgothic-regular-webfont.woff2") format("woff2"), url("../fonts/didactgothic-regular-webfont.woff") format("woff");
-    font-weight: normal;
-    font-style: normal
-}
-
-@font-face {
-    font-family: "Poppins";
-    src: url("../fonts/poppins-bold-webfont.woff2") format("woff2"), url("../fonts/poppins-bold-webfont.woff") format("woff");
-    font-weight: bold;
-    font-style: normal
-}
-
 #docent {
     background-color: #fff;
     font-family: "Didact Gothic", sans-serif;
