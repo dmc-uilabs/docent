@@ -84,7 +84,8 @@ writeOutDomeData = function(){
                     outAssessmentPath: coreContext['outAssessmentPath'],
                     // mraCss: coreContext['mraCss'],
                     mraCss: encodeURI(coreContext['mraCss']),
-                    helpMenuItems: coreContext['helpMenuItems']
+                    helpMenuItems: coreContext['helpMenuItems'],
+                    pageTitle: coreContext['pageTitle']
             };
 
   outputData = 'mraOutputs=' + JSON.stringify(mraOutputs) + "\n";

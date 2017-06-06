@@ -26,7 +26,8 @@ app.controller('templateCtrl', function($scope, $compile){
 	                    outputPage: coreContext['outputPage'],
 	                    outAssessmentPath: coreContext['outAssessmentPath'],
 	                    mraCss: encodeURI(coreContext['mraCss']),
-											helpMenuItems: coreContext['helpMenuItems']
+											helpMenuItems: coreContext['helpMenuItems'],
+											pageTitle: coreContext['pageTitle']
 	            }};
 
 		compiledTemplate = Handlebars.compile(headerTemplate+outputTemplate+footerTemplate);

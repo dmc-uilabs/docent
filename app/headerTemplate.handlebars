@@ -51,7 +51,7 @@
             <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getDashboardPage")' ng-click='run()'>Dashboard</a></li>
             <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getNavigationPage")' ng-click='run()'>Navigate</a></li>
             <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getMmpPage")' ng-click='run()'>Action Items</a></li>
-            <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getSkippedPage")'>Skipped Questions</a></li>
+            <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getSkippedPage")' ng-click='run()'>Skipped Questions</a></li>
             <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getNotApplicablePage")' ng-click='run()'>N/A Questions</a></li>
             <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getReviewPage")' ng-click='run()'>Review</a></li>
             {{#if mraOutputs.isRunningInElectron}}<li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("saveAssessment")' ng-click='run()'>Save</a></li>{{/if}}
@@ -73,7 +73,7 @@
                         <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getDashboardPage")' ng-click='run()'>Dashboard</a></li>
                         <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getNavigationPage")' ng-click='run()'>Navigate</a></li>
                         <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getMmpPage")' ng-click='run()'>Action Items</a></li>
-                        <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getSkippedPage")'>Skipped Questions</a></li>
+                        <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getSkippedPage")' ng-click='run()'>Skipped Questions</a></li>
                         <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getNotApplicablePage")' ng-click='run()'>N/A Questions</a></li>
                         <li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getReviewPage")' ng-click='run()'>Review</a></li>
                         {{#if mraOutputs.isRunningInElectron}}<li><a href ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("saveAssessment")' ng-click='run()'>Save</a></li>{{/if}}

@@ -1463,7 +1463,7 @@ getSkippedPage = function(){
   outputTemplate = genericNavigationTemplate;
   // var subset = returnSkippedQuestions();
   var subset = returnQuestionSubset('skipped')
-
+  coreContext['assessment'] = importAssessment(assessmentPath);
   coreContext['pageTitle'] = 'Skipped Questions';
   coreContext['navigation'] = getNavigationInfoSubset(subset);
   coreContext['outputPage'] = 'skippedPage';
@@ -1475,7 +1475,7 @@ getNotApplicablePage = function(){
   outputTemplate = genericNavigationTemplate;
   // var subset = returnNotApplicableQuestions();
   var subset = returnQuestionSubset('notApplicable')
-
+  coreContext['assessment'] = importAssessment(assessmentPath);
   coreContext['pageTitle'] = 'Questions Marked Not Applicable';
   coreContext['navigation'] = getNavigationInfoSubset(subset);
   coreContext['outputPage'] = 'skippedPage';
