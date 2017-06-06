@@ -2,7 +2,7 @@
 
 #docent {
     background-color: #fff;
-    font-family: "didact_gothicregular", sans-serif;
+    font-family: "Didact Gothic", sans-serif;
     margin: 0;
     /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
@@ -7010,7 +7010,7 @@
 #docent .question-header h4 {
     margin-top: 0px;
     border: none;
-    font-family: "didact_gothicregular";
+    font-family: "Didact Gothic";
     font-weight: normal;
     font-size: 14px
 }
@@ -7020,7 +7020,7 @@
     font-size: 30px;
     line-height: 1.4;
     margin-bottom: 20px;
-    font-family: "didact_gothicregular"
+    font-family: "Didact Gothic"
 }
 
 #docent .question-header p {
@@ -7032,7 +7032,7 @@
 
 #docent form label {
     font-weight: normal;
-    font-family: "didact_gothicregular";
+    font-family: "Didact Gothic";
     font-size: 16px;
     line-height: 1.0;
     letter-spacing: 0.2px
@@ -7042,7 +7042,7 @@
     text-transform: uppercase;
     font-weight: normal;
     font-size: 14px;
-    font-family: "poppinsbold", sans-serif;
+    font-family: "Poppins", sans-serif;
     margin-bottom: 30px
 }
 
@@ -7073,7 +7073,7 @@
 #docent .groupContent {
     padding-bottom: 45px;
     font-size: 18px;
-    font-family: "didact_gothicregular"
+    font-family: "Didact Gothic"
 }
 
 #docent .groupContent .row {
@@ -7081,7 +7081,7 @@
 }
 
 #docent .groupContent .col-sm-3 {
-    font-family: 'poppinsbold';
+    font-family: 'Poppins';
     font-size: 16px
 }
 
@@ -7117,7 +7117,7 @@
 
 #docent dl.definitions dt {
     margin-bottom: 18px;
-    font-family: 'poppinsbold';
+    font-family: 'Poppins';
     font-weight: normal;
     font-size: 16px;
     line-height: 0.88
@@ -7129,7 +7129,7 @@
     margin-bottom: 40px;
     line-height: 1.44;
     font-size: 18px;
-    font-family: 'didact_gothicregular'
+    font-family: 'Didact Gothic'
 }
 
 #docent a.collapse-item {
@@ -7199,7 +7199,7 @@
     text-transform: uppercase;
     color: #3e66a5;
     float: right;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     font-weight: normal;
     font-size: 12px;
     letter-spacing: 0.9px;
@@ -7232,7 +7232,7 @@
 }
 
 #docent .review-block h2 {
-    font-family: "didact_gothicregular";
+    font-family: "Didact Gothic";
     font-weight: normal;
     margin: 0 0 30px 0;
     font-size: 20px
@@ -7244,7 +7244,7 @@
 
 #docent .review-block dt {
     margin-top: 30px;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     font-size: 14px;
     letter-spacing: 0.86px
 }
@@ -7257,7 +7257,7 @@
 #docent .status, #docent .status-no, #docent .status-skipped, #docent .status-yes, #docent .status-na {
     display: inline-block;
     padding: 8px;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     font-size: 14px;
     line-height: 14px;
     letter-spacing: 0.2px;
@@ -7287,7 +7287,7 @@
 }
 
 #docent .criteria-list dl dt {
-    font-family: "poppinsbold"
+    font-family: "Poppins"
 }
 
 #docent .criteria-list dl dd {
@@ -7299,7 +7299,7 @@
 }
 
 #docent .dl-label {
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     text-transform: uppercase;
     font-size: 12px;
     display: inline-block
@@ -7357,7 +7357,7 @@
     text-transform: uppercase;
     font-size: 12px;
     letter-spacing: 0.9px;
-    font-family: "poppinsbold"
+    font-family: "Poppins"
 }
 
 #docent .criteria-controls:before {
@@ -7430,7 +7430,7 @@
 }
 
 #docent .progress-table {
-    font-fadmily: "didact_gothicregular";
+    font-fadmily: "Didact Gothic";
     font-size: 16px;
     border-spacing: 4px;
     border-collapse: separate
@@ -7480,7 +7480,7 @@
     border: none;
     text-align: center;
     font-weight: bold;
-    font-family: "poppinsbold"
+    font-family: "Poppins"
 }
 
 #docent .progress-table tr>td:first-of-type {
@@ -7537,7 +7537,7 @@
 #docent .mobile-cards .progress-table th {
     text-align: center;
     font-weight: bold;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     width: 10%
 }
 
@@ -7598,7 +7598,7 @@
     background: none;
     border: none;
     color: #65d62b;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     text-align: left;
     padding: 0;
     margin: 0;
@@ -7671,7 +7671,7 @@
 
 #docent h1, #docent h2, #docent h3, #docent h4, #docent h5, #docent h6 {
     font-weight: normal;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     margin: 0
 }
 
@@ -7693,7 +7693,7 @@
 #docent h4 {
     border-top: 1px solid #dcdcdc;
     border-bottom: 1px solid #dcdcdc;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     font-size: 12px;
     line-height: 0.83;
     letter-spacing: 0.2px;
@@ -7773,12 +7773,12 @@
 
 #docent header#subheader .breadcrumb .active {
     font-weight: normal;
-    font-family: "poppinsbold", sans-serif;
+    font-family: "Poppins", sans-serif;
     color: white
 }
 
 #docent header#subheader .breadcrumb>li+li::before {
-    font-family: "didact_gothicregular", sans-serif
+    font-family: "Didact Gothic", sans-serif
 }
 
 #docent header#subheader .progress {
@@ -7872,7 +7872,7 @@
 }
 
 #docent .navbar.navbar-default .dropdown-menu a:hover, #docent .navbar.navbar-default .dropdown-menu a.active, #docent .navbar.navbar-default .dropdown-menu a:focus, #docent .navbar.navbar-default .dropdown-menu a:active {
-    background-color: #33558a
+    background-color: #294470
 }
 
 #docent .faqQuestion {
@@ -7895,7 +7895,7 @@
 
 #docent #mainContent .collapse-link {
     color: #3e66a5;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     cursor: pointer
 }
 
@@ -7948,7 +7948,7 @@
     line-height: 1.0;
     letter-spacing: 0.9px;
     padding: 13px 25px 11px 25px;
-    font-family: "poppinsbold", sans-serif
+    font-family: "Poppins", sans-serif
 }
 
 #docent .input-group-btn .btn {
@@ -8020,7 +8020,7 @@
     #docent .nav.navbar-nav>li>a {
         color: white;
         font-size: 20px;
-        font-family: "poppinsbold";
+        font-family: "Poppins";
         font-weight: normal;
         padding-top: 20px;
         padding-bottom: 20px
@@ -8044,7 +8044,7 @@
 
 #docent dl.inline-list dt {
     clear: both;
-    font-family: "poppinsbold"
+    font-family: "Poppins"
 }
 
 #docent dl.inline-list:after {
@@ -8082,13 +8082,13 @@
 
 #docent .acronymTable {
     font-size: 18px;
-    font-family: 'didact_gothicregular';
+    font-family: 'Didact Gothic';
     line-height: 25px
 }
 
 #docent .acronymTable .col-sm-3 {
     font-weight: normal;
-    font-family: 'poppinsbold';
+    font-family: 'Poppins';
     text-transform: uppercase;
     font-size: 16px
 }
@@ -8111,19 +8111,19 @@
 
 #docent .actionItem p {
     font-size: 18px;
-    font-family: "didact_gothicregular";
+    font-family: "Didact Gothic";
     margin: 0
 }
 
 #docent .actionItem dt {
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     font-size: 14px;
     padding-bottom: 10px;
     padding-top: 30px
 }
 
 #docent .actionItem dd {
-    font-family: "didact_gothicregular"
+    font-family: "Didact Gothic"
 }
 
 #docent .tooltipContainer {
@@ -8165,7 +8165,7 @@
     font-weight: bold;
     text-transform: uppercase;
     font-size: 12px;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     letter-spacing: 1px;
     display: block;
     text-decoration: none
