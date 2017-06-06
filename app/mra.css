@@ -18,6 +18,11 @@
     margin: 0
 }
 
+#docent .container {
+    max-width: 97%;
+    background: inherit
+}
+
 #docent .attachments .attachments-list {
     margin-top: 110px;
     margin-bottom: 0
