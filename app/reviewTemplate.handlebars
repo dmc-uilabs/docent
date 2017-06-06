@@ -30,7 +30,10 @@
 </header>
 
 <div class="container" id="mainContent">
-	<a class="export" href="#"><span class="glyphicon glyphicon-export"></span>Export</a>
+  <div id="csvExportDiv" >
+    <span style="display: none;" id="reviewCSVString">{{mraOutputs.answersCSV}}</span>
+	   <a id="exportCSV" class="export"><span class="glyphicon glyphicon-export"></span>Export</a>
+  <div>
 
 		<p>{{assessment.scope}}</p>
 
