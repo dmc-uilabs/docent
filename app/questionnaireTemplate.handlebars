@@ -79,12 +79,15 @@
                         <h3 class="section-heading">Action Plan</h3>
 
                         <div class="row">
-                          <div class="col-md-4">
-                            <button class="addButton" ng-click='mrl_actionPersonArray.push(mrl_numActionPerson);mrl_numActionPerson=mrl_numActionPerson+1'><span class="glyphicon glyphicon-plus-sign"></span>Add Action Person</button>
+                          <div class="col-md-6">
+                            <button class="addButton" ng-click='mrl_actionPersonArray.push(mrl_numActionPerson);mrl_numActionPerson=mrl_numActionPerson+1'>
+															<span class="glyphicon glyphicon-plus-sign"></span>Add Action Person</button>
                           </div>
 
-                          <div class="col-md-4">
-                            <button class="removeButton" ng-click='mrl_actionPersonArray.splice(-1);mrl_numActionPerson=mrl_numActionPerson-1'><span class="glyphicon glyphicon-minus-sign"></span>Remove</button>
+
+                          <div class="col-md-6">
+                            <button class="removeButton" ng-click='mrl_actionPersonArray.splice(-1);mrl_numActionPerson=mrl_numActionPerson-1'>
+															<span class="glyphicon glyphicon-minus-sign"></span>Remove</button>
                           </div>
                         </div>
 

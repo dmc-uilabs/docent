@@ -679,12 +679,27 @@
 
 #docent .removeButton {
     background: none;
-    font-size: 30px;
     border: none;
     color: #ed4749;
+    font-family: "Poppins";
+    text-align: left;
     padding: 0;
-    border: none;
-    height: 30px
+    margin: 0;
+    position: relative;
+    font-size: 14px;
+    display: inline-block;
+    margin-bottom: 34px;
+    padding-left: 50px;
+    line-height: 30px
+}
+
+#docent .removeButton .glyphicon {
+    height: 30px;
+    display: inline-block;
+    font-size: 30px;
+    position: absolute;
+    left: 0px;
+    line-height: 30px
 }
 
 #docent .memberRow {
