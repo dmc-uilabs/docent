@@ -546,6 +546,7 @@ getCriteriaMatrixData = function(){
 
 getDashboardInfo = function(assessment) {
   var threadsArray = [];
+  var threadsObject = {};
   var subThreadsArray = [];
   var subThreadLevelsArray = [];
 
@@ -557,12 +558,37 @@ getDashboardInfo = function(assessment) {
   for(var i = 0; i<threadValues.length; i++){
     var subThreadIdVal = threadValues[i][2];
     var statusObject = getSubThreadStatus(subThreadIdVal, assessment['targetLevel']);
-    threadsArray.push({threadName:threadValues[i][1],
-                        subThreadName:threadValues[i][3],
-                        date:statusObject.date,
-                        statuses:statusObject.statusArray});
+    // threadsArray.push({threadName:threadValues[i][1],
+    //                     subThreadName:threadValues[i][3],
+    //                     date:statusObject.date,
+    //                     statuses:statusObject.statusArray});
+
+    if (threadsObject[threadValues[i][1]]) {
+      threadsObject[threadValues[i][1]].push(
+          {subThreadName:threadValues[i][3],
+            date:statusObject.date,
+            statuses:statusObject.statusArray}
+          );
+    } else {
+      threadsObject[threadValues[i][1]] = [{subThreadName:threadValues[i][3],
+        date:statusObject.date,
+        statuses:statusObject.statusArray}]
+    }
   }
-  return threadsArray;
+
+  return threadsObjectToCollection(threadsObject);
+}
+
+threadsObjectToCollection = function(threadsObject) {
+  var threadsCollection = []
+  Object.keys(threadsObject).forEach(function(key) {
+    var val = threadsObject[key];
+    threadsCollection.push(
+      {"threadName": key,
+      "subThreads": val}
+    );
+  });
+  return threadsCollection;
 }
 
 /************************************
