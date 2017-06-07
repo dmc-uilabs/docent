@@ -34,7 +34,7 @@
                     <input type="text" class="form-control" id='mrl_teamMemberRole' placeholder="Member Role" />
                 </div>
                 <div class="col-sm-1">
-                    <button style="vertical-align: text-top;" class="removeButton" ng-show='$last && mrl_teamMemberArray.length > 1' ng-click='mrl_teamMemberArray.splice(-1);mrl_numTeamMembers=mrl_numTeamMembers-1'><span class="glyphicon glyphicon-minus-sign"></span></button>
+                    <button style="vertical-align: text-top;" class="removeButton" ng-show='$last && mrl_teamMemberArray.length > 1'><span ng-click='mrl_teamMemberArray.splice(-1);mrl_numTeamMembers=mrl_numTeamMembers-1' class="glyphicon glyphicon-minus-sign"></span></button>
                 </div>
             </div>
 
