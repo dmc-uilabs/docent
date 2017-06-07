@@ -8,7 +8,7 @@
 	</div>
 <div class="full-table hidden-xs table-responsive">
 
-	<table class="table progress-table ">
+	<table id='dashboardtable' class="table progress-table " style="background: white;">
 	<thead>
 	<tr >
 	<th></th>
@@ -134,9 +134,7 @@
           canvas.style.display = 'none';
           var imgDiv = document.querySelector('#img-out');
           imgDiv.appendChild(canvas);
-
           promptSaveFile(canvas);
-
         }
       });
 
