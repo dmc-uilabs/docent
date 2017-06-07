@@ -193,7 +193,7 @@
 
         <div class="col-md-3 col-md-offset-1">
             <div class="navigation-controls">
-                <div class="btn btn-primary"> <span class="glyphicon glyphicon-triangle-left"></span>Previous</div>
+                <div class="btn btn-primary" onclick='$("#functionToCall").val("getPreviousQuestionnairePage")' ng-click='run()'> <span class="glyphicon glyphicon-triangle-left"></span>Previous</div>
                 <div class="btn btn-primary" ng-show='!(selectOption==1 || selectOption==2 || selectOption==3)' onclick='$("#functionToCall").val("getNextQuestionnairePage")' ng-click='run()'>Skip<span class="glyphicon glyphicon-triangle-right"></div>
                 <div class="btn btn-primary" ng-show='(selectOption==1 || selectOption==2 || selectOption==3)' onclick='$("#functionToCall").val("getNextQuestionnairePage")' ng-click='run()'>Next<span class="glyphicon glyphicon-triangle-right"></div></span>
             </div>
