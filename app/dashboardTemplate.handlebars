@@ -36,8 +36,8 @@
           {{#each statuses}}
 						<td>
               <span class="indicator" ng-show='{{this}}==0'></span>
-              <span class="indicator correct" ng-show='{{this}}==1'>&#x2713;</span>
-              <span class="indicator incorrect" ng-show='{{this}}==2'>&#x2713;</span>
+              <span class="indicator correct" ng-show='{{this}}==1'></span>
+              <span class="indicator incorrect" ng-show='{{this}}==2'></span>
               <span class="indicator incomplete" ng-show='{{this}}==3'></span>
 						</td>
           {{/each}}
@@ -57,7 +57,7 @@
       {{#each mraOutputs.threadStatus}}
 			 <div class="navigation-group">
 				      <h4 class="group-title">
-				        <a role="button" data-toggle="collapse" href="#collapse{{@index}}" aria-expanded="true" aria-controls="collapse{{@index}}" class="collapse-item collapsed">
+				        <a role="button" data-toggle="collapse" data-target="#collapse{{@index}}" aria-expanded="true" aria-controls="collapse{{@index}}" class="collapse-item collapsed">
 				          {{threadName}}
 				        </a>
 				      </h4>
