@@ -21,6 +21,10 @@
     margin: 0
 }
 
+#docent * {
+    box-sizing: border-box;
+}
+
 #docent article, #docent aside, #docent details, #docent figcaption, #docent figure, #docent footer, #docent header, #docent hgroup, #docent main, #docent menu, #docent nav, #docent section, #docent summary {
     display: block
 }
