@@ -1238,6 +1238,7 @@ createAssessment = function(assessmentValues){
     assessmentDb.run("CREATE TABLE if not exists action_person(question_id INTEGER, name TEXT)");
     assessmentDb.run("CREATE TABLE if not exists attachment(question_id INTEGER, attachment_name TEXT, id INTEGER, data BLOB)");
     assessmentDb.run("CREATE TABLE if not exists question_visit_history(id INTEGER PRIMARY KEY, question_id INTEGER)");
+    assessmentDb.run("CREATE TABLE if not exists assessment_filters(id INTEGER PRIMARY KEY, filter_type TEXT, filter_value TEXT)");
 
     assessmentDb.run("INSERT INTO assessment (version_id, scope, target_date, target_level, location) VALUES (?, ?, ?, ?, ?)",
         [1, assessmentValues['scope'], assessmentValues['targetDate'], assessmentValues['targetLevel'], assessmentValues['location']]);
