@@ -1232,7 +1232,7 @@ createAssessment = function(assessmentValues){
     assessmentDb = new sqlite.Database();
 
     // Create the schema to hold the assessment data
-    assessmentDb.run("CREATE TABLE if not exists assessment(version_id INTEGER, scope TEXT, target_date TEXT, target_level TEXT, location TEXT)");
+    assessmentDb.run("CREATE TABLE if not exists assessment(version_id INTEGER, scope TEXT, target_date TEXT, target_level TEXT, location TEXT, level_switching BOOLEAN default true)");
     assessmentDb.run("CREATE TABLE if not exists answer(question_id INTEGER, answer INTEGER, assumptions TEXT, notes TEXT, evidence TEXT, technical_risk INTEGER, cost_risk INTEGER, schedule_risk INTEGER, completion_date TEXT, reason TEXT, what_action TEXT, documentation TEXT)");
     assessmentDb.run("CREATE TABLE if not exists team_members(name TEXT, role TEXT)");
     assessmentDb.run("CREATE TABLE if not exists action_person(question_id INTEGER, name TEXT)");
@@ -1242,6 +1242,9 @@ createAssessment = function(assessmentValues){
 
     assessmentDb.run("INSERT INTO assessment (version_id, scope, target_date, target_level, location) VALUES (?, ?, ?, ?, ?)",
         [1, assessmentValues['scope'], assessmentValues['targetDate'], assessmentValues['targetLevel'], assessmentValues['location']]);
+
+    console.log('createAssessment = function(assessmentValues){');
+    console.log(assessmentValues['levelSwitching']);
 
     var teamMembers = assessmentValues['teamMembers'];
     if(!(teamMembers === undefined)){
