@@ -524,7 +524,7 @@ getCriteriaMatrixData = function(){
       if(j==0){
         subThreadsArray = [];
       }
-      contents = criteriaDb.exec("SELECT criteria_text FROM sub_thread_level where sub_thread_id="+subThreadValues[j][0]);
+      contents = criteriaDb.exec("SELECT criteria_text, mrl_level FROM sub_thread_level where sub_thread_id="+subThreadValues[j][0]);
       subThreadLevelValues = contents[0].values;
       for(var k = 0; k<subThreadLevelValues.length; k++){
         if(k == 0){
@@ -532,8 +532,9 @@ getCriteriaMatrixData = function(){
         }
 
         var criteriaTextWithTT = addTooltips(contents[0].values[k][0])
+        var mrlLevel = contents[0].values[k][1]
 
-        subThreadLevelsArray.push({criteriaText:criteriaTextWithTT});
+        subThreadLevelsArray.push({criteriaText:criteriaTextWithTT, mrlLevel:mrlLevel});
       }
       subThreadsArray.push({name:subThreadValues[j][1], subThreadLevels:subThreadLevelsArray});
     }
@@ -545,6 +546,7 @@ getCriteriaMatrixData = function(){
 
 getDashboardInfo = function(assessment) {
   var threadsArray = [];
+  var threadsObject = {};
   var subThreadsArray = [];
   var subThreadLevelsArray = [];
 
@@ -556,12 +558,37 @@ getDashboardInfo = function(assessment) {
   for(var i = 0; i<threadValues.length; i++){
     var subThreadIdVal = threadValues[i][2];
     var statusObject = getSubThreadStatus(subThreadIdVal, assessment['targetLevel']);
-    threadsArray.push({threadName:threadValues[i][1],
-                        subThreadName:threadValues[i][3],
-                        date:statusObject.date,
-                        statuses:statusObject.statusArray});
+    // threadsArray.push({threadName:threadValues[i][1],
+    //                     subThreadName:threadValues[i][3],
+    //                     date:statusObject.date,
+    //                     statuses:statusObject.statusArray});
+
+    if (threadsObject[threadValues[i][1]]) {
+      threadsObject[threadValues[i][1]].push(
+          {subThreadName:threadValues[i][3],
+            date:statusObject.date,
+            statuses:statusObject.statusArray}
+          );
+    } else {
+      threadsObject[threadValues[i][1]] = [{subThreadName:threadValues[i][3],
+        date:statusObject.date,
+        statuses:statusObject.statusArray}]
+    }
   }
-  return threadsArray;
+
+  return threadsObjectToCollection(threadsObject);
+}
+
+threadsObjectToCollection = function(threadsObject) {
+  var threadsCollection = []
+  Object.keys(threadsObject).forEach(function(key) {
+    var val = threadsObject[key];
+    threadsCollection.push(
+      {"threadName": key,
+      "subThreads": val}
+    );
+  });
+  return threadsCollection;
 }
 
 /************************************
@@ -1462,7 +1489,7 @@ getSkippedPage = function(){
   outputTemplate = genericNavigationTemplate;
   // var subset = returnSkippedQuestions();
   var subset = returnQuestionSubset('skipped')
-
+  coreContext['assessment'] = importAssessment(assessmentPath);
   coreContext['pageTitle'] = 'Skipped Questions';
   coreContext['navigation'] = getNavigationInfoSubset(subset);
   coreContext['outputPage'] = 'skippedPage';
@@ -1474,7 +1501,7 @@ getNotApplicablePage = function(){
   outputTemplate = genericNavigationTemplate;
   // var subset = returnNotApplicableQuestions();
   var subset = returnQuestionSubset('notApplicable')
-
+  coreContext['assessment'] = importAssessment(assessmentPath);
   coreContext['pageTitle'] = 'Questions Marked Not Applicable';
   coreContext['navigation'] = getNavigationInfoSubset(subset);
   coreContext['outputPage'] = 'skippedPage';
@@ -1606,7 +1633,7 @@ buildDictionary = function() {
 }
 
 stripAcronyms = function(term) {
-  var rx =  new RegExp(/ \([A-Z]+\)$/,'ig')
+  var rx =  new RegExp(/ \([A-Z]+\)$/ig)
   return term.replace(rx,'')
 }
 

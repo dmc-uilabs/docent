@@ -1,62 +1,277 @@
-<div id='blackLinks'>
-  <div class='container-fluid'>
-    <div class='mra_panel'>
-
-    <div class="mra_page_title">
-      <h2>Navigation</h2>
-      <hr>
+<header id="subheader">
+  <div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+    <ol class="breadcrumb">
+      <li class="active">Navigation</li>
+    </ol>
+    <span class="collapse-link visible-xs xs-expand-link" data-toggle="collapse" data-target="#subheader-collapseable" aria-expanded="false" aria-controls="subheader-collapseable"><span class="glyphicon glyphicon-triangle-bottom"></span></span>
     </div>
 
-    <div class='row'>
-      <div class='col-xs-12'>
-        <h3>Click on any thread, sub-thread, level, or question to continue the questionnaire at that point.</h3>
-      </div>
-      <div class='col-xs-12'>
-        <ul>
-          {{#each mraOutputs.navigation}}
-            <a href ng-click='expandThread_{{threadId}} = !expandThread_{{threadId}}'>
-              <div class='mra_arrow_right' ng-show='!expandThread_{{threadId}}'></div>
-              <div class='mra_arrow_down' ng-show='expandThread_{{threadId}}'></div>
-            </a>
-            <a href ng-if='{{subThreads.length}}>0' onclick='$("#functionToCall").val("getQuestionnairePageFromNavigation");$("#navThreadId").val({{threadId}})' ng-click='run()'>{{name}}</a>
-              <span ng-if='{{subThreads.length}}==0'>{{name}}</span>
-              <ul ng-show='expandThread_{{threadId}}'>
-                {{#each subThreads}}
-                  <a href ng-click='expandSubThread_{{subThreadId}} = !expandSubThread_{{subThreadId}}'>
-                    <div class='mra_arrow_right' ng-show='!expandSubThread_{{subThreadId}}&&{{subThreadLevels.length}}>0'></div>
-                    <div class='mra_arrow_down' ng-show='expandSubThread_{{subThreadId}}&&{{subThreadLevels.length}}>0'></div>
-                  </a>
-                  <a href ng-if='{{subThreadLevels.length}}>0' onclick='$("#functionToCall").val("getQuestionnairePageFromNavigation");$("#navSubThreadId").val({{subThreadId}})' ng-click='run()'>{{name}}</a>
-                  <span ng-if='{{subThreadLevels.length}}==0'>{{name}}</span>
-                  <ul ng-show='expandSubThread_{{subThreadId}}'>
-                    {{#each subThreadLevels}}
-                      <a href ng-click='expandSubThreadLevel_{{subThreadLevelId}} = !expandSubThreadLevel_{{subThreadLevelId}}'>
-                        <div class='mra_arrow_right' ng-show='!expandSubThreadLevel_{{subThreadLevelId}}&&{{questions.length}}>0'></div>
-                        <div class='mra_arrow_down' ng-show='expandSubThreadLevel_{{subThreadLevelId}}||{{questions.length}}==0'></div>
-                      </a>
-                      <a href ng-if='{{questions.length}}>0' onclick='$("#functionToCall").val("getQuestionnairePageFromNavigation");$("#navSubThreadLevelId").val({{subThreadLevelId}})' ng-click='run()'>{{mrlLevel}}</a>
-                      <span ng-if='{{questions.length}}==0'>{{mrlLevel}}</span>
-                      <ul ng-show='expandSubThreadLevel_{{subThreadLevelId}}&&{{questions.length}}>0'>
-                        {{#each questions}}
-                          <a href onclick='$("#functionToCall").val("getQuestionnairePageFromNavigation");$("#navQuestionId").val({{questionId}})' ng-click='run()'>{{questionText}}</a><br>
-                        {{/each}}
-                      </ul>
-                      <br>
-                    {{/each}}
-                  </ul>
-                  <br>
-                {{/each}}
-              </ul>
-              <br>
-            {{/each}}
-          </ul>
+    {{#if mraOutputs.assessment.targetLevel}}
+      <div class="col-sm-6 hidden-xs">
+        <div class="row">
+        <div class="col-xs-12 meta">
+                  Target MRL: {{mraOutputs.assessment.targetLevel}} <span class="text-divider">|</span>Target Date: {{mraOutputs.assessment.targetDate}}
+                </div>
         </div>
+
+      </div>
+    {{/if}}
+  </div>
+
+
+  {{#if mraOutputs.assessment.targetLevel}}
+    <div class="collapse"  id="subheader-collapseable">
+    <div class="row visible-xs">
+      <div class="col-xs-12">
+          Target MRL: {{mraOutputs.assessment.targetLevel}}<span class="text-divider">|</span>Target Date: {{mraOutputs.assessment.targetDate}}
       </div>
     </div>
     </div>
-    <input type='hidden' id='navThreadId' value='0'>
-    <input type='hidden' id='navSubThreadId' value='0'>
-    <input type='hidden' id='navSubThreadLevelId' value='0'>
-    <input type='hidden' id='navQuestionId' value='0'>
-    <input type='hidden' id='inputPage' value='navigationPage'>
-</div>
+  {{/if}}
+
+  </div>
+</header>
+
+<div class="container" id="mainContent">
+
+	<div class="criteria-filter-head">
+		<div class="filter-top">
+		<div class="row">
+			<div class="col-xs-12">
+				<a class="criteria-controls filter-button collapsed" data-toggle="collapse" data-target="#collapseFilter">Filter</a>
+					<!-- <div class="expand-controls pull-right">
+			<a href="javascript:void(0)" class="criteria-controls expand-all"><span class="glyphicon glyphicon-collapse-down"></span> Expand all</a>
+			<a href="javascript:void(0)" class="criteria-controls collapse-all"><span class="glyphicon glyphicon-collapse-up"></span> Collapse all</a>
+			</div> -->
+			</div>
+
+		</div>
+		</div>
+		<div class="criteria-filter-container collapse" id="collapseFilter">
+		<!-- <div class="filter-block">
+		<div class="row">
+			<div class="col-xs-12">
+			<div class="filter-label">Filter by Thread</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-3">
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox"> Technology Maturity
+				    </label>
+				  </div>
+				  <div class="checkbox">
+				      <label>
+				        <input type="checkbox"> Technology &amp; Industrial Base
+				      </label>
+				    </div>
+				    <div class="checkbox">
+				        <label>
+				          <input type="checkbox"> Design
+				        </label>
+				      </div>
+			</div>
+
+			<div class="col-sm-3">
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox"> Technology Maturity
+				    </label>
+				  </div>
+				  <div class="checkbox">
+				      <label>
+				        <input type="checkbox"> Technology &amp; Industrial Base
+				      </label>
+				    </div>
+				    <div class="checkbox">
+				        <label>
+				          <input type="checkbox"> Design
+				        </label>
+				      </div>
+			</div>
+
+			<div class="col-sm-3">
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox"> Technology Maturity
+				    </label>
+				  </div>
+				  <div class="checkbox">
+				      <label>
+				        <input type="checkbox"> Technology &amp; Industrial Base
+				      </label>
+				    </div>
+				    <div class="checkbox">
+				        <label>
+				          <input type="checkbox"> Design
+				        </label>
+				      </div>
+			</div>
+
+			<div class="col-sm-3">
+				<div class="checkbox">
+				    <label>
+				      <input type="checkbox"> Manufacturing Management
+				    </label>
+				  </div>
+				 </div>
+			</div>
+		</div> -->
+		<div class="filter-block form-inline">
+		<div class="row ">
+
+		<div class="col-xs-12">
+		<div class="filter-label">Filter by MRL</div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-init='mrl_all=true' ng-model='mrl_all'>All</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_1'>1</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_2'>2</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_3'>3</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_4'>4</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_5'>5</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_6'>6</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_7'>7</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_8'>8</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_9'>9</label>
+      </div>
+      <div class="checkbox">
+        <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_10'>10</label>
+      </div>
+		</div>
+		</div>
+		</div>
+		</div>
+	</div>
+	<div class="criteria-list">
+      {{#each mraOutputs.navigation}}
+		 <div class="navigation-group">
+			      <h4 class="group-title">
+			        <a role="button" data-toggle="collapse" data-target="#collapseThread{{@index}}" aria-expanded="true" aria-controls="collapseThread{{@index}}" class="collapse-item collapsed">
+			          {{name}}
+			        </a>
+			      </h4>
+
+			    <ul id="collapseThread{{@index}}" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+            {{#each subThreads}}
+			     <li>
+			     	<a role="button" data-toggle="collapse" data-target="#collapseSubThread_{{@../index}}_{{@index}}" aria-expanded="true" aria-controls="collapseSubThread_{{@../index}}_{{@index}}" class="collapse-item collapsed">
+			     	  {{name}}
+			     	</a>
+			     	<dl id="collapseSubThread_{{@../index}}_{{@index}}" class="collapse">
+              {{#each subThreadLevels}}
+    							<dt level-id="mrl_{{mrlLevel}}">MRL {{mrlLevel}}</dt>
+                  {{#each questions}}
+                    <dd level-id="mrl_{{../mrlLevel}}"><a href onclick='$("#functionToCall").val("getQuestionnairePageFromNavigation");$("#navQuestionId").val({{questionId}})' ng-click='run()'>{{questionText}}</a></dd>
+                  {{/each}}
+              {{/each}}
+			     	</dl>
+
+			     	</li>
+            {{/each}}
+			    </ul>
+
+			 </div>
+       {{/each}}
+
+	</div>
+
+  <input type='hidden' id='navThreadId' value='0'>
+  <input type='hidden' id='navSubThreadId' value='0'>
+  <input type='hidden' id='navSubThreadLevelId' value='0'>
+  <input type='hidden' id='navQuestionId' value='0'>
+  <input type='hidden' id='inputPage' value='navigationPage'>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+      var checkBoxes = document.querySelectorAll('input[ng-model*=mrl_]');
+      var tds = document.querySelectorAll('[level-id*=mrl_]');
+
+      for (var i=0; i<checkBoxes.length; i++) {
+        var checkBox = checkBoxes[i];
+
+        var ngModel = checkBox.getAttribute('ng-model');
+
+        if (ngModel == 'mrl_all') {
+            checkBox.addEventListener("click", allClicked);
+        } else {
+            checkBox.addEventListener("click", singleLevelClicked);
+        };
+
+      };
+
+      function allClicked(event) {
+
+
+          if (!event.target.checked) {
+
+              for (var j=0; j<tds.length; j++) {
+                var td = tds[j];
+                td.style.display = "none";
+              };
+
+          } else {
+
+              for (var j=0; j<tds.length; j++) {
+                var td = tds[j];
+                td.style.display = "";
+                td.checked = true;
+              };
+
+              for (var k=0; k<checkBoxes.length; k++) {
+                var box = checkBoxes[k];
+                box.checked = true;
+              };
+
+          };
+
+      };
+
+  });
+
+  function singleLevelClicked(event) {
+
+
+      var allCheckbox = document.querySelector('[ng-model=mrl_all]');
+      allCheckbox.checked = false;
+
+      var clickedLevel = this.getAttribute('ng-model');
+      var levelTDs = document.querySelectorAll('[level-id=' + clickedLevel + ']');
+      var clickedOn = event.target.checked;
+
+      for (l=0; l<levelTDs.length; l++) {
+        var box = levelTDs[l];
+        changeDisplay(box, clickedOn);
+      };
+
+  };
+
+  function changeDisplay(element, on) {
+      if (!on) {
+          element.style.display = "none"
+      } else {
+          element.style.display = ""
+      };
+  }
+</script>

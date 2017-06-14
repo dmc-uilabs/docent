@@ -49,7 +49,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="question-header">
-                <h4>MRL: 6</h4>
+                <h4>MRL for this question: {{mraOutputs.question.mrlLevel}}</h4>
                 <h1>{{{mraOutputs.question.questionText}}}</h1>
                 <span class="collapse-link" data-toggle="collapse" data-target="#question-explanation" aria-expanded="false" aria-controls="question-explanation">Show Explanation</span>
                 <p class="collapse" id="question-explanation">{{{mraOutputs.question.helpText}}}</p>
@@ -79,12 +79,15 @@
                         <h3 class="section-heading">Action Plan</h3>
 
                         <div class="row">
-                          <div class="col-md-4">
-                            <button class="addButton" ng-click='mrl_actionPersonArray.push(mrl_numActionPerson);mrl_numActionPerson=mrl_numActionPerson+1'><span class="glyphicon glyphicon-plus-sign"></span>Add Action Person</button>
+                          <div class="col-md-6">
+                            <button class="addButton" ng-click='mrl_actionPersonArray.push(mrl_numActionPerson);mrl_numActionPerson=mrl_numActionPerson+1'>
+															<span class="glyphicon glyphicon-plus-sign"></span>Add Action Person</button>
                           </div>
 
-                          <div class="col-md-4">
-                            <button class="removeButton" ng-click='mrl_actionPersonArray.splice(-1);mrl_numActionPerson=mrl_numActionPerson-1'><span class="glyphicon glyphicon-minus-sign"></span>Remove</button>
+
+                          <div class="col-md-6">
+                            <button class="removeButton" ng-click='mrl_actionPersonArray.splice(-1);mrl_numActionPerson=mrl_numActionPerson-1'>
+															<span class="glyphicon glyphicon-minus-sign"></span>Remove</button>
                           </div>
                         </div>
 
@@ -190,7 +193,7 @@
 
         <div class="col-md-3 col-md-offset-1">
             <div class="navigation-controls">
-                <div class="btn btn-primary"> <span class="glyphicon glyphicon-triangle-left"></span>Previous</div>
+                <div class="btn btn-primary" onclick='$("#functionToCall").val("getPreviousQuestionnairePage")' ng-click='run()'> <span class="glyphicon glyphicon-triangle-left"></span>Previous</div>
                 <div class="btn btn-primary" ng-show='!(selectOption==1 || selectOption==2 || selectOption==3)' onclick='$("#functionToCall").val("getNextQuestionnairePage")' ng-click='run()'>Skip<span class="glyphicon glyphicon-triangle-right"></div>
                 <div class="btn btn-primary" ng-show='(selectOption==1 || selectOption==2 || selectOption==3)' onclick='$("#functionToCall").val("getNextQuestionnairePage")' ng-click='run()'>Next<span class="glyphicon glyphicon-triangle-right"></div></span>
             </div>

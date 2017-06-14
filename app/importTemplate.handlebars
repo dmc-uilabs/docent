@@ -1,43 +1,50 @@
-<div id='blackLinks'>
-
-  <div class='container-fluid'>
-  <div class='mra_panel'>
-
-    <div class="mra_page_title">
-      <h2>Assessments</h2>
-      <hr>
+<header id="subheader">
+  <div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+    <ol class="breadcrumb">
+      <li class="active">Saved Assessments</li>
+    </ol>
+    <span class="collapse-link visible-xs xs-expand-link" data-toggle="collapse" data-target="#subheader-collapseable" aria-expanded="false" aria-controls="subheader-collapseable"><span class="glyphicon glyphicon-triangle-bottom"></span></span>
     </div>
+    <div class="col-sm-6 hidden-xs">
 
-    <div class='row'>
-      <div class='col-lg-1'></div>
-      <div class='col-lg-10'>
-        <table class='table table-responsive table-hover table-condensed table-striped' align='center'>
-          {{#if mraOutputs.assessmentNames}}<th>Select an assessment to open</th><th style="text-align: center;">Delete</th>{{/if}}
-          {{#each mraOutputs.assessmentNames}}
-              <tr>
-                <td>
-                  <a href onclick='$("#inAssessmentPath").val("{{this}}");$("#functionToCall").val("getStartPage")' ng-click='run()'><h4>{{this}}</h4></a>
-                </td>
-                <td align="center">
-                  <button style="height: 32px; text-align: center;" class='btn btn-danger btn-sm mra-btn-circle' onclick='$("#inAssessmentPath").val("{{this}}");$("#functionToCall").val("deleteAssessment")' ng-click='run()' style='margin-top:10px'>
-                    &#x2796;
-                  </button>
-                </td>
-              </tr>
-          {{else}}
-            <tr>
-              <td align='left'>
-                <button style='display:inline;' type='button' class='btn btn-primary' style='margin-bottom:10px' onclick='$("#functionToCall").val("getStartPage")' ng-click='run()'>Start Assessment</button>
-                No assessments found for this project.
-              </td>
-            </tr>
-          {{/each}}
-        </table>
-      </div>
-      <div class='col-lg-1'></div>
     </div>
-
   </div>
   </div>
+</header>
+
+<div class="container" id="mainContent">
+
+    {{#if mraOutputs.assessmentNames}}
+      <h2>Assessments For This Workspace</h2>
+      <p class="instruction">Select an assessment to open</p>
+
+
+		<div class="acronymTable row-striped">
+
+    {{#each mraOutputs.assessmentNames}}
+  		<div><div class="row">
+  			<div class="col-sm-9"><a href onclick='$("#inAssessmentPath").val("{{this}}");$("#functionToCall").val("getStartPage")' ng-click='run()'>{{this}}</a></div>
+  			<div class="col-sm-3"><a href onclick='$("#inAssessmentPath").val("{{this}}");$("#functionToCall").val("deleteAssessment")' ng-click='run()'>DELETE</a></div>
+  		</div>
+  		</div>
+    {{/each}}
+    </div>
+
+    {{else}}
+    <h2>No Assessments Found For This Project</h2>
+    <button style='display:inline;' type='button' class='btn btn-primary' style='margin-bottom:10px' onclick='$("#functionToCall").val("getStartPage")' ng-click='run()'>Start Assessment</button>
+    {{/if}}
+
+	</div>
+
   <input type='hidden' id='inputPage' value='importPage'>
 </div>
+
+
+
+
+
+
+

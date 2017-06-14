@@ -1,462 +1,6 @@
-/*body.mra {
-    font-family: Roboto, Arial, sans-serif;
-    color: #121212;
-    height: 100%;
-    background-color: #EFECED;
-}
-
-div.mra_header {
-    font-size: 16px;
-    color: #FFFFFF;
-    background-color: #607d8b;
-    padding: 10px;
-}
-
-div.mra_infobar {
-    margin-bottom: 20px;
-    min-height: 25px;
-    color: white;
-    padding: 3px 25px 0px 25px;
-    background-color: #455a64;
-    -webkit-box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.75);
-}
-
-div.mra_infobar a {
-    color: white;
-}
-
-div.mra_navigationbar {
-    z-index: 1;
-    margin: auto;
-    background-color: #607d8b;
-    -webkit-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.75);
-}
-
-div.mra_navigationitem {
-    padding-left: 300px;
-    display: inline-flex;
-    height: 46px;
-    line-height: 46px;
-    min-width: 70px;
-    padding: 0px 10px;
-    transition: background .2s;
-    color: white;
-}
-
-div.mra_dropdown a {
-    transition: background .2s;
-}
-
-div.mra_navigationtitle {
-    margin: auto;
-    color: white;
-    font-size: 1.4em;
-    display: inline-block;
-    height: 46px;
-    line-height: 46px;
-    min-width: 70px;
-    padding: 0px 10px;
-}
-
-div.mra_assess_level_date {
-    color: white;
-    display: inline-block;
-    height: 46px;
-    line-height: 23px;
-    min-width: 70px;
-    float: right;
-}
-
-div.mra_assess_level_date div {
-    text-size: .5em;
-}
-
-div.mra_navigationitem a {
-    text-decoration: none;
-    color: white;
-    display: inline-block;
-    margin: auto;
-}
-
-div.mra_navigationitem:hover {
-    background: #546e7a;
-}
-
-div.mra_dropdowncontent a:hover {
-    background: #cfd8dc;
-}
-
-div.mra_dropdown {
-    display: inline-block;
-}
-
-div.mra_dropdowncontent {
-    display: none;
-    position: absolute;
-    background-color: #eceff1;
-    min-width: 100px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-}
-
-div.mra_dropdown a {
-    display: inline-block;
-}
-
-div.mra_dropdowncontent a {
-    color: black;
-    padding: 3px 6px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
-}
-
-div.mra_dropdown:hover .mra_dropdowncontent {
-    display: block;
-    position: absolute;
-    z-index: 1;
-}
-
-div.mra_breadcrumbs {
-    color: #FFFFFF;
-    background-color: #002D54;
-    padding: 3px;
-    margin: 0px -10px;
-}
-
-a.mra_breadcrumbs_active {
-    opacity: 0.5;
-}
-
-div.mra_panel {
-    margin-bottom: 30px;
-    width: 100%;
-    max-width: 1400px;
-    margin: auto;
-    padding: 20px;
-    background: white;
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-    -moz-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-}
-
-.mra_max_width_container {
-    max-width: 1400px;
-    margin: auto;
-    padding: 0px 25px;
-}
-
-.mra_vertical_align {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
-}
-
-#mra_style button {
-    border: none;
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.16);
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.16);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.16);
-    border-radius: 4px;
-}
-
-#mra_style table {
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.16);
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.16);
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.16);
-    background-color: white;
-}
-
-#mra_style th {
-    color: black;
-    background-color: #eceff1;
-    font-weight: bold;
-}
-
-#mra_style td {
-    background-color: white;
-    color: #212121;
-    border-top: none;
-}
-
-#mra_style #answerValue {
-    max-width: 120px;
-}
-
-td.t-centered, th.t-centered {
-    text-align: center;
-    vertical-align: middle;
-}
-
-td.dash+td.dash, th.dash+th.dash {
-    border-left: 1px solid #e1e7ea;
-    min-width: 41px;
-}
-
-tr.dash+tr.dash {
-    border-top: 1px solid #e1e7ea;
-    min-width: 41px;
-}
-
-.mra_divider {
-    width: 100%;
-    height: 1px;
-    background-color: lightgrey;
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-
-.mra_arrow_down {
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid black;
-    display: inline-block;
-}
-
-.mra_arrow_right {
-    width: 0;
-    height: 0;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 5px solid black;
-    display: inline-block;
-}
-
-#mra_style table.mra_divided_table {
-    background: #eceff1;
-}
-
-#mra_style table.mra_divided_table {
-    background: #eceff1;
-}
-
-#mra_style table.mra_divided_table td {
-    background: #cfd8dc;
-    -webkit-box-shadow: inset 0 7px 9px -7px rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: inset 0 7px 9px -7px rgba(0, 0, 0, 0.4);
-    box-shadow: inset 0 7px 9px -7px rgba(0, 0, 0, 0.4);
-}
-
-#mra_style table.mra_divided_table td.mra_divided_table_top_level {
-    background: #eceff1;
-    -webkit-box-shadow: 40px 40px 0px 0px rgba(0, 0, 0, 0);
-    -moz-box-shadow: 40px 40px 0px 0px rgba(0, 0, 0, 0);
-    box-shadow: 40px 40px 0px 0px rgba(0, 0, 0, 0);
-}
-
-#mrl_milestone_table {
-    margin-top: 50px;
-    position: relative;
-    z-index: 0;
-}
-
-#mra_style .btn-primary {
-    background: #546e7a;
-}
-
-#mra_style .btn-success {
-    background: #546e7a;
-}
-
-#mra_style .btn-primary:hover {
-    background: #607d8b;
-}
-
-#mra_style .btn-success:hover {
-    background: #607d8b;
-}
-
-#mra_style .mra-btn-circle {
-    border-radius: 50%;
-    height: 32px;
-    width: 32px;
-}
-
-
-.mra-truncate {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-
-.mrl_ms_level_locator {
-    position: absolute;
-    left: -21px;
-    top: -30px;
-}
-
-.mrl_ms_level {
-    position: absolute;
-    z-index: 100;
-}
-
-.mra_arrow_box {
-    display: block;
-    width: 40px;
-    text-align: center;
-    font-size: .8em;
-    position: relative;
-    background: #90a4ae;
-    border-radius: 3px;
-    padding: 5px 10px;
-}
-
-.mra_arrow_box_arrow_down {
-    position: absolute;
-    left: 10px;
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid #90a4ae;
-}
-
-div.innerHeader {
-    margin: auto;
-    width: 950px;
-}
-
-div.info {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 250px;
-    border-radius: 4px;
-    color: #FFFFFF;
-    background-color: #555555;
-    padding: 3px 10px;
-}
-
-div.enterdata {
-    margin: auto;
-    position: relative;
-    width: 950px;
-    padding: 25px;
-    background-color: #FFFFFF;
-}
-
-div.question {
-    margin: auto;
-    position: relative;
-    width: 950px;
-    padding: 25px;
-}
-
-div.questionButtons {
-    text-align: center;
-    width: 100%;
-}
-
-table.criteriaTable {
-    display: block;
-    overflow: scroll;
-}
-
-.centerAligned {
-    margin: auto;
-    width: 950px;
-    text-align: center;
-}
-
-.rightAligned {
-    float: right;
-}
-
-.leftAligned {
-    float: left;
-}
-
-.topAligned {
-    top: 0;
-    display: inline-block;
-}
-
-.buttonRounded {
-    background-color: #505F90;
-    border-radius: 4px;
-    border: none;
-    color: white;
-    font-size: 16px;
-    padding: 3px 10px;
-    margin: 5px;
-}
-
-.answerDropDown {
-    font-size: 16px;
-    display: inline-block;
-}
-
-.mraTable {
-    background-color: #FFFFFF;
-    text-align: left;
-}
-
-th {
-    font-size: 14px;
-    background-color: #0E5492;
-    text-align: left;
-    color: #FFFFFF;
-    padding: 5px;
-}
-
-td {
-    padding: 5px;
-}
-
-td.blue {
-    background-color: #008CBA;
-}
-
-td.green {
-    background-color: #4CAF50;
-}
-
-td.red {
-    background-color: #f44336;
-}
-
-#blackLinks a:link {
-    color: black;
-}
-
-#blackLinks a:visited {
-    color: black;
-}
-
-.glyphicon {
-    font-size: 20px;
-}
-
-.preserveNewlines {
-    white-space: pre-wrap;
-}*/
-
-
-@font-face {
-    font-family: "didact_gothicregular";
-    src: url("../fonts/didactgothic-regular-webfont.woff2") format("woff2"), url("../fonts/didactgothic-regular-webfont.woff") format("woff");
-    font-weight: normal;
-    font-style: normal
-}
-
-@font-face {
-    font-family: "poppinsbold";
-    src: url("../fonts/poppins-bold-webfont.woff2") format("woff2"), url("../fonts/poppins-bold-webfont.woff") format("woff");
-    font-weight: bold;
-    font-style: normal
-}
-
 #docent {
     background-color: #fff;
-    font-family: "didact_gothicregular", sans-serif;
+    font-family: "Didact Gothic", sans-serif;
     margin: 0;
     /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
@@ -475,6 +19,10 @@ td.red {
 
 #docent body {
     margin: 0
+}
+
+#docent * {
+    box-sizing: border-box;
 }
 
 #docent article, #docent aside, #docent details, #docent figcaption, #docent figure, #docent footer, #docent header, #docent hgroup, #docent main, #docent menu, #docent nav, #docent section, #docent summary {
@@ -707,11 +255,11 @@ td.red {
     }
 }
 
-@font-face {
+/*@font-face {
     font-family: 'Glyphicons Halflings';
     src: url("../fonts/bootstrap/glyphicons-halflings-regular.eot");
     src: url("../fonts/bootstrap/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/bootstrap/glyphicons-halflings-regular.woff2") format("woff2"), url("../fonts/bootstrap/glyphicons-halflings-regular.woff") format("woff"), url("../fonts/bootstrap/glyphicons-halflings-regular.ttf") format("truetype"), url("../fonts/bootstrap/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg")
-}
+}*/
 
 #docent .glyphicon {
     position: relative;
@@ -1773,10 +1321,6 @@ td.red {
     content: "\e260"
 }
 
-#docent * {
-    box-sizing: border-box
-}
-
 #docent *:before, #docent *:after {
     box-sizing: border-box
 }
@@ -2264,6 +1808,8 @@ td.red {
 }
 
 #docent .container {
+    max-width: 97%;
+    background: inherit;
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
@@ -7462,7 +7008,7 @@ td.red {
 #docent .question-header h4 {
     margin-top: 0px;
     border: none;
-    font-family: "didact_gothicregular";
+    font-family: "Didact Gothic";
     font-weight: normal;
     font-size: 14px
 }
@@ -7472,7 +7018,7 @@ td.red {
     font-size: 30px;
     line-height: 1.4;
     margin-bottom: 20px;
-    font-family: "didact_gothicregular"
+    font-family: "Didact Gothic"
 }
 
 #docent .question-header p {
@@ -7651,7 +7197,7 @@ td.red {
     text-transform: uppercase;
     color: #3e66a5;
     float: right;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     font-weight: normal;
     font-size: 12px;
     letter-spacing: 0.9px;
@@ -7684,7 +7230,7 @@ td.red {
 }
 
 #docent .review-block h2 {
-    font-family: "didact_gothicregular";
+    font-family: "Didact Gothic";
     font-weight: normal;
     margin: 0 0 30px 0;
     font-size: 20px
@@ -7696,7 +7242,7 @@ td.red {
 
 #docent .review-block dt {
     margin-top: 30px;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     font-size: 14px;
     letter-spacing: 0.86px
 }
@@ -7709,7 +7255,7 @@ td.red {
 #docent .status, #docent .status-no, #docent .status-skipped, #docent .status-yes, #docent .status-na {
     display: inline-block;
     padding: 8px;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     font-size: 14px;
     line-height: 14px;
     letter-spacing: 0.2px;
@@ -7739,7 +7285,7 @@ td.red {
 }
 
 #docent .criteria-list dl dt {
-    font-family: "poppinsbold"
+    font-family: "Poppins"
 }
 
 #docent .criteria-list dl dd {
@@ -7751,7 +7297,7 @@ td.red {
 }
 
 #docent .dl-label {
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     text-transform: uppercase;
     font-size: 12px;
     display: inline-block
@@ -7809,7 +7355,7 @@ td.red {
     text-transform: uppercase;
     font-size: 12px;
     letter-spacing: 0.9px;
-    font-family: "poppinsbold"
+    font-family: "Poppins"
 }
 
 #docent .criteria-controls:before {
@@ -7882,7 +7428,7 @@ td.red {
 }
 
 #docent .progress-table {
-    font-fadmily: "didact_gothicregular";
+    font-fadmily: "Didact Gothic";
     font-size: 16px;
     border-spacing: 4px;
     border-collapse: separate
@@ -7932,7 +7478,7 @@ td.red {
     border: none;
     text-align: center;
     font-weight: bold;
-    font-family: "poppinsbold"
+    font-family: "Poppins"
 }
 
 #docent .progress-table tr>td:first-of-type {
@@ -7989,7 +7535,7 @@ td.red {
 #docent .mobile-cards .progress-table th {
     text-align: center;
     font-weight: bold;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     width: 10%
 }
 
@@ -8050,7 +7596,7 @@ td.red {
     background: none;
     border: none;
     color: #65d62b;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     text-align: left;
     padding: 0;
     margin: 0;
@@ -8075,7 +7621,7 @@ td.red {
     background: none;
     border: none;
     color: #ed4749;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     text-align: left;
     padding: 0;
     margin: 0;
@@ -8138,7 +7684,7 @@ td.red {
 
 #docent h1, #docent h2, #docent h3, #docent h4, #docent h5, #docent h6 {
     font-weight: normal;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     margin: 0
 }
 
@@ -8362,7 +7908,7 @@ td.red {
 
 #docent #mainContent .collapse-link {
     color: #3e66a5;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     cursor: pointer
 }
 
@@ -8511,7 +8057,7 @@ td.red {
 
 #docent dl.inline-list dt {
     clear: both;
-    font-family: "poppinsbold"
+    font-family: "Poppins"
 }
 
 #docent dl.inline-list:after {
@@ -8578,19 +8124,19 @@ td.red {
 
 #docent .actionItem p {
     font-size: 18px;
-    font-family: "didact_gothicregular";
+    font-family: "Didact Gothic";
     margin: 0
 }
 
 #docent .actionItem dt {
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     font-size: 14px;
     padding-bottom: 10px;
     padding-top: 30px
 }
 
 #docent .actionItem dd {
-    font-family: "didact_gothicregular"
+    font-family: "Didact Gothic"
 }
 
 #docent .tooltipContainer {
@@ -8632,7 +8178,7 @@ td.red {
     font-weight: bold;
     text-transform: uppercase;
     font-size: 12px;
-    font-family: "poppinsbold";
+    font-family: "Poppins";
     letter-spacing: 1px;
     display: block;
     text-decoration: none

@@ -82,8 +82,10 @@ writeOutDomeData = function(){
                     isRunningInElectron: coreContext['isRunningInElectron'],
                     outputPage: coreContext['outputPage'],
                     outAssessmentPath: coreContext['outAssessmentPath'],
-                    mraCss: coreContext['mraCss'],
-                    helpMenuItems: coreContext['helpMenuItems']
+                    // mraCss: coreContext['mraCss'],
+                    mraCss: encodeURI(coreContext['mraCss']),
+                    helpMenuItems: coreContext['helpMenuItems'],
+                    pageTitle: coreContext['pageTitle']
             };
 
   outputData = 'mraOutputs=' + JSON.stringify(mraOutputs) + "\n";

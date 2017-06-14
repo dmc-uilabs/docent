@@ -20,6 +20,13 @@ echo -n "mraCss=\"" >> "$OUTPUT_FILE"
 tr -d '\n' < ./app/mra.css | tr -d '\r' | sed 's/"/\\"/g' >> "$OUTPUT_FILE"
 echo $'\";' >> "$OUTPUT_FILE"
 
+# Run the script that creates the encoded css template
+node assets/createStartCss.js
+# Add in the encoded file
+echo -n "cssTemplate=\"" >> "$OUTPUT_FILE"
+tr -d '\n' < ./assets/inputCss.txt | tr -d '\r' | sed 's/"/\\"/g' >> "$OUTPUT_FILE"
+echo $'\";' >> "$OUTPUT_FILE"
+
 # Add in the help.js file
 echo -n "helpItems=" >> "$OUTPUT_FILE"
 #tr -d '\n' < ./app/help.js | tr -d '\r' | sed 's/"/\\"/g' >> "$OUTPUT_FILE"
