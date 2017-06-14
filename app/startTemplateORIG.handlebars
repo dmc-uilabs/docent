@@ -1,0 +1,243 @@
+<div>
+  <div class='mra_max_width_container'>
+    <div class='row'>
+      <div class='col-sm-6'>
+        <div class="mra_panel">
+        <div class='row'>
+          <div class='col-xs-12'>
+            <h3>Start New Assessment</h3>
+            <p>Use this option to start a new assessment.</p>
+          </div>
+        </div>
+        <div class='row' ng-init='mrl_teamMemberArray=["0"];mrl_numTeamMembers=1'>
+          <div class='col-xs-12'>
+            <label for='addteam'>Add Team Members:</label>
+              {{#each mraOutputs.assessment.teamMembers}}
+              <div style="margin-bottom: 10px;" class='row'>
+                <div class="col-xs-2">
+
+                  {{#if @first}}
+                  <span class="input-group-btn">
+                    <button style="height: 32px; text-align: center;" class='btn btn-success btn-sm mra-btn-circle' ng-click='mrl_teamMemberArray.push(mrl_numTeamMembers);mrl_numTeamMembers=mrl_numTeamMembers+1' style='margin-top:10px'>
+                      &#x2795;
+                    </button>
+                  </span>
+                  {{/if}}
+
+                </div>
+                <div class="col-xs-5">
+                  <input class="form-control" type='text' id='mrl_teamMemberName{{@index}}' value='{{name}}'>
+                </div>
+                <div class="col-xs-5">
+                    <input class="form-control" type='text' id='mrl_teamMemberRole{{@index}}' value='{{role}}'>
+                </div>
+              </div>
+              {{/each}}
+
+
+              <div style="margin-bottom: 10px;" class='row' ng-repeat='x in mrl_teamMemberArray'>
+                <div class="col-xs-2">
+                  <span class="input-group-btn">
+                    {{#unless mraOutputs.assessment.teamMembers}}
+                      <button style="height: 32px; text-align: center;" ng-show='$first' class='btn btn-success btn-sm mra-btn-circle' ng-click='mrl_teamMemberArray.push(mrl_numTeamMembers);mrl_numTeamMembers=mrl_numTeamMembers+1' style='margin-top:10px'>
+                        &#x2795;
+                      </button>
+
+                      <button style="height: 32px; text-align: center;" ng-show='$last && mrl_teamMemberArray.length > 1' class='btn btn-danger btn-sm mra-btn-circle' ng-click='mrl_teamMemberArray.splice(-1);mrl_numTeamMembers=mrl_numTeamMembers-1' style='margin-top:10px'>
+                        &#x2796;
+                      </button>
+                    {{/unless}}
+
+                    {{#if mraOutputs.assessment.teamMembers}}
+                      <button style="height: 32px; text-align: center;" ng-show='($last && mrl_teamMemberArray.length > 1) || mrl_teamMemberArray.length == 1' class='btn btn-danger btn-sm mra-btn-circle' ng-click='mrl_teamMemberArray.splice(-1);mrl_numTeamMembers=mrl_numTeamMembers-1' style='margin-top:10px'>
+                        &#x2796;
+                      </button>
+                    {{/if}}
+
+                  </span>
+                </div>
+                  <div class="col-xs-5">
+                    <input class="form-control" type='text' id='mrl_teamMemberName' placeholder="Name">
+                  </div>
+                  <div class="col-xs-5">
+                    <input class="form-control" type='text' id='mrl_teamMemberRole' placeholder="Role">
+                  </div>
+              </div>
+
+          </div>
+        </div>
+        <div class='form-group'>
+          <p>
+            <label for='scope'>Scope:</label>
+            <span ng-show='scopeRequired'>{{scopeRequired}}</span>
+            <textarea class='form-control' id='scope' rows='2'>{{mraOutputs.assessment.scope}}</textarea>
+          </p>
+        </div>
+        <div class='form-group'>
+                <label for='mrl'>Target MRL:</label>
+                <span ng-show='targetMRLRequired'>{{targetMRLRequired}}</span>
+                <select class='selectpicker form-control' id='targetLevel' ng-init='init_level="{{mraOutputs.assessment.targetLevel}}"' ng-model='init_level'>
+                  <option value=1>1</option>
+                  <option value=2>2</option>
+                  <option value=3>3</option>
+                  <option value=4>4</option>
+                  <option value=5>5</option>
+                  <option value=6>6</option>
+                  <option value=7>7</option>
+                  <option value=8>8</option>
+                  <option value=9>9</option>
+                  <option value=10>10</option>
+                </select>
+            </div>
+        <div class='form-group'>
+          <label for='date'>Date to achieve Target MRL:</label>
+            <span ng-show='dateRequired'>{{dateRequired}}</span>
+            <input type='date' class='form-control' id='targetDate' value='{{mraOutputs.assessment.targetDate}}' placeholder="mm/dd/yyyy">
+        </div>
+        <div class='form-group'>
+            <label for='location'>Location:</label>
+            <span ng-show='locationRequired'>{{locationRequired}}</span>
+            <input type='text' class='form-control' id='location' value='{{mraOutputs.assessment.location}}'></input>
+        </div>
+            <div class='form-group'>
+                <label for='version'>Deskbook Version:</label>
+                <span ng-show='versionRequired'>{{versionRequired}}</span>
+                <select class='selectpicker form-control' id='version'>
+                    <option title='v2016' value='1' selected='selected'>2016</option>
+                </select>
+            </div>
+            {{#unless mraOutputs.isRunningInElectron}}
+              <div class='form-group'>
+                <label for='assessmentName'>Name of Assessment:</label>
+                <span ng-show='assessmentNameRequired'>{{assessmentNameRequired}}</span>
+                <input type='text' class='form-control' id='inAssessmentPath' value='{{mraOutputs.outAssessmentPath}}' {{#if mraOutputs.outAssessmentPath}}readonly{{/if}}></input>
+              </div>
+            {{/unless}}
+            <div id="startButtonWrapper" style="border-top: 1px solid transparent; width:60px;">
+              <button id="startButton" class='btn btn-primary btn-large' style='margin-bottom:5px' onclick='$("#functionToCall").val("saveStartGetQuestionnairePage")' ng-show='{{#if mraOutputs.outAssessmentPath}}false{{else}}true{{/if}}' ng-click='run()'>Start</button>
+              <button id="startButton" class='btn btn-primary btn-large' style='margin-bottom:5px' onclick='$("#functionToCall").val("updateStartGetQuestionnairePage")' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' ng-click='run()'>Continue</button>
+            </div>
+            <br>
+        </div>
+      </div>
+
+        <div class='col-sm-6'>
+          <div class="mra_panel">
+          <h3>Continue Existing Assessment</h3>
+          <p>Use this option to start working on an existing assessment.</p>
+          <br>
+          <button style='display:inline;' type='button' class='btn btn-primary' style='margin-bottom:10px' onclick='$("#functionToCall").val("getHelpPage")' ng-click='run()'>Help</button>
+          <button style='display:inline;' type='button' class='btn btn-success' style='margin-bottom:10px' onclick='$("#functionToCall").val("startPageImportAssessment")' ng-click='run()'>{{#if mraOutputs.isRunningInElectron}}Open Assessment{{else}}View Assessments{{/if}}</button>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <input type='hidden' id='inputPage' value='startPage'/>
+  <input type='hidden' id='teamMemberNames' value=''/>
+  <input type='hidden' id='teamMemberRoles' value=''/>
+</div>
+
+
+  <script>
+    $(document).ready(function() {
+
+      var startButton = document.getElementById('startButton');
+      var startButtonWrapper = document.getElementById('startButtonWrapper');
+      startButton.disabled = true;
+
+      var formFields = getFormFieldsToValidate();
+
+      var highlightPerformed = false;
+
+      document.onkeyup = function() {
+        if (highlightPerformed) { highlightMissingFields(formFields) };
+        enableStartButtonIfValid(startButton, formFields);
+        updateTeamMembers();
+      };
+
+      document.onclick = function() {
+        if (highlightPerformed) { highlightMissingFields(formFields) };
+        enableStartButtonIfValid(startButton, formFields);
+        updateTeamMembers();
+      };
+
+      startButtonWrapper.onmouseover = function(){
+        if (startButton.disabled) {
+          highlightPerformed = true;
+          highlightMissingFields(formFields);
+        }
+      };
+
+      updateTeamMembers();
+
+    });
+
+    function getFormFieldsToValidate() {
+      var targetDateField = document.getElementById('targetDate');
+      var targetLevelField = document.getElementById('targetLevel');
+      var deskbookVersionField = document.getElementById('version');
+
+      return [targetDateField, targetLevelField, deskbookVersionField];
+    }
+
+    function enableStartButtonIfValid(button, formFields) {
+      button.disabled = !validateFields(formFields);
+    };
+
+    function validateFields(formFields) {
+      var validationResult = returnInvalidIDs(formFields);
+      return validationResult.length == 0;
+    };
+
+    function returnInvalidIDs(formFields) {
+      var validationResult = [];
+
+      for (var i=0; i < formFields.length; i++){
+        var field = formFields[i];
+
+        if (field.id == 'targetLevel' || field.id == 'version'){
+          if (isNaN(field.value)){
+            validationResult.push(field);
+          }
+        }
+
+        if (field.id == 'targetDate'){
+          if (isNaN(Date.parse(field.value))){
+            validationResult.push(field);
+          }
+        }
+      }
+
+        return validationResult;
+    };
+
+    function highlightMissingFields(formFields) {
+      var invalidFields = returnInvalidIDs(formFields);
+
+      for (var i=0; i < formFields.length; i++) {
+        formFields[i].style.background = 'initial';
+      }
+
+      for (var j=0; j < invalidFields.length; j++) {
+        invalidFields[j].style.background = 'pink';
+      }
+    };
+
+    function updateTeamMembers() {
+      var memberNames = $("[id^=mrl_teamMemberName]");
+      var memberRoles = $("[id^=mrl_teamMemberRole]");
+
+      memberNames = memberNames.map(function(){
+        return $(this).val();
+      }).get();
+
+      memberRoles = memberRoles.map(function(){
+        return $(this).val();
+      }).get();
+
+      $("#teamMemberNames").val(JSON.stringify(memberNames));
+      $("#teamMemberRoles").val(JSON.stringify(memberRoles));
+    };
+
+  </script>

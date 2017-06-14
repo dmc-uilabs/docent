@@ -1,0 +1,56 @@
+<style>{{mraOutputs.mraCss}}</style>
+<div id="mra_style">
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u' crossorigin='anonymous'>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js' integrity='sha256-c3RzsUWg+y2XljunEQS0LqWdQ04X1D3j22fd/8JCAKw=' crossorigin='anonymous'></script>
+<div class='container-fluid'>
+        <div class='row'>
+            <div class='col-xs-12 mra_navigationbar'>
+                <div class='mra_navigationtitle'>
+                    <h4>DOCENT</h4>
+                </div>
+                <div class="mra_navigationitem mra_dropdown" onmouseover="if (typeof(updateActionPersonWithCurrent) == 'function') {updateActionPersonWithCurrent();}">
+                    <a href="javascript:void(0)">Help</a><span class="caret" style='color:white;'></span>
+                    <div class='mra_dropdowncontent'>
+                        <a href class='mra_dropdownitem' onclick='$("#functionToCall").val("getCriteriaPage")' ng-click='run()'>Criteria</a>
+                        <a href class='mra_dropdownitem' onclick='$("#functionToCall").val("getDefinitionsPage")' ng-click='run()'>Definitions</a>
+                        <a href class='mra_dropdownitem' onclick='$("#functionToCall").val("getAcronymsPage")' ng-click='run()'>Acronyms</a>
+                        <a href class='mra_dropdownitem' onclick='$("#functionToCall").val("getHelpPage")' ng-click='run()'>Help</a>
+                    </div>
+                </div>
+                <div class="mra_navigationitem mra_dropdown" ng-show='"{{mraOutputs.outputPage}}"!="startPage" || {{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onmouseover="if (typeof(updateActionPersonWithCurrent) == 'function') {updateActionPersonWithCurrent();}">
+                    <a href="javascript:void(0)">Assessment</a><span class="caret" style='color:white;'></span>
+                    <div class='mra_dropdowncontent'>
+
+                        <a href class='mra_dropdownitem' onclick='$("#functionToCall").val("getStartPage")' ng-show='"{{mraOutputs.outputPage}}"!="startPage"' ng-click='run()'>Start</a>
+                        <a href class='mra_dropdownitem' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getNextQuestionnairePage")' ng-show='"{{mraOutputs.outputPage}}"!="startPage"' ng-click='run()'>Continue</a>
+                        <a href class='mra_dropdownitem' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getMmpPage")' ng-click='run()'>Action Items</a>
+                        <a href class='mra_dropdownitem' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getDashboardPage")' ng-click='run()'>Dashboard</a>
+                        <a href class='mra_dropdownitem' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getReviewPage")' ng-click='run()'>Review</a>
+                        <a href class='mra_dropdownitem' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getNavigationPage")' ng-click='run()'>Navigate</a>
+                        <a href class='mra_dropdownitem' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getSkippedPage")' ng-click='run()'>Skipped Questions</a>
+                        <a href class='mra_dropdownitem' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("getNotApplicablePage")' ng-click='run()'>N/A Questions</a>
+                        {{#if mraOutputs.isRunningInElectron}}<a href class='mra_dropdownitem' ng-show='{{#if mraOutputs.outAssessmentPath}}true{{else}}false{{/if}}' onclick='$("#functionToCall").val("saveAssessment")' ng-click='run()'>Save</a>{{/if}}
+
+                    </div>
+                </div>
+                <div class='mra_assess_level_date' ng-show='"{{mraOutputs.outputPage}}"=="questionnairePage"||"{{mraOutputs.outputPage}}"=="mmpPage"||"{{mraOutputs.outputPage}}"=="dashboardPage"||"{{mraOutputs.outputPage}}"=="reviewPage"'>
+                    <span>Target MRL:&nbsp{{mraOutputs.assessment.targetLevel}}</span>
+                    <br>
+                    <span>Target Date:&nbsp{{mraOutputs.assessment.targetDate}}</span>
+                </div>
+            </div>
+            <div class='col-xs-12 mra_infobar'>
+              {{#if mraOutputs.question.threadName}}
+                <a href onclick='$("#functionToCall").val("getNavigationPage")' ng-click='run()'>{{mraOutputs.question.threadName}}</a> / <a class='mra_breadcrumbs_active' href onclick='$("#functionToCall").val("getNavigationPage")' ng-click='run()'>{{mraOutputs.question.subThreadName}}</a>
+                <span style="float: right;">Level: {{mraOutputs.question.mrlLevel}}</span>
+              {{/if}}
+              {{#unless mraOutputs.question.threadName}}
+              {{/unless}}
+            </div>
+        </div>
+</div>
+<input type='hidden' id='functionToCall' value='getStartPage'/>
+<input type='hidden' id='dmcProjectId' value='\{{projectData.id}}' />
+{{#if mraOutputs.outputPage}}
+  <span ng-if='"{{mraOutputs.outputPage}}"!="startPage"'><input type='hidden' id='inAssessmentPath' value='{{mraOutputs.outAssessmentPath}}'/></span>
+{{/if}}
