@@ -195,8 +195,6 @@ getNextQuestion = function(assessment) {
 */
 getNextQuestionIdForSubThread = function(subThreadId, targetLevel, answers, levelSwitching){
 
-  levelSwitching = levelSwitching || 1;
-
   var mrlLevelQuestions = {};
 
   var questionResults = criteriaDb.exec("SELECT a.sub_thread_level_id, a.mrl_level, b.question_id, b.question_order \
