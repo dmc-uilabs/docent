@@ -193,7 +193,9 @@ getNextQuestion = function(assessment) {
 * Returns:
 *
 */
-getNextQuestionIdForSubThread = function(subThreadId, targetLevel, answers, levelSwitching = 1){
+getNextQuestionIdForSubThread = function(subThreadId, targetLevel, answers, levelSwitching){
+
+  levelSwitching = levelSwitching || 1;
 
   var mrlLevelQuestions = {};
 
