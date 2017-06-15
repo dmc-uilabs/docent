@@ -32,7 +32,7 @@
   {
     helpTitle: 'How do I return to a previous question?',
     helpText: ["If you want to return to a previous question, you can use the 'back' button at the top
-    left of the question page. This will back track through questions you've previously answered.",
+    right of the question page. This will back track through questions you've previously answered.",
     "Alternatively, you can also choose 'Review' option from the 'Assessment' menu. Here, you'll
     see a summary of all questions you've answered and you can return to any of them by clicking on it's title."]
   },
@@ -107,16 +107,16 @@
     helpText: ["The target levels are steps along the path to full rate production.   The criteria are
     structured such that each level corresponds to a stage of manufacturing.   Choose the stage that
     you are currently at and the MRL Criteria will guide you through the appropriate steps at this
-     stage to prepare for the next stage.<br>
-     <b>MRL 1:</b> Basic Manufacturing Implications Identified<br>
-     <b>MRL 2:</b> Manufacturing Concepts Identified<br>
-     <b>MRL 3:</b> Manufacturing Proof of Concept Developed<br>
-     <b>MRL 4:</b> Capability to produce the technology in a laboratory environment<br>
-     <b>MRL 5:</b> Capability to produce prototype components in a production relevant environment<br>
-     <b>MRL 6:</b> Capability to produce a prototype system or subsystem in a production relevant environment<br>
-     <b>MRL 7:</b> Capability to produce systems, subsystems, or components in a production representative environment<br>
-     <b>MRL 8:</b> Pilot line capability demonstrated; ready to begin Low Rate Initial Production (LRIP)<br>
-     <b>MRL 9:</b> Low rate production demonstrated; Capability in place to begin Full Rate Production (FRP)<br>
+     stage to prepare for the next stage.","
+     <b>MRL 1:</b> Basic Manufacturing Implications Identified","
+     <b>MRL 2:</b> Manufacturing Concepts Identified","
+     <b>MRL 3:</b> Manufacturing Proof of Concept Developed","
+     <b>MRL 4:</b> Capability to produce the technology in a laboratory environment","
+     <b>MRL 5:</b> Capability to produce prototype components in a production relevant environment","
+     <b>MRL 6:</b> Capability to produce a prototype system or subsystem in a production relevant environment","
+     <b>MRL 7:</b> Capability to produce systems, subsystems, or components in a production representative environment","
+     <b>MRL 8:</b> Pilot line capability demonstrated; ready to begin Low Rate Initial Production (LRIP)","
+     <b>MRL 9:</b> Low rate production demonstrated; Capability in place to begin Full Rate Production (FRP)","
      <b>MRL 10:</b> Full Rate Production demonstrated and lean production practices in place"]
   },
   {
