@@ -3675,7 +3675,7 @@
     height: 1px;
     margin: 9px 0;
     overflow: hidden;
-    background-color: #e5e5e5
+    background-color: #253f74
 }
 
 #docent .dropdown-menu>li>a {
@@ -7873,7 +7873,7 @@
 
 #docent .navbar.navbar-default .dropdown-menu {
     background: #305194;
-    text-align: right;
+    /*text-align: right;*/
     padding: 0
 }
 
