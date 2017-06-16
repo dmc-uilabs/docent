@@ -1299,7 +1299,12 @@ importAssessment = function(path) {
   var answers = [];
   var teamMembers = [];
   assessmentPath=path;
-  if(isRunningInElectron && !assessmentDbDefined()){
+  if(isRunningInElectron){
+
+    if (assessmentDbDefined()) {
+      assessmentDb = null;
+    }
+
     var assessmentDbBuffer = fs.readFileSync(assessmentPath);
     assessmentDb = new sqlite.Database(assessmentDbBuffer);
   }
