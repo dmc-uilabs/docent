@@ -1300,11 +1300,7 @@ importAssessment = function(path) {
   var teamMembers = [];
   assessmentPath=path;
   if(isRunningInElectron){
-
-    if (assessmentDbDefined()) {
-      assessmentDb = null;
-    }
-
+    assessmentDb = null;
     var assessmentDbBuffer = fs.readFileSync(assessmentPath);
     assessmentDb = new sqlite.Database(assessmentDbBuffer);
   }
