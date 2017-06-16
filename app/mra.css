@@ -7393,6 +7393,10 @@
     text-align: right
 }
 
+#docent .filter-top {
+  margin-bottom: 20px;
+}
+
 #docent .filter-block {
     border-top: 1px solid #dcdcdc;
     padding-top: 20px;
