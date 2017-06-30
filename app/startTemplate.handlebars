@@ -109,10 +109,14 @@
         <div class="row">
           <div class="col-xs-12" style="padding-bottom: 10px;">
             <a class="criteria-controls filter-button collapsed" data-toggle="collapse" data-target="#collapseThreads">Choose Threads</a>
+            <input type="hidden" id="chosenThreads"></input>
           </div>
         </div>
 
         <div class="row collapse" id="collapseThreads" style="border-top: 1px solid lightgrey; padding-top: 15px; margin: 0px -5px;">
+
+
+
             {{#each mraOutputs.threads}}
               <div class="col-sm-4">
                 <label><input type="checkbox" ng-checked="true" ng-model='thread{{this.[0]}}'><a style="color: black;" data-toggle="tooltip" title="{{ this.[2] }}">{{ this.[1] }}</a></label>
@@ -150,9 +154,9 @@
 
 <script>
   $(document).ready(function() {
-
     var startButton = document.getElementById('startButton');
     var startButtonWrapper = document.getElementById('startButtonWrapper');
+    var threadsWrapper = document.getElementById('collapseThreads');
     startButton.disabled = true;
 
     var formFields = getFormFieldsToValidate();
@@ -163,12 +167,14 @@
       if (highlightPerformed) { highlightMissingFields(formFields) };
       enableStartButtonIfValid(startButton, formFields);
       updateTeamMembers();
+      updateThreadSelection(threadsWrapper);
     };
 
     document.onclick = function() {
       if (highlightPerformed) { highlightMissingFields(formFields) };
       enableStartButtonIfValid(startButton, formFields);
       updateTeamMembers();
+      updateThreadSelection(threadsWrapper);
     };
 
     startButtonWrapper.onmouseover = function(){
@@ -179,6 +185,8 @@
     };
 
     updateTeamMembers();
+    updateThreadSelection(threadsWrapper);
+
 
   });
 
@@ -247,6 +255,16 @@
 
     $("#teamMemberNames").val(JSON.stringify(memberNames));
     $("#teamMemberRoles").val(JSON.stringify(memberRoles));
+  };
+
+  function updateThreadSelection(threadsWrapper) {
+    var chosenThreads = document.getElementById('chosenThreads');
+    var inputs = threadsWrapper.getElementsByTagName('input');
+    var threadStatus=[];
+    for (var i=0; i<inputs.length; i++) {
+      threadStatus.push(inputs[i].checked);
+    }
+    chosenThreads.value = threadStatus;
   };
 
 </script>
