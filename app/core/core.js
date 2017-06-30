@@ -118,17 +118,9 @@ getNextQuestion = function(assessment) {
   var threadResultsQuery = "SELECT DISTINCT a.thread_id, a.thread_order, b.sub_thread_id \
   FROM thread a, sub_thread b, sub_thread_level c \
   WHERE a.thread_id = b.thread_id  \
-  AND b.sub_thread_id = c.sub_thread_id \n"
+  AND b.sub_thread_id = c.sub_thread_id \
+  AND a.thread_id in ("+JSON.parse(assessment.chosenThreads).join(',')+") \n"
 
-  // if (assessment.levelSwitching) {
-  //   threadResultsQuery += "FROM thread a, sub_thread b \
-  //   WHERE a.thread_id = b.thread_id \n"
-  // } else {
-  //   threadResultsQuery += "FROM thread a, sub_thread b, sub_thread_level c \
-  //   WHERE a.thread_id = b.thread_id  \
-  //   AND b.sub_thread_id = c.sub_thread_id \
-  //   AND c.mrl_level = "+assessment.targetLevel+"\n"
-  // }
 
   if (!assessment.levelSwitching) {
     threadResultsQuery += "AND c.mrl_level = "+assessment.targetLevel+"\n"
@@ -1257,22 +1249,23 @@ createAssessment = function(assessmentValues){
     assessmentDb = new sqlite.Database();
 
     // Create the schema to hold the assessment data
-    assessmentDb.run("CREATE TABLE if not exists assessment(version_id INTEGER, scope TEXT, target_date TEXT, target_level TEXT, location TEXT, level_switching BOOLEAN default true)");
+    assessmentDb.run("CREATE TABLE if not exists assessment(version_id INTEGER, scope TEXT, target_date TEXT, target_level TEXT, location TEXT, level_switching BOOLEAN default true, chosen_threads TEXT)");
     assessmentDb.run("CREATE TABLE if not exists answer(question_id INTEGER, answer INTEGER, assumptions TEXT, notes TEXT, evidence TEXT, technical_risk INTEGER, cost_risk INTEGER, schedule_risk INTEGER, completion_date TEXT, reason TEXT, what_action TEXT, documentation TEXT)");
     assessmentDb.run("CREATE TABLE if not exists team_members(name TEXT, role TEXT)");
     assessmentDb.run("CREATE TABLE if not exists action_person(question_id INTEGER, name TEXT)");
     assessmentDb.run("CREATE TABLE if not exists attachment(question_id INTEGER, attachment_name TEXT, id INTEGER, data BLOB)");
     assessmentDb.run("CREATE TABLE if not exists question_visit_history(id INTEGER PRIMARY KEY, question_id INTEGER)");
-    assessmentDb.run("CREATE TABLE if not exists chosen_threads(thread_id INTEGER, chosen BOOLEAN)");
+    // assessmentDb.run("CREATE TABLE if not exists chosen_threads(thread_id INTEGER, chosen BOOLEAN)");
 
     assessmentDb.run(
-        "INSERT INTO assessment (version_id, scope, target_date, target_level, location, level_switching) VALUES (?, ?, ?, ?, ?, ?)",
+        "INSERT INTO assessment (version_id, scope, target_date, target_level, location, level_switching, chosen_threads) VALUES (?, ?, ?, ?, ?, ?, ?)",
         [ 1,
           assessmentValues['scope'],
           assessmentValues['targetDate'],
           assessmentValues['targetLevel'],
           assessmentValues['location'],
-          parseInt(assessmentValues['levelSwitching'])
+          parseInt(assessmentValues['levelSwitching']),
+          assessmentValues['chosenThreads']
         ]
     );
 
@@ -1289,17 +1282,17 @@ createAssessment = function(assessmentValues){
     }
 
 
-    var chosenThreads = JSON.parse(assessmentValues['chosenThreads']);
-    var threadInsert = "INSERT INTO chosen_threads (thread_id, chosen) VALUES "
-    var valuePlaceholders = [];
-    var insertData = [];
-    for (var j=0; j<chosenThreads.length; j++) {
-      valuePlaceholders.push(' (?,?)');
-      insertData.push(j)
-      insertData.push(chosenThreads[j])
-    }
-    threadInsert += valuePlaceholders.join(',');
-    assessmentDb.run(threadInsert, insertData)
+    // var chosenThreads = JSON.parse(assessmentValues['chosenThreads']);
+    // var threadInsert = "INSERT INTO chosen_threads (thread_id, chosen) VALUES "
+    // var valuePlaceholders = [];
+    // var insertData = [];
+    // for (var j=0; j<chosenThreads.length; j++) {
+    //   valuePlaceholders.push(' (?,?)');
+    //   insertData.push(j)
+    //   insertData.push(chosenThreads[j])
+    // }
+    // threadInsert += valuePlaceholders.join(',');
+    // assessmentDb.run(threadInsert, insertData)
 
   }else{
     updateAssessment(assessmentValues);
@@ -1329,7 +1322,7 @@ importAssessment = function(path) {
     assessmentDb = new sqlite.Database(assessmentDbBuffer);
   }
 
-  var contents = assessmentDb.exec("SELECT version_id, scope, target_date, target_level, location, level_switching FROM assessment");
+  var contents = assessmentDb.exec("SELECT version_id, scope, target_date, target_level, location, level_switching, chosen_threads FROM assessment");
   var assessmentValues = contents[0].values[0];
   assessment['versionId'] = assessmentValues[0];
   assessment['scope'] = assessmentValues[1];
@@ -1337,6 +1330,7 @@ importAssessment = function(path) {
   assessment['targetLevel'] = assessmentValues[3];
   assessment['location'] = assessmentValues[4];
   assessment['levelSwitching'] = assessmentValues[5];
+  assessment['chosenThreads'] = assessmentValues[6];
 
   contents = assessmentDb.exec("SELECT name, role FROM team_members");
   if(contents.length > 0){

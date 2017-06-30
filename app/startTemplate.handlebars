@@ -262,7 +262,10 @@
     var inputs = threadsWrapper.getElementsByTagName('input');
     var threadStatus=[];
     for (var i=0; i<inputs.length; i++) {
-      threadStatus.push(inputs[i].checked);
+      if (inputs[i].checked) {
+        var threadId = parseInt(inputs[i].getAttribute('ng-model').replace('thread',''));
+        threadStatus.push(threadId);
+      }
     }
     chosenThreads.value = JSON.stringify(threadStatus);
   };
