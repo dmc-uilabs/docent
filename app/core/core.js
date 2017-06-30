@@ -1330,7 +1330,7 @@ importAssessment = function(path) {
   assessment['targetLevel'] = assessmentValues[3];
   assessment['location'] = assessmentValues[4];
   assessment['levelSwitching'] = assessmentValues[5];
-  assessment['chosenThreads'] = assessmentValues[6];
+  assessment['chosenThreads'] = JSON.parse(assessmentValues[6]);
 
   contents = assessmentDb.exec("SELECT name, role FROM team_members");
   if(contents.length > 0){
@@ -1464,11 +1464,12 @@ getStartPage = function() {
   coreContext['outputPage'] = 'startPage';
   coreContext['outAssessmentPath'] = assessmentPath;
   coreContext['mraCss'] = mraCss;
-  coreContext['threads'] = criteriaDb.exec("SELECT thread_id, name, help_text name FROM thread")[0].values;
   if(assessmentPath){
     coreContext['assessment'] = importAssessment(assessmentPath);
+    coreContext['threads'] = returnThreads(coreContext['assessment']);
   }else{
     coreContext['assessment'] = {};
+    coreContext['threads'] = returnThreads();
   }
 }
 
@@ -1758,6 +1759,22 @@ ToolTipAdder.prototype.updatedText = function() {
   if (this.textSuffix) { outputString+=this.textSuffix }
 
   return outputString
+}
+
+returnThreads = function(assessment) {
+  var threads = criteriaDb.exec("SELECT thread_id, name, help_text name FROM thread")[0].values;
+  if (assessment) {
+    for (var i=0; i<threads.length; i++) {
+      var isSelected = assessment.chosenThreads.indexOf(threads[i][0]) == -1 ? false : true;
+      threads[i].push(isSelected);
+    }
+    return threads;
+  } else {
+    for (var i=0; i<threads.length; i++) {
+      threads[i].push(true);
+    }
+    return threads;
+  }
 }
 
 // Initialization

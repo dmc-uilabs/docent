@@ -113,16 +113,13 @@
           </div>
         </div>
 
-        <div class="row collapse" id="collapseThreads" style="border-top: 1px solid lightgrey; padding-top: 15px; margin: 0px -5px;">
-
-
-
-            {{#each mraOutputs.threads}}
-              <div class="col-sm-4">
-                <label><input type="checkbox" ng-checked="true" ng-model='thread{{this.[0]}}'><a style="color: black;" data-toggle="tooltip" title="{{ this.[2] }}">{{ this.[1] }}</a></label>
-              </div>
-            {{/each}}
-        </div>
+          <div class="row collapse" id="collapseThreads" style="border-top: 1px solid lightgrey; padding-top: 15px; margin: 0px -5px;">
+              {{#each mraOutputs.threads}}
+                  <div class="col-sm-4" ng-init="thread{{this.[0]}} = {{this.[3]}}">
+                    <label><input type="checkbox" ng-model='thread{{this.[0]}}'><a style="color: black;" data-toggle="tooltip" title="{{ this.[2] }}">{{ this.[1] }}</a></label>
+                  </div>
+              {{/each}}
+          </div>
 
         <div class="row">
           <div id="startButtonWrapper">

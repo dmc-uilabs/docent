@@ -9,6 +9,7 @@ app.controller('templateCtrl', function($scope, $compile){
 		var compiledHtml = "";
 
 		coreContext['isRunningInElectron'] = true;
+
 		var standaloneOutputs = {mraOutputs:
 			 								{definitions: coreContext['definitions'],
 	                    acronyms: coreContext['acronyms'],
