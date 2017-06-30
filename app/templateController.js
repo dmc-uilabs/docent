@@ -44,6 +44,7 @@ app.controller('templateCtrl', function($scope, $compile){
 		assessmentValues.location = document.getElementById('location').value;
 		assessmentValues.targetDate = document.getElementById('targetDate').value;
 		assessmentValues.levelSwitching = document.getElementById('levelSwitching').value;
+		assessmentValues.chosenThreads = document.getElementById('chosenThreads').value;
 
 		var teamMemberNamesJson = document.getElementById('teamMemberNames').value;
 		var teamMemberNames = [];

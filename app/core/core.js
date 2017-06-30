@@ -1245,6 +1245,7 @@ updateAssessment = function(assessmentValues){
 }
 
 createAssessment = function(assessmentValues){
+
   if(!assessmentDbDefined()){
     assessmentDb = new sqlite.Database();
 
@@ -1255,7 +1256,7 @@ createAssessment = function(assessmentValues){
     assessmentDb.run("CREATE TABLE if not exists action_person(question_id INTEGER, name TEXT)");
     assessmentDb.run("CREATE TABLE if not exists attachment(question_id INTEGER, attachment_name TEXT, id INTEGER, data BLOB)");
     assessmentDb.run("CREATE TABLE if not exists question_visit_history(id INTEGER PRIMARY KEY, question_id INTEGER)");
-    assessmentDb.run("CREATE TABLE if not exists assessment_filters(id INTEGER PRIMARY KEY, filter_type TEXT, filter_value TEXT)");
+    assessmentDb.run("CREATE TABLE if not exists chosen_threads(thread_id INTEGER, chosen BOOLEAN)");
 
     assessmentDb.run(
         "INSERT INTO assessment (version_id, scope, target_date, target_level, location, level_switching) VALUES (?, ?, ?, ?, ?, ?)",
@@ -1268,6 +1269,8 @@ createAssessment = function(assessmentValues){
         ]
     );
 
+
+
     var teamMembers = assessmentValues['teamMembers'];
     if(!(teamMembers === undefined)){
       for(var i=0; i<teamMembers.length; i++){
@@ -1277,6 +1280,20 @@ createAssessment = function(assessmentValues){
             }
       }
     }
+
+
+    var chosenThreads = JSON.parse(assessmentValues['chosenThreads']);
+    var threadInsert = "INSERT INTO chosen_threads (thread_id, chosen) VALUES "
+    var valuePlaceholders = [];
+    var insertData = [];
+    for (var j=0; j<chosenThreads.length; j++) {
+      valuePlaceholders.push(' (?,?)');
+      insertData.push(j)
+      insertData.push(chosenThreads[j])
+    }
+    threadInsert += valuePlaceholders.join(',');
+    assessmentDb.run(threadInsert, insertData)
+
   }else{
     updateAssessment(assessmentValues);
   }
