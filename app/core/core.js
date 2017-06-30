@@ -115,16 +115,23 @@ getNextQuestion = function(assessment) {
   }
 
   // Get threads for all levels (if level switching on) or only selected level (if level switching off)
-  var threadResultsQuery = "SELECT DISTINCT a.thread_id, a.thread_order, b.sub_thread_id \n"
+  var threadResultsQuery = "SELECT DISTINCT a.thread_id, a.thread_order, b.sub_thread_id \
+  FROM thread a, sub_thread b, sub_thread_level c \
+  WHERE a.thread_id = b.thread_id  \
+  AND b.sub_thread_id = c.sub_thread_id \n"
 
-  if (assessment.levelSwitching) {
-    threadResultsQuery += "FROM thread a, sub_thread b \
-    WHERE a.thread_id = b.thread_id \n"
-  } else {
-    threadResultsQuery += "FROM thread a, sub_thread b, sub_thread_level c \
-    WHERE a.thread_id = b.thread_id  \
-    AND b.sub_thread_id = c.sub_thread_id \
-    AND c.mrl_level = "+assessment.targetLevel+"\n"
+  // if (assessment.levelSwitching) {
+  //   threadResultsQuery += "FROM thread a, sub_thread b \
+  //   WHERE a.thread_id = b.thread_id \n"
+  // } else {
+  //   threadResultsQuery += "FROM thread a, sub_thread b, sub_thread_level c \
+  //   WHERE a.thread_id = b.thread_id  \
+  //   AND b.sub_thread_id = c.sub_thread_id \
+  //   AND c.mrl_level = "+assessment.targetLevel+"\n"
+  // }
+
+  if (!assessment.levelSwitching) {
+    threadResultsQuery += "AND c.mrl_level = "+assessment.targetLevel+"\n"
   }
 
   threadResultsQuery += "ORDER BY a.thread_order, a.thread_id, b.sub_thread_id "
