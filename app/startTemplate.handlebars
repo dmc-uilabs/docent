@@ -108,45 +108,17 @@
 
         <div class="row">
           <div class="col-xs-12">
-            <a class="criteria-controls filter-button collapsed" data-toggle="collapse" data-target="#collapseFilter">Choose Threads</a>
+            <a class="criteria-controls filter-button collapsed" data-toggle="collapse" data-target="#collapseThreads">Choose Threads</a>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-xs-12">
-            <div class="checkbox">
-              <label><input type="checkbox" ng-init='mrl_all=true' ng-model='mrl_all'>All</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_0'>1</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_1'>2</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_2'>3</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_3'>4</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_4'>5</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_5'>6</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_6'>7</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_7'>8</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_8'>9</label>
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" ng-checked='mrl_all' ng-model='mrl_9'>10</label>
-            </div>
+          <div class="col-xs-12" id="collapseThreads">
+            {{#each mraOutputs.threads}}
+              <div class="checkbox">
+                <label><input type="checkbox" ng-checked="true" ng-model='thread{{this.[0]}}'>{{ this.[1] }}</label>
+              </div>
+            {{/each}}
           </div>
         </div>
 

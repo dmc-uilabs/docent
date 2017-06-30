@@ -1446,6 +1446,7 @@ getStartPage = function() {
   coreContext['outputPage'] = 'startPage';
   coreContext['outAssessmentPath'] = assessmentPath;
   coreContext['mraCss'] = mraCss;
+  coreContext['threads'] = criteriaDb.exec("SELECT thread_id, name, help_text name FROM thread")[0].values;
   if(assessmentPath){
     coreContext['assessment'] = importAssessment(assessmentPath);
   }else{
