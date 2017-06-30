@@ -119,7 +119,7 @@ getNextQuestion = function(assessment) {
   FROM thread a, sub_thread b, sub_thread_level c \
   WHERE a.thread_id = b.thread_id  \
   AND b.sub_thread_id = c.sub_thread_id \
-  AND a.thread_id in ("+JSON.parse(assessment.chosenThreads).join(',')+") \n"
+  AND a.thread_id in ("+assessment.chosenThreads.join(',')+") \n"
 
 
   if (!assessment.levelSwitching) {
@@ -1224,8 +1224,16 @@ saveAnswer = function(answer){
 }
 
 updateAssessment = function(assessmentValues){
-  assessmentDb.run("UPDATE assessment SET version_id = ?, scope = ?, target_date = ?, target_level = ?, location = ?, level_switching = ?",
-    [1, assessmentValues['scope'], assessmentValues['targetDate'], assessmentValues['targetLevel'], assessmentValues['location'], parseInt(assessmentValues['levelSwitching'])]);
+  assessmentDb.run("UPDATE assessment SET version_id = ?, scope = ?, target_date = ?, target_level = ?, location = ?, level_switching = ?, chosen_threads = ?",
+    [
+      1,
+      assessmentValues['scope'],
+      assessmentValues['targetDate'],
+      assessmentValues['targetLevel'],
+      assessmentValues['location'],
+      parseInt(assessmentValues['levelSwitching']),
+      assessmentValues['chosenThreads']
+    ]);
 
   var teamMembers = assessmentValues['teamMembers'];
 
