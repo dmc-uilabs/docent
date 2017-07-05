@@ -69,11 +69,11 @@
 	</tr>
 </thead>
 		{{#each mraOutputs.threadStatus}}
-		<tr>
+		<tr {{#if selectedThread}}{{else}}style="opacity: 0.2;"{{/if}}>
 		<th colspan="12"><h3>{{threadName}}</h3></th>
 		</tr>
     {{#each subThreads}}
-		<tr>
+		<tr {{#if ../selectedThread}}{{else}}style="opacity: 0.2;"{{/if}}>
 					<td>{{subThreadName}}</td>
 
           {{#each statuses}}

@@ -617,18 +617,25 @@ getDashboardInfo = function(assessment) {
     }
   }
 
-  return threadsObjectToCollection(threadsObject);
+  return threadsObjectToCollection(threadsObject, assessmentSelectedThreads);
 }
 
-threadsObjectToCollection = function(threadsObject) {
+threadsObjectToCollection = function(threadsObject, assessmentSelectedThreads) {
   var threadsCollection = []
+  var i = 1;
   Object.keys(threadsObject).forEach(function(key) {
     var val = threadsObject[key];
     threadsCollection.push(
-      {"threadName": key,
-      "subThreads": val}
+      {
+        "threadName": key,
+        "subThreads": val,
+        "selectedThread": !(assessmentSelectedThreads.indexOf(i) == -1)
+      }
     );
+    i+=1;
   });
+
+  console.log('threadsCollection',threadsCollection)
   return threadsCollection;
 }
 
