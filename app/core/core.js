@@ -156,8 +156,6 @@ getNextQuestion = function(assessment) {
   var questionIdsResults = criteriaDb.exec(questionIdsResultsQuery);
   var questionsInSelectedThread = questionIdsResults[0].values.map(function(x) { return x[0].toString()});
 
-  console.log('questionsInSelectedThread', questionsInSelectedThread)
-
   var skippedAnswerQuestionIds = "";
   for(var key in answers){
     if(answers[key] == 0 && questionsInSelectedThread.indexOf(key) != -1){
