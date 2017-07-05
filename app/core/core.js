@@ -147,18 +147,16 @@ getNextQuestion = function(assessment) {
 
   // Get list of questionIds in selected threads for checking skipped questions
   //  Do this to account for questions that were skipped before a thread was de-selected
-  var questionIdsResultsQuery = "SELECT DISTINCT c.question_id \
-  FROM thread a, sub_thread b, question c \
-  WHERE a.thread_id = b.thread_id  \
-  AND b.sub_thread_id = c.sub_thread_level_id \
-  AND a.thread_id in ("+chosenThreadsList+") \n"
-  var questionIdsResults = criteriaDb.exec(questionIdsResultsQuery);
-  var questionIdValues = questionIdsResults[0].values;
+  var questionIdsResultsQuery = "SELECT DISTINCT q.question_id \
+    FROM question q \
+    JOIN sub_thread_level stl on stl.sub_thread_level_id = q.sub_thread_level_id \
+    JOIN sub_thread st on st.sub_thread_id = stl.sub_thread_id \
+    JOIN thread t on t.thread_id = st.thread_id and t.thread_id in ("+chosenThreadsList+") \n"
 
-  var questionsInSelectedThread = []
-  for (var i=0; i<questionIdValues.length; i++) {
-    questionsInSelectedThread.push(questionIdValues[i][0]);
-  }
+  var questionIdsResults = criteriaDb.exec(questionIdsResultsQuery);
+  var questionsInSelectedThread = questionIdsResults[0].values.map(function(x) { return x[0].toString()});
+
+  console.log('questionsInSelectedThread', questionsInSelectedThread)
 
   var skippedAnswerQuestionIds = "";
   for(var key in answers){
@@ -182,6 +180,7 @@ getNextQuestion = function(assessment) {
                                                   AND a.question_id IN ("+questionsInSelectedThread.join(',')+")");
   if(unvisitedSkippedResults.length > 0){
     var skippedQuestionId = unvisitedSkippedResults[0].values[0][0];
+    console.log('getQuestionInfo(skippedQuestionId);')
     return getQuestionInfo(skippedQuestionId);
   }
 
@@ -203,7 +202,6 @@ getNextQuestion = function(assessment) {
       }
     }
   }
-
   return getQuestionInfo(-1);
 }
 
@@ -588,10 +586,21 @@ getDashboardInfo = function(assessment) {
     FROM thread a, sub_thread b\
     WHERE a.thread_id = b.thread_id");
 
+
+  // get list of question_ids for selected threads
+  var assessmentSelectedThreads = assessmentDb.exec("SELECT chosen_threads FROM assessment");
+  var assessmentSelectedThreads = JSON.parse(assessmentSelectedThreads[0].values[0][0]);
+  var assessmentSelectedSubThreads = criteriaDb.exec("SELECT sub_thread_level_id \
+                                                FROM sub_thread_level a \
+                                                JOIN sub_thread b on a.sub_thread_id = b.sub_thread_id \
+                                                WHERE b.thread_id in ("+assessmentSelectedThreads.join(',')+")");
+
+  assessmentSelectedSubThreads = assessmentSelectedSubThreads[0].values.map(function(x){ return x[0] })
+
   var threadValues = threadResults[0].values;
   for(var i = 0; i<threadValues.length; i++){
     var subThreadIdVal = threadValues[i][2];
-    var statusObject = getSubThreadStatus(subThreadIdVal, assessment['targetLevel']);
+    var statusObject = getSubThreadStatus(subThreadIdVal, assessment['targetLevel'], assessmentSelectedSubThreads);
     // threadsArray.push({threadName:threadValues[i][1],
     //                     subThreadName:threadValues[i][3],
     //                     date:statusObject.date,
@@ -838,14 +847,15 @@ getNavigationInfoSubset = function(questionSubset){
 
 }
 
-getSubThreadStatus = function(subThreadIdVal, targetLevel){
+getSubThreadStatus = function(subThreadIdVal, targetLevel, assessmentSelectedSubThreads){
   var statusArray = [];
   var statusObject = {};
   var completionDate = "";
   var subThreadLevelResults = criteriaDb.exec("SELECT sub_thread_level_id, mrl_level FROM sub_thread_level WHERE sub_thread_id="+subThreadIdVal);
   var subThreadLevelValues = subThreadLevelResults[0].values;
+
   for(var i = 0; i<subThreadLevelValues.length; i++){
-    var statusReturn = getSubThreadLevelStatus(subThreadLevelValues[i][0], subThreadLevelValues[i][1], targetLevel);
+    var statusReturn = getSubThreadLevelStatus(subThreadLevelValues[i][0], subThreadLevelValues[i][1], targetLevel, assessmentSelectedSubThreads);
     statusArray.push(statusReturn['status']);
     if(statusReturn['completionDate'] != ""){
       completionDate = statusReturn['completionDate'];
@@ -878,7 +888,7 @@ getSubThreadStatus = function(subThreadIdVal, targetLevel){
 * 2: red
 * 3: blue
 */
-getSubThreadLevelStatus = function(subThreadLevelId, mrlLevel, targetLevel){
+getSubThreadLevelStatus = function(subThreadLevelId, mrlLevel, targetLevel, assessmentSelectedSubThreads){
 
   var questionIds = [];
   var unAnsweredQuestions = false;
@@ -889,6 +899,11 @@ getSubThreadLevelStatus = function(subThreadLevelId, mrlLevel, targetLevel){
   if(Number(mrlLevel) > Number(targetLevel+1)){
     return statusObject;
   }
+
+  if(assessmentSelectedSubThreads.indexOf(subThreadLevelId) == -1){
+    return statusObject;
+  }
+
   // get all QuestionId's for this subThreadLevelId
   var questionResults = criteriaDb.exec("SELECT question_id FROM question where sub_thread_level_id="+subThreadLevelId);
   if(questionResults.length > 0){
