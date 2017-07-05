@@ -114,13 +114,14 @@ getNextQuestion = function(assessment) {
     }
   }
 
+  var chosenThreadsList = assessment.chosenThreads.join(',')
+
   // Get threads for all levels (if level switching on) or only selected level (if level switching off)
   var threadResultsQuery = "SELECT DISTINCT a.thread_id, a.thread_order, b.sub_thread_id \
   FROM thread a, sub_thread b, sub_thread_level c \
   WHERE a.thread_id = b.thread_id  \
   AND b.sub_thread_id = c.sub_thread_id \
-  AND a.thread_id in ("+assessment.chosenThreads.join(',')+") \n"
-
+  AND a.thread_id in ("+chosenThreadsList+") \n"
 
   if (!assessment.levelSwitching) {
     threadResultsQuery += "AND c.mrl_level = "+assessment.targetLevel+"\n"
@@ -131,6 +132,7 @@ getNextQuestion = function(assessment) {
   var threadResults = criteriaDb.exec(threadResultsQuery);
 
   var threadValues = threadResults[0].values;
+
   // Loop through all the subThreads in order to see
   // if they have been completed
   for(var i=0; i<threadValues.length; i++){
@@ -143,9 +145,24 @@ getNextQuestion = function(assessment) {
     }
   }
 
+  // Get list of questionIds in selected threads for checking skipped questions
+  //  Do this to account for questions that were skipped before a thread was de-selected
+  var questionIdsResultsQuery = "SELECT DISTINCT c.question_id \
+  FROM thread a, sub_thread b, question c \
+  WHERE a.thread_id = b.thread_id  \
+  AND b.sub_thread_id = c.sub_thread_level_id \
+  AND a.thread_id in ("+chosenThreadsList+") \n"
+  var questionIdsResults = criteriaDb.exec(questionIdsResultsQuery);
+  var questionIdValues = questionIdsResults[0].values;
+
+  var questionsInSelectedThread = []
+  for (var i=0; i<questionIdValues.length; i++) {
+    questionsInSelectedThread.push(questionIdValues[i][0]);
+  }
+
   var skippedAnswerQuestionIds = "";
   for(var key in answers){
-    if(answers[key] == 0){
+    if(answers[key] == 0 && questionsInSelectedThread.indexOf(key) != -1){
       if(skippedAnswerQuestionIds.length > 0){
         skippedAnswerQuestionIds = skippedAnswerQuestionIds+","+key;
       }else{
@@ -154,13 +171,15 @@ getNextQuestion = function(assessment) {
     }
   }
 
+
   // Get any skipped questions that aren't in the question_visit_history
   var unvisitedSkippedResults = assessmentDb.exec("SELECT a.question_id \
                                                   FROM answer a \
                                                   WHERE a.answer == '0' \
                                                   AND a.question_id NOT IN(\
                                                         SELECT b.question_id \
-                                                        FROM question_visit_history b)");
+                                                        FROM question_visit_history b) \
+                                                  AND a.question_id IN ("+questionsInSelectedThread.join(',')+")");
   if(unvisitedSkippedResults.length > 0){
     var skippedQuestionId = unvisitedSkippedResults[0].values[0][0];
     return getQuestionInfo(skippedQuestionId);
@@ -179,7 +198,7 @@ getNextQuestion = function(assessment) {
     // If no visited questions, just grab the first
     // skipped question
     for(var key in answers){
-      if(answers[key] == 0){
+      if(answers[key] == 0 && questionsInSelectedThread.indexOf(key) != -1){
         return getQuestionInfo(key);
       }
     }
@@ -252,7 +271,6 @@ getNextQuestionIdForSubThread = function(subThreadId, targetLevel, answers, leve
     && subThreadReturnObject.skippedQuestionId == -1
     && questionLevel < 10){
     subThreadReturnObject = getNextQuestionIdForSubThreadLevel(mrlLevelQuestions[questionLevel], answers);
-    console.log(subThreadReturnObject);
     // Since this is a level above just
     // move to the next subThread, we don't
     // really care that we failed
