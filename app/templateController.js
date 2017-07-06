@@ -9,6 +9,7 @@ app.controller('templateCtrl', function($scope, $compile){
 		var compiledHtml = "";
 
 		coreContext['isRunningInElectron'] = true;
+
 		var standaloneOutputs = {mraOutputs:
 			 								{definitions: coreContext['definitions'],
 	                    acronyms: coreContext['acronyms'],
@@ -44,6 +45,7 @@ app.controller('templateCtrl', function($scope, $compile){
 		assessmentValues.location = document.getElementById('location').value;
 		assessmentValues.targetDate = document.getElementById('targetDate').value;
 		assessmentValues.levelSwitching = document.getElementById('levelSwitching').value;
+		assessmentValues.chosenThreads = document.getElementById('chosenThreads').value;
 
 		var teamMemberNamesJson = document.getElementById('teamMemberNames').value;
 		var teamMemberNames = [];
@@ -156,6 +158,8 @@ app.controller('templateCtrl', function($scope, $compile){
 			assessmentValues.targetLevel = document.getElementById('targetLevel').value;
 			assessmentValues.location = document.getElementById('location').value;
 			assessmentValues.targetDate = document.getElementById('targetDate').value;
+			assessmentValues.levelSwitching = document.getElementById('levelSwitching').value;
+			assessmentValues.chosenThreads = document.getElementById('chosenThreads').value;
 
 			var teamMemberNamesJson = document.getElementById('teamMemberNames').value;
 			var teamMemberNames = [];

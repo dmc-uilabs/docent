@@ -5,7 +5,7 @@
     <ol class="breadcrumb">
       <li class="active">Criteria</li>
     </ol>
-    <span class="collapse-link visible-xs xs-expand-link" data-toggle="collapse" data-target="#subheader-collapseable" aria-expanded="false" aria-controls="subheader-collapseable"><span class="glyphicon glyphicon-triangle-bottom"></span></span>
+    {{#if mraOutputs.assessment.targetLevel}}<span class="collapse-link visible-xs xs-expand-link" data-toggle="collapse" data-target="#subheader-collapseable" aria-expanded="false" aria-controls="subheader-collapseable"><span class="glyphicon glyphicon-triangle-bottom"></span></span>{{/if}}
     </div>
 
     {{#if mraOutputs.assessment.targetLevel}}
@@ -37,7 +37,7 @@
 <div class="container" id="mainContent">
 		<div class="row">
 		<div class="col-sm-6">
-			<a class="document-link" href="#"><span class="glyphicon glyphicon-file"></span> MRL Desktop V2.4</a>
+			<a class="document-link"><span class="glyphicon glyphicon-file"></span> MRL Desktop V2.4</a>
 		</div>
 		<div class="col-sm-6 milestoneCol">
 			<span class="dl-label">Milestones</span>
@@ -58,10 +58,10 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<a class="criteria-controls filter-button collapsed" data-toggle="collapse" data-target="#collapseFilter">Filter</a>
-					<!-- <div class="expand-controls pull-right">
+					<div class="expand-controls pull-right">
 			<a href="javascript:void(0)" class="criteria-controls expand-all"><span class="glyphicon glyphicon-collapse-down"></span> Expand all</a>
 			<a href="javascript:void(0)" class="criteria-controls collapse-all"><span class="glyphicon glyphicon-collapse-up"></span> Collapse all</a>
-			</div> -->
+			</div>
 			</div>
 
 		</div>
@@ -203,25 +203,6 @@
                 {{/if}}
               {{/each}}
 			     	</dl>
-			     	<!-- <ul id="collapseTwo" class="collapse">
-							<li><a role="button" data-toggle="collapse" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" class="collapse-item collapsed">
-			     	  Technology Transition to Production
-			     	</a>
-							<ul id="collapseThree" class="collapse">
-								<li><a href="#">Question 1</a></li>
-
-								<li><a href="#">Question 2</a></li>
-
-								<li><a href="#">Question 3</a></li>
-
-								<li><a href="#">Question 4</a></li>
-
-							</ul>
-			     	</li>
-							<li>3</li>
-							<li>4</li>
-							<li>5</li>
-			     	</ul> -->
 			     	</li>
             {{/each}}
 			    </ul>
@@ -235,6 +216,14 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
+
+      $('.expand-all').on('click', function () {
+        $('.criteria-list .collapse').collapse('show');
+      });
+
+      $('.collapse-all').on('click', function () {
+        $('.criteria-list .collapse').collapse('hide');
+      });
 
       var checkBoxes = document.querySelectorAll('input[ng-model*=mrl_]');
       var tds = document.querySelectorAll('[level-id*=mrl_]');

@@ -3675,7 +3675,7 @@
     height: 1px;
     margin: 9px 0;
     overflow: hidden;
-    background-color: #e5e5e5
+    background-color: #253f74
 }
 
 #docent .dropdown-menu>li>a {
@@ -7393,6 +7393,10 @@
     text-align: right
 }
 
+#docent .filter-top {
+  margin-bottom: 20px;
+}
+
 #docent .filter-block {
     border-top: 1px solid #dcdcdc;
     padding-top: 20px;
@@ -7873,7 +7877,7 @@
 
 #docent .navbar.navbar-default .dropdown-menu {
     background: #305194;
-    text-align: right;
+    /*text-align: right;*/
     padding: 0
 }
 

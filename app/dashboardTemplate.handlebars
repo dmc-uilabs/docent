@@ -1,3 +1,46 @@
+<header id="subheader" class="has-progress">
+		<div class="container">
+		<div class="row">
+			<div class="col-sm-6">
+			<ol class="breadcrumb">
+				<li class="active">Dashboard</li>
+			</ol>
+			{{#if mraOutputs.assessment.targetLevel}}<span class="collapse-link visible-xs xs-expand-link" data-toggle="collapse" data-target="#subheader-collapseable" aria-expanded="false" aria-controls="subheader-collapseable"><span class="glyphicon glyphicon-triangle-bottom"></span></span>{{/if}}
+			</div>
+			<div class="col-sm-6 hidden-xs">
+				<div class="row">
+				<div class="col-xs-12 meta">
+					Target MRL: {{mraOutputs.assessment.targetLevel}}<span class="text-divider">|</span>Target Date: {{mraOutputs.assessment.targetDate}}
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-xs-12 meta">
+					<span class="collapse-link" data-toggle="collapse" data-target="#subheader-collapseable" aria-expanded="false" aria-controls="subheader-collapseable">Show Assessment Scope</span>
+				</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<div class="collapse"  id="subheader-collapseable">
+		<div class="row visible-xs">
+			<div class="col-xs-12">
+			Target MRL: {{mraOutputs.assessment.targetLevel}}<span class="text-divider">|</span>Target Date: {{mraOutputs.assessment.targetDate}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+
+			<p>{{mraOutputs.assessment.scope}}</p>
+			</div>
+		</div>
+		</div>
+
+		</div>
+	</header>
+
 
 	<div class="container" id="mainContent">
 	<div class="row">
@@ -26,11 +69,11 @@
 	</tr>
 </thead>
 		{{#each mraOutputs.threadStatus}}
-		<tr>
+		<tr {{#if selectedThread}}{{else}}style="opacity: 0.2;"{{/if}}>
 		<th colspan="12"><h3>{{threadName}}</h3></th>
 		</tr>
     {{#each subThreads}}
-		<tr>
+		<tr {{#if ../selectedThread}}{{else}}style="opacity: 0.2;"{{/if}}>
 					<td>{{subThreadName}}</td>
 
           {{#each statuses}}
@@ -103,15 +146,6 @@
 
 	</div>
 
-		</div>
-		<div class="row">
-
-			<div class="col-xs-12 dashboard-controls">
-				<button class="btn btn-primary">Action Items</button>
-				<button class="btn btn-primary">Not Applicable Items</button>
-				<button class="btn btn-primary">Skipped Items</button>
-
-			</div>
 		</div>
 
   <input type='hidden' id='inputPage' value='dashboardPage'>

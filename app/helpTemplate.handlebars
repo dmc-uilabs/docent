@@ -5,7 +5,7 @@
     <ol class="breadcrumb">
       <li class="active">Help</li>
     </ol>
-    <span class="collapse-link visible-xs xs-expand-link" data-toggle="collapse" data-target="#subheader-collapseable" aria-expanded="false" aria-controls="subheader-collapseable"><span class="glyphicon glyphicon-triangle-bottom"></span></span>
+    {{#if mraOutputs.assessment.targetLevel}}<span class="collapse-link visible-xs xs-expand-link" data-toggle="collapse" data-target="#subheader-collapseable" aria-expanded="false" aria-controls="subheader-collapseable"><span class="glyphicon glyphicon-triangle-bottom"></span></span>{{/if}}
     </div>
 
     {{#if mraOutputs.assessment.targetLevel}}
@@ -41,7 +41,7 @@
 
   		<dl class="collapse" id="help{{@index}}">
         {{#each helpText}}
-          <dd>{{{this}}}</dd>
+          <dd style="margin-bottom: 10px;">{{{this}}}</dd>
         {{/each}}
       </dl>
 

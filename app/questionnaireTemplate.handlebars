@@ -6,7 +6,7 @@
 			  <li><a href="javascript:void(0)" href onclick='$("#functionToCall").val("getNavigationPage")' ng-click='run()'>{{mraOutputs.question.threadName}}</a></li>
 			  <li class="active">{{mraOutputs.question.subThreadName}}</li>
 			</ol>
-			<span class="collapse-link visible-xs xs-expand-link" data-toggle="collapse" data-target="#subheader-collapseable" aria-expanded="false" aria-controls="subheader-collapseable"><span class="glyphicon glyphicon-triangle-bottom"></span></span>
+			{{#if mraOutputs.assessment.targetLevel}}<span class="collapse-link visible-xs xs-expand-link" data-toggle="collapse" data-target="#subheader-collapseable" aria-expanded="false" aria-controls="subheader-collapseable"><span class="glyphicon glyphicon-triangle-bottom"></span></span>{{/if}}
 			</div>
 			<div class="col-sm-6 hidden-xs">
 				<div class="row">

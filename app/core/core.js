@@ -114,17 +114,17 @@ getNextQuestion = function(assessment) {
     }
   }
 
-  // Get threads for all levels (if level switching on) or only selected level (if level switching off)
-  var threadResultsQuery = "SELECT DISTINCT a.thread_id, a.thread_order, b.sub_thread_id \n"
+  var chosenThreadsList = assessment.chosenThreads.join(',')
 
-  if (assessment.levelSwitching) {
-    threadResultsQuery += "FROM thread a, sub_thread b \
-    WHERE a.thread_id = b.thread_id \n"
-  } else {
-    threadResultsQuery += "FROM thread a, sub_thread b, sub_thread_level c \
-    WHERE a.thread_id = b.thread_id  \
-    AND b.sub_thread_id = c.sub_thread_id \
-    AND c.mrl_level = "+assessment.targetLevel+"\n"
+  // Get threads for all levels (if level switching on) or only selected level (if level switching off)
+  var threadResultsQuery = "SELECT DISTINCT a.thread_id, a.thread_order, b.sub_thread_id \
+  FROM thread a, sub_thread b, sub_thread_level c \
+  WHERE a.thread_id = b.thread_id  \
+  AND b.sub_thread_id = c.sub_thread_id \
+  AND a.thread_id in ("+chosenThreadsList+") \n"
+
+  if (!assessment.levelSwitching) {
+    threadResultsQuery += "AND c.mrl_level = "+assessment.targetLevel+"\n"
   }
 
   threadResultsQuery += "ORDER BY a.thread_order, a.thread_id, b.sub_thread_id "
@@ -132,6 +132,7 @@ getNextQuestion = function(assessment) {
   var threadResults = criteriaDb.exec(threadResultsQuery);
 
   var threadValues = threadResults[0].values;
+
   // Loop through all the subThreads in order to see
   // if they have been completed
   for(var i=0; i<threadValues.length; i++){
@@ -144,9 +145,20 @@ getNextQuestion = function(assessment) {
     }
   }
 
+  // Get list of questionIds in selected threads for checking skipped questions
+  //  Do this to account for questions that were skipped before a thread was de-selected
+  var questionIdsResultsQuery = "SELECT DISTINCT q.question_id \
+    FROM question q \
+    JOIN sub_thread_level stl on stl.sub_thread_level_id = q.sub_thread_level_id \
+    JOIN sub_thread st on st.sub_thread_id = stl.sub_thread_id \
+    JOIN thread t on t.thread_id = st.thread_id and t.thread_id in ("+chosenThreadsList+") \n"
+
+  var questionIdsResults = criteriaDb.exec(questionIdsResultsQuery);
+  var questionsInSelectedThread = questionIdsResults[0].values.map(function(x) { return x[0].toString()});
+
   var skippedAnswerQuestionIds = "";
   for(var key in answers){
-    if(answers[key] == 0){
+    if(answers[key] == 0 && questionsInSelectedThread.indexOf(key) != -1){
       if(skippedAnswerQuestionIds.length > 0){
         skippedAnswerQuestionIds = skippedAnswerQuestionIds+","+key;
       }else{
@@ -155,15 +167,18 @@ getNextQuestion = function(assessment) {
     }
   }
 
+
   // Get any skipped questions that aren't in the question_visit_history
   var unvisitedSkippedResults = assessmentDb.exec("SELECT a.question_id \
                                                   FROM answer a \
                                                   WHERE a.answer == '0' \
                                                   AND a.question_id NOT IN(\
                                                         SELECT b.question_id \
-                                                        FROM question_visit_history b)");
+                                                        FROM question_visit_history b) \
+                                                  AND a.question_id IN ("+questionsInSelectedThread.join(',')+")");
   if(unvisitedSkippedResults.length > 0){
     var skippedQuestionId = unvisitedSkippedResults[0].values[0][0];
+    console.log('getQuestionInfo(skippedQuestionId);')
     return getQuestionInfo(skippedQuestionId);
   }
 
@@ -180,12 +195,11 @@ getNextQuestion = function(assessment) {
     // If no visited questions, just grab the first
     // skipped question
     for(var key in answers){
-      if(answers[key] == 0){
+      if(answers[key] == 0 && questionsInSelectedThread.indexOf(key) != -1){
         return getQuestionInfo(key);
       }
     }
   }
-
   return getQuestionInfo(-1);
 }
 
@@ -253,7 +267,6 @@ getNextQuestionIdForSubThread = function(subThreadId, targetLevel, answers, leve
     && subThreadReturnObject.skippedQuestionId == -1
     && questionLevel < 10){
     subThreadReturnObject = getNextQuestionIdForSubThreadLevel(mrlLevelQuestions[questionLevel], answers);
-    console.log(subThreadReturnObject);
     // Since this is a level above just
     // move to the next subThread, we don't
     // really care that we failed
@@ -571,10 +584,21 @@ getDashboardInfo = function(assessment) {
     FROM thread a, sub_thread b\
     WHERE a.thread_id = b.thread_id");
 
+
+  // get list of question_ids for selected threads
+  var assessmentSelectedThreads = assessmentDb.exec("SELECT chosen_threads FROM assessment");
+  var assessmentSelectedThreads = JSON.parse(assessmentSelectedThreads[0].values[0][0]);
+  var assessmentSelectedSubThreads = criteriaDb.exec("SELECT sub_thread_level_id \
+                                                FROM sub_thread_level a \
+                                                JOIN sub_thread b on a.sub_thread_id = b.sub_thread_id \
+                                                WHERE b.thread_id in ("+assessmentSelectedThreads.join(',')+")");
+
+  assessmentSelectedSubThreads = assessmentSelectedSubThreads[0].values.map(function(x){ return x[0] })
+
   var threadValues = threadResults[0].values;
   for(var i = 0; i<threadValues.length; i++){
     var subThreadIdVal = threadValues[i][2];
-    var statusObject = getSubThreadStatus(subThreadIdVal, assessment['targetLevel']);
+    var statusObject = getSubThreadStatus(subThreadIdVal, assessment['targetLevel'], assessmentSelectedSubThreads);
     // threadsArray.push({threadName:threadValues[i][1],
     //                     subThreadName:threadValues[i][3],
     //                     date:statusObject.date,
@@ -593,18 +617,25 @@ getDashboardInfo = function(assessment) {
     }
   }
 
-  return threadsObjectToCollection(threadsObject);
+  return threadsObjectToCollection(threadsObject, assessmentSelectedThreads);
 }
 
-threadsObjectToCollection = function(threadsObject) {
+threadsObjectToCollection = function(threadsObject, assessmentSelectedThreads) {
   var threadsCollection = []
+  var i = 1;
   Object.keys(threadsObject).forEach(function(key) {
     var val = threadsObject[key];
     threadsCollection.push(
-      {"threadName": key,
-      "subThreads": val}
+      {
+        "threadName": key,
+        "subThreads": val,
+        "selectedThread": !(assessmentSelectedThreads.indexOf(i) == -1)
+      }
     );
+    i+=1;
   });
+
+  console.log('threadsCollection',threadsCollection)
   return threadsCollection;
 }
 
@@ -821,14 +852,15 @@ getNavigationInfoSubset = function(questionSubset){
 
 }
 
-getSubThreadStatus = function(subThreadIdVal, targetLevel){
+getSubThreadStatus = function(subThreadIdVal, targetLevel, assessmentSelectedSubThreads){
   var statusArray = [];
   var statusObject = {};
   var completionDate = "";
   var subThreadLevelResults = criteriaDb.exec("SELECT sub_thread_level_id, mrl_level FROM sub_thread_level WHERE sub_thread_id="+subThreadIdVal);
   var subThreadLevelValues = subThreadLevelResults[0].values;
+
   for(var i = 0; i<subThreadLevelValues.length; i++){
-    var statusReturn = getSubThreadLevelStatus(subThreadLevelValues[i][0], subThreadLevelValues[i][1], targetLevel);
+    var statusReturn = getSubThreadLevelStatus(subThreadLevelValues[i][0], subThreadLevelValues[i][1], targetLevel, assessmentSelectedSubThreads);
     statusArray.push(statusReturn['status']);
     if(statusReturn['completionDate'] != ""){
       completionDate = statusReturn['completionDate'];
@@ -861,7 +893,7 @@ getSubThreadStatus = function(subThreadIdVal, targetLevel){
 * 2: red
 * 3: blue
 */
-getSubThreadLevelStatus = function(subThreadLevelId, mrlLevel, targetLevel){
+getSubThreadLevelStatus = function(subThreadLevelId, mrlLevel, targetLevel, assessmentSelectedSubThreads){
 
   var questionIds = [];
   var unAnsweredQuestions = false;
@@ -872,6 +904,11 @@ getSubThreadLevelStatus = function(subThreadLevelId, mrlLevel, targetLevel){
   if(Number(mrlLevel) > Number(targetLevel+1)){
     return statusObject;
   }
+
+  if(assessmentSelectedSubThreads.indexOf(subThreadLevelId) == -1){
+    return statusObject;
+  }
+
   // get all QuestionId's for this subThreadLevelId
   var questionResults = criteriaDb.exec("SELECT question_id FROM question where sub_thread_level_id="+subThreadLevelId);
   if(questionResults.length > 0){
@@ -1225,8 +1262,16 @@ saveAnswer = function(answer){
 }
 
 updateAssessment = function(assessmentValues){
-  assessmentDb.run("UPDATE assessment SET version_id = ?, scope = ?, target_date = ?, target_level = ?, location = ?, level_switching = ?",
-    [1, assessmentValues['scope'], assessmentValues['targetDate'], assessmentValues['targetLevel'], assessmentValues['location'], parseInt(assessmentValues['levelSwitching'])]);
+  assessmentDb.run("UPDATE assessment SET version_id = ?, scope = ?, target_date = ?, target_level = ?, location = ?, level_switching = ?, chosen_threads = ?",
+    [
+      1,
+      assessmentValues['scope'],
+      assessmentValues['targetDate'],
+      assessmentValues['targetLevel'],
+      assessmentValues['location'],
+      parseInt(assessmentValues['levelSwitching']),
+      assessmentValues['chosenThreads']
+    ]);
 
   var teamMembers = assessmentValues['teamMembers'];
 
@@ -1245,28 +1290,32 @@ updateAssessment = function(assessmentValues){
 }
 
 createAssessment = function(assessmentValues){
+
   if(!assessmentDbDefined()){
     assessmentDb = new sqlite.Database();
 
     // Create the schema to hold the assessment data
-    assessmentDb.run("CREATE TABLE if not exists assessment(version_id INTEGER, scope TEXT, target_date TEXT, target_level TEXT, location TEXT, level_switching BOOLEAN default true)");
+    assessmentDb.run("CREATE TABLE if not exists assessment(version_id INTEGER, scope TEXT, target_date TEXT, target_level TEXT, location TEXT, level_switching BOOLEAN default true, chosen_threads TEXT)");
     assessmentDb.run("CREATE TABLE if not exists answer(question_id INTEGER, answer INTEGER, assumptions TEXT, notes TEXT, evidence TEXT, technical_risk INTEGER, cost_risk INTEGER, schedule_risk INTEGER, completion_date TEXT, reason TEXT, what_action TEXT, documentation TEXT)");
     assessmentDb.run("CREATE TABLE if not exists team_members(name TEXT, role TEXT)");
     assessmentDb.run("CREATE TABLE if not exists action_person(question_id INTEGER, name TEXT)");
     assessmentDb.run("CREATE TABLE if not exists attachment(question_id INTEGER, attachment_name TEXT, id INTEGER, data BLOB)");
     assessmentDb.run("CREATE TABLE if not exists question_visit_history(id INTEGER PRIMARY KEY, question_id INTEGER)");
-    assessmentDb.run("CREATE TABLE if not exists assessment_filters(id INTEGER PRIMARY KEY, filter_type TEXT, filter_value TEXT)");
+    // assessmentDb.run("CREATE TABLE if not exists chosen_threads(thread_id INTEGER, chosen BOOLEAN)");
 
     assessmentDb.run(
-        "INSERT INTO assessment (version_id, scope, target_date, target_level, location, level_switching) VALUES (?, ?, ?, ?, ?, ?)",
+        "INSERT INTO assessment (version_id, scope, target_date, target_level, location, level_switching, chosen_threads) VALUES (?, ?, ?, ?, ?, ?, ?)",
         [ 1,
           assessmentValues['scope'],
           assessmentValues['targetDate'],
           assessmentValues['targetLevel'],
           assessmentValues['location'],
-          parseInt(assessmentValues['levelSwitching'])
+          parseInt(assessmentValues['levelSwitching']),
+          assessmentValues['chosenThreads']
         ]
     );
+
+
 
     var teamMembers = assessmentValues['teamMembers'];
     if(!(teamMembers === undefined)){
@@ -1277,6 +1326,20 @@ createAssessment = function(assessmentValues){
             }
       }
     }
+
+
+    // var chosenThreads = JSON.parse(assessmentValues['chosenThreads']);
+    // var threadInsert = "INSERT INTO chosen_threads (thread_id, chosen) VALUES "
+    // var valuePlaceholders = [];
+    // var insertData = [];
+    // for (var j=0; j<chosenThreads.length; j++) {
+    //   valuePlaceholders.push(' (?,?)');
+    //   insertData.push(j)
+    //   insertData.push(chosenThreads[j])
+    // }
+    // threadInsert += valuePlaceholders.join(',');
+    // assessmentDb.run(threadInsert, insertData)
+
   }else{
     updateAssessment(assessmentValues);
   }
@@ -1299,12 +1362,13 @@ importAssessment = function(path) {
   var answers = [];
   var teamMembers = [];
   assessmentPath=path;
-  if(isRunningInElectron && !assessmentDbDefined()){
+  if(isRunningInElectron){
+    assessmentDb = null;
     var assessmentDbBuffer = fs.readFileSync(assessmentPath);
     assessmentDb = new sqlite.Database(assessmentDbBuffer);
   }
 
-  var contents = assessmentDb.exec("SELECT version_id, scope, target_date, target_level, location, level_switching FROM assessment");
+  var contents = assessmentDb.exec("SELECT version_id, scope, target_date, target_level, location, level_switching, chosen_threads FROM assessment");
   var assessmentValues = contents[0].values[0];
   assessment['versionId'] = assessmentValues[0];
   assessment['scope'] = assessmentValues[1];
@@ -1312,6 +1376,7 @@ importAssessment = function(path) {
   assessment['targetLevel'] = assessmentValues[3];
   assessment['location'] = assessmentValues[4];
   assessment['levelSwitching'] = assessmentValues[5];
+  assessment['chosenThreads'] = JSON.parse(assessmentValues[6]);
 
   contents = assessmentDb.exec("SELECT name, role FROM team_members");
   if(contents.length > 0){
@@ -1447,8 +1512,10 @@ getStartPage = function() {
   coreContext['mraCss'] = mraCss;
   if(assessmentPath){
     coreContext['assessment'] = importAssessment(assessmentPath);
+    coreContext['threads'] = returnThreads(coreContext['assessment']);
   }else{
     coreContext['assessment'] = {};
+    coreContext['threads'] = returnThreads();
   }
 }
 
@@ -1738,6 +1805,22 @@ ToolTipAdder.prototype.updatedText = function() {
   if (this.textSuffix) { outputString+=this.textSuffix }
 
   return outputString
+}
+
+returnThreads = function(assessment) {
+  var threads = criteriaDb.exec("SELECT thread_id, name, help_text name FROM thread")[0].values;
+  if (assessment) {
+    for (var i=0; i<threads.length; i++) {
+      var isSelected = assessment.chosenThreads.indexOf(threads[i][0]) == -1 ? false : true;
+      threads[i].push(isSelected);
+    }
+    return threads;
+  } else {
+    for (var i=0; i<threads.length; i++) {
+      threads[i].push(true);
+    }
+    return threads;
+  }
 }
 
 // Initialization
