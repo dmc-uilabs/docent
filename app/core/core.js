@@ -114,10 +114,22 @@ getNextQuestion = function(assessment) {
     }
   }
 
-  var threadResults = criteriaDb.exec("SELECT DISTINCT a.thread_id, a.thread_order, b.sub_thread_id \
-      FROM thread a, sub_thread b \
-      WHERE a.thread_id = b.thread_id \
-      ORDER BY a.thread_order, a.thread_id, b.sub_thread_id ");
+  // Get threads for all levels (if level switching on) or only selected level (if level switching off)
+  var threadResultsQuery = "SELECT DISTINCT a.thread_id, a.thread_order, b.sub_thread_id \n"
+
+  if (assessment.levelSwitching) {
+    threadResultsQuery += "FROM thread a, sub_thread b \
+    WHERE a.thread_id = b.thread_id \n"
+  } else {
+    threadResultsQuery += "FROM thread a, sub_thread b, sub_thread_level c \
+    WHERE a.thread_id = b.thread_id  \
+    AND b.sub_thread_id = c.sub_thread_id \
+    AND c.mrl_level = "+assessment.targetLevel+"\n"
+  }
+
+  threadResultsQuery += "ORDER BY a.thread_order, a.thread_id, b.sub_thread_id "
+
+  var threadResults = criteriaDb.exec(threadResultsQuery);
 
   var threadValues = threadResults[0].values;
   // Loop through all the subThreads in order to see
@@ -125,7 +137,7 @@ getNextQuestion = function(assessment) {
   for(var i=0; i<threadValues.length; i++){
     var threadId = threadValues[i][0];
     var subThreadId = threadValues[i][2];
-    var questionId = getNextQuestionIdForSubThread(subThreadId, assessment.targetLevel, answers);
+    var questionId = getNextQuestionIdForSubThread(subThreadId, assessment.targetLevel, answers, assessment.levelSwitching);
     if(questionId != -1){
       // Go to next subThread;
       return getQuestionInfo(questionId);
@@ -181,9 +193,10 @@ getNextQuestion = function(assessment) {
 * Returns:
 *
 */
-getNextQuestionIdForSubThread = function(subThreadId, targetLevel, answers){
+getNextQuestionIdForSubThread = function(subThreadId, targetLevel, answers, levelSwitching){
 
   var mrlLevelQuestions = {};
+
   var questionResults = criteriaDb.exec("SELECT a.sub_thread_level_id, a.mrl_level, b.question_id, b.question_order \
       FROM sub_thread_level a, question b \
       WHERE a.sub_thread_level_id = b.sub_thread_level_id \
@@ -204,8 +217,12 @@ getNextQuestionIdForSubThread = function(subThreadId, targetLevel, answers){
   var subThreadReturnObject = getNextQuestionIdForSubThreadLevel(mrlLevelQuestions[targetLevel], answers);
 
   // If an unanswered question was found, return that question
+  //  If level switching is off, and there are no unanswered quetsions,
+  //  skip additional logic and return -1 to indicate thread complete
   if(subThreadReturnObject.questionId != -1){
     return subThreadReturnObject.questionId;
+  } else if (!levelSwitching) {
+    return -1;
   }
 
   // If the thread failed, drop down a level
@@ -1208,8 +1225,8 @@ saveAnswer = function(answer){
 }
 
 updateAssessment = function(assessmentValues){
-  assessmentDb.run("UPDATE assessment SET version_id = ?, scope = ?, target_date = ?, target_level = ?, location = ?",
-    [1, assessmentValues['scope'], assessmentValues['targetDate'], assessmentValues['targetLevel'], assessmentValues['location']]);
+  assessmentDb.run("UPDATE assessment SET version_id = ?, scope = ?, target_date = ?, target_level = ?, location = ?, level_switching = ?",
+    [1, assessmentValues['scope'], assessmentValues['targetDate'], assessmentValues['targetLevel'], assessmentValues['location'], parseInt(assessmentValues['levelSwitching'])]);
 
   var teamMembers = assessmentValues['teamMembers'];
 
@@ -1232,15 +1249,24 @@ createAssessment = function(assessmentValues){
     assessmentDb = new sqlite.Database();
 
     // Create the schema to hold the assessment data
-    assessmentDb.run("CREATE TABLE if not exists assessment(version_id INTEGER, scope TEXT, target_date TEXT, target_level TEXT, location TEXT)");
+    assessmentDb.run("CREATE TABLE if not exists assessment(version_id INTEGER, scope TEXT, target_date TEXT, target_level TEXT, location TEXT, level_switching BOOLEAN default true)");
     assessmentDb.run("CREATE TABLE if not exists answer(question_id INTEGER, answer INTEGER, assumptions TEXT, notes TEXT, evidence TEXT, technical_risk INTEGER, cost_risk INTEGER, schedule_risk INTEGER, completion_date TEXT, reason TEXT, what_action TEXT, documentation TEXT)");
     assessmentDb.run("CREATE TABLE if not exists team_members(name TEXT, role TEXT)");
     assessmentDb.run("CREATE TABLE if not exists action_person(question_id INTEGER, name TEXT)");
     assessmentDb.run("CREATE TABLE if not exists attachment(question_id INTEGER, attachment_name TEXT, id INTEGER, data BLOB)");
     assessmentDb.run("CREATE TABLE if not exists question_visit_history(id INTEGER PRIMARY KEY, question_id INTEGER)");
+    assessmentDb.run("CREATE TABLE if not exists assessment_filters(id INTEGER PRIMARY KEY, filter_type TEXT, filter_value TEXT)");
 
-    assessmentDb.run("INSERT INTO assessment (version_id, scope, target_date, target_level, location) VALUES (?, ?, ?, ?, ?)",
-        [1, assessmentValues['scope'], assessmentValues['targetDate'], assessmentValues['targetLevel'], assessmentValues['location']]);
+    assessmentDb.run(
+        "INSERT INTO assessment (version_id, scope, target_date, target_level, location, level_switching) VALUES (?, ?, ?, ?, ?, ?)",
+        [ 1,
+          assessmentValues['scope'],
+          assessmentValues['targetDate'],
+          assessmentValues['targetLevel'],
+          assessmentValues['location'],
+          parseInt(assessmentValues['levelSwitching'])
+        ]
+    );
 
     var teamMembers = assessmentValues['teamMembers'];
     if(!(teamMembers === undefined)){
@@ -1278,13 +1304,14 @@ importAssessment = function(path) {
     assessmentDb = new sqlite.Database(assessmentDbBuffer);
   }
 
-  var contents = assessmentDb.exec("SELECT version_id, scope, target_date, target_level, location FROM assessment");
+  var contents = assessmentDb.exec("SELECT version_id, scope, target_date, target_level, location, level_switching FROM assessment");
   var assessmentValues = contents[0].values[0];
   assessment['versionId'] = assessmentValues[0];
   assessment['scope'] = assessmentValues[1];
   assessment['targetDate'] = assessmentValues[2];
   assessment['targetLevel'] = assessmentValues[3];
   assessment['location'] = assessmentValues[4];
+  assessment['levelSwitching'] = assessmentValues[5];
 
   contents = assessmentDb.exec("SELECT name, role FROM team_members");
   if(contents.length > 0){

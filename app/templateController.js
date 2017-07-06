@@ -43,6 +43,7 @@ app.controller('templateCtrl', function($scope, $compile){
 		assessmentValues.targetLevel = document.getElementById('targetLevel').value;
 		assessmentValues.location = document.getElementById('location').value;
 		assessmentValues.targetDate = document.getElementById('targetDate').value;
+		assessmentValues.levelSwitching = document.getElementById('levelSwitching').value;
 
 		var teamMemberNamesJson = document.getElementById('teamMemberNames').value;
 		var teamMemberNames = [];
@@ -139,13 +140,14 @@ app.controller('templateCtrl', function($scope, $compile){
 						createAssessmentFromStartPage(assessmentPath);
 						callFunction(functionToCall, inputPage);
 					}
+					getNextQuestionnairePage();
+					updateTemplate();
 				});
 			}else{
 				createAssessmentFromStartPage(assessmentPath);
+				getNextQuestionnairePage();
+				updateTemplate();
 			}
-
-			getNextQuestionnairePage();
-			updateTemplate();
 		}
 		if(functionToCall == 'updateStartGetQuestionnairePage'){
 			var assessmentValues = {};

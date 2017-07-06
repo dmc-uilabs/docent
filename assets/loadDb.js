@@ -1,3 +1,4 @@
+// TODO - remove this file?
 loadDb = function() {
   var sqlite3 = require('sqlite3').verbose();
   var db = new sqlite3.Database('criteria_with_level.db');
