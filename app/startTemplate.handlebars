@@ -327,12 +327,10 @@
             var threadStatus = [];
             for (var i = 0; i < inputs.length; i++) {
                 if (inputs[i].checked) {
-                  console.log('input checked', i);
                     var threadId = parseInt(inputs[i].getAttribute('ng-model').replace('thread', ''));
                     threadStatus.push(threadId);
                 }
             }
-            console.log('threadStatus', threadStatus);
             chosenThreads.value = JSON.stringify(threadStatus);
         };
     </script>
