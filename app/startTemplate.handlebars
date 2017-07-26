@@ -215,13 +215,14 @@
             var startButton = document.getElementById('startButton');
             var startButtonWrapper = document.getElementById('startButtonWrapper');
             var threadsWrapper = document.getElementById('collapseThreads');
+            var mainContent = document.getElementById('mainContent');
             startButton.disabled = true;
 
             var formFields = getFormFieldsToValidate();
 
             var highlightPerformed = false;
 
-            document.onkeyup = function() {
+            mainContent.onkeyup = function() {
                 if (highlightPerformed) {
                     highlightMissingFields(formFields)
                 };
@@ -230,7 +231,7 @@
                 updateThreadSelection(threadsWrapper);
             };
 
-            document.onclick = function() {
+            mainContent.onclick = function() {
                 if (highlightPerformed) {
                     highlightMissingFields(formFields)
                 };
@@ -246,9 +247,10 @@
                 }
             };
 
-            updateTeamMembers();
-            updateThreadSelection(threadsWrapper);
-
+            setTimeout(function(){
+              updateTeamMembers();
+              updateThreadSelection(threadsWrapper);
+            },100);
 
         });
 
@@ -325,10 +327,12 @@
             var threadStatus = [];
             for (var i = 0; i < inputs.length; i++) {
                 if (inputs[i].checked) {
+                  console.log('input checked', i);
                     var threadId = parseInt(inputs[i].getAttribute('ng-model').replace('thread', ''));
                     threadStatus.push(threadId);
                 }
             }
+            console.log('threadStatus', threadStatus);
             chosenThreads.value = JSON.stringify(threadStatus);
         };
     </script>
