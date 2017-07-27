@@ -362,6 +362,8 @@ getQuestionInfo = function(questionId){
     return {};
   }
 
+  var attachments = getAttachmentsForQuestion(questionId);
+
   var question = {questionId:nextQuestionResults[0].values[0][0],
                   questionText:addTooltips(nextQuestionResults[0].values[0][1]),
                   helpText:addTooltips(nextQuestionResults[0].values[0][2]),
@@ -369,7 +371,8 @@ getQuestionInfo = function(questionId){
                   subThreadName:nextQuestionResults[0].values[0][5],
                   threadId:nextQuestionResults[0].values[0][6],
                   threadName:nextQuestionResults[0].values[0][7],
-                  mrlLevel:nextQuestionResults[0].values[0][8]
+                  mrlLevel:nextQuestionResults[0].values[0][8],
+                  attachments: attachments
                 };
 
   return question;

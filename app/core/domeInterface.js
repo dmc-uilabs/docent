@@ -273,9 +273,10 @@ callDomeFunction = function(inputPage, functionToCall){
   if(functionToCall == 'addAttachment'){
     var questionId = domeInputs['questionId'];
     var dmcProjectId = domeInputs['dmcProjectId'];
+    var attachFileInput = domeInputs['attachedFileList'];
     // TODO: fill this in from the user
-    var path = "attachment1";
-    attachFileS3(questionId, dmcProjectId, path);
+    // var path = "attachment1";
+    attachFilesS3(questionId, dmcProjectId, attachFileInput);
     var navigationInput = {
       questionId:questionId
     };
@@ -413,9 +414,21 @@ getAvailableAssessmentsFromS3 = function(dmcProjectId){
   });
 };
 
-attachFileS3 = function(questionId, dmcProjectId, path){
+
+attachFilesS3 = function(questionId, dmcProjectId, attachments) {
+  if (attachments && attachments.length > 0) {
+
+    attachments = JSON.parse(attachments);
+    for (var i=0; i<attachments.length; i++) {
+      attachFileS3(questionId, dmcProjectId, attachments[i]);
+    }
+
+  }
+}
+
+attachFileS3 = function(questionId, dmcProjectId, attachment){
   var attachmentId = 0;
-  var fileName = path.replace(/^.*[\\\/]/, '');
+  // var fileName = path.replace(/^.*[\\\/]/, '');
 
   var maxId = assessmentDb.exec("SELECT MAX(id) FROM attachment");
   if(maxId[0].values.length == 0
@@ -426,7 +439,7 @@ attachFileS3 = function(questionId, dmcProjectId, path){
   }
 
   assessmentDb.run("INSERT INTO attachment(question_id, attachment_name, id, data) VALUES(?, ?, ?, ?)",
-                    [questionId, fileName, attachmentId, ""]);
+                    [questionId, attachment.documentName, attachmentId, JSON.stringify(attachment)]);
 }
 
 deleteAttachmentS3 = function(questionId, attachmentId){
