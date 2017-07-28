@@ -419,13 +419,9 @@ getAvailableAssessmentsFromS3 = function(dmcProjectId){
 attachFilesS3 = function(questionId, dmcProjectId, attachments) {
   var dateObject = new Date(Date.now());
   var dateString = dateObject.toDateString() + " " +dateObject.toTimeString();
-  console.log(dateString+' attachFilesS3');
   if (attachments && attachments.length > 0) {
-    console.log(dateString+' attachFilesS3 passed string check');
     attachments = JSON.parse(attachments);
-    console.log(dateString+' attachFilesS3 post parse:', attachments);
     for (var i=0; i<attachments.length; i++) {
-      console.log(dateString+' attachFilesS3 looping over docs');
       attachFileS3(questionId, dmcProjectId, attachments[i]);
     }
   }

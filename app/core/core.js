@@ -1183,10 +1183,16 @@ generateCSVHeader = function(csvOutputShape) {
 
 getAttachmentsForQuestion = function(questionId){
     var attachments = [];
-    var attachmentResults = assessmentDb.exec("SELECT attachment_name, id FROM attachment WHERE question_id=" + questionId);
+    var attachmentResults = assessmentDb.exec("SELECT attachment_name, id, data FROM attachment WHERE question_id=" + questionId);
     if(attachmentResults.length > 0){
       for(var j=0; j<attachmentResults[0].values.length; j++){
-        attachments.push({attachmentName:attachmentResults[0].values[j][0], id:attachmentResults[0].values[j][1]});
+        var dmcId = 0;
+        try {
+          var dmcData = JSON.parse(attachmentResults[0].values[j][2])
+          dmcId = dmcData.id
+        } catch(err) {
+        }
+        attachments.push({attachmentName:attachmentResults[0].values[j][0], id:attachmentResults[0].values[j][1], dmcId: dmcId});
       }
     }
     return attachments;

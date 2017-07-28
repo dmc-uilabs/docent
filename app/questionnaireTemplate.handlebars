@@ -191,7 +191,7 @@
 								<dl class="attachments-list">
 									<dt>Attachments</dt>
 									{{#each mraOutputs.answerInfo.attachments}}
-										<dd><a>{{attachmentName}}</a><span class="attachment-remove" onclick='$("#functionToCall").val("deleteAttachment");$("#attachmentId").val("{{id}}")' ng-click='run()'></span></dd>
+										<dd><a ng-click="downloadAppAttachment({{dmcId}})">{{attachmentName}}</a><span class="attachment-remove" onclick='$("#functionToCall").val("deleteAttachment");$("#attachmentId").val("{{id}}")' ng-click='run()'></span></dd>
 									{{/each}}
 								</dl>
 
