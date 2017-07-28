@@ -332,6 +332,7 @@ getAssessmentFromS3 = function(dmcProjectId, path, inputPage, functionToCall){
   AWS.config.loadFromPath('./credentials.json');
   var s3 = new AWS.S3();
   var key = getAssessmentKeyS3(dmcProjectId, path);
+  console.log('getAssessmentFromS3 key: ',key)
   s3.getObject({Bucket:dmcBucketName,Key:key},
       function(error,data){
         if(error != null){
@@ -416,17 +417,25 @@ getAvailableAssessmentsFromS3 = function(dmcProjectId){
 
 
 attachFilesS3 = function(questionId, dmcProjectId, attachments) {
+  var dateObject = new Date(Date.now());
+  var dateString = dateObject.toDateString() + " " +dateObject.toTimeString();
+  console.log(dateString+' attachFilesS3');
   if (attachments && attachments.length > 0) {
-
+    console.log(dateString+' attachFilesS3 passed string check');
     attachments = JSON.parse(attachments);
+    console.log(dateString+' attachFilesS3 post parse:', attachments);
     for (var i=0; i<attachments.length; i++) {
+      console.log(dateString+' attachFilesS3 looping over docs');
       attachFileS3(questionId, dmcProjectId, attachments[i]);
     }
-
   }
 }
 
 attachFileS3 = function(questionId, dmcProjectId, attachment){
+  var dateObject = new Date(Date.now());
+  var dateString = dateObject.toDateString() + " " +dateObject.toTimeString();
+  console.log(dateString+' attachFilesS3 single file', JSON.stringify(attachment));
+
   var attachmentId = 0;
   // var fileName = path.replace(/^.*[\\\/]/, '');
 

@@ -191,12 +191,12 @@
 								<dl class="attachments-list">
 									<dt>Attachments</dt>
 									{{#each mraOutputs.answerInfo.attachments}}
-										<dd>-<a>{{attachmentName}}</a><span class="attachment-remove"></span></dd>
+										<dd><a>{{attachmentName}}</a><span class="attachment-remove" onclick='$("#functionToCall").val("deleteAttachment");$("#attachmentId").val("{{id}}")' ng-click='run()'></span></dd>
 									{{/each}}
 								</dl>
 
 								<!-- <input type='hidden' id='attachedFileList' ng-model='selectOption' ng-init='selectOption={{#if mraOutputs.answerInfo.attachments}}"{{mraOutputs.answerInfo.attachments}}"{{else}}"[]"{{/if}}'/> -->
-								<input type='hidden' id='attachedFileList'/>
+								<input type='hidden' id='attachedFileList' value='[]'/>
 								<span class="btn btn-default" onclick='$("#functionToCall").val("addAttachment");' ng-click="uploadAppFile()">Attach File</span>
 
               {{/if}}
