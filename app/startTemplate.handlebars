@@ -20,9 +20,9 @@
                 <div class="col-sm-5">
                     <input type="text" class="form-control" id='mrl_teamMemberRole{{@index}}' value='{{role}}' />
                 </div>
-                <!-- <div class="col-sm-2">
-                    <button class="removeButton"><span class="glyphicon glyphicon-minus-sign"></span></button>
-                </div> -->
+                <div class="col-sm-1">
+                    <button class="removeButton" style="vertical-align:top;"><span class="glyphicon glyphicon-minus-sign"></span></button>
+                </div>
             </div>
         {{/each}}
 
@@ -34,7 +34,7 @@
                 <input type="text" class="form-control" id='mrl_teamMemberRole' placeholder="Member Role" />
             </div>
             <div class="col-sm-1">
-                <button style="vertical-align: text-top;" class="removeButton" ng-show='$last && mrl_teamMemberArray.length > 1'><span ng-click='mrl_teamMemberArray.splice(-1);mrl_numTeamMembers=mrl_numTeamMembers-1' class="glyphicon glyphicon-minus-sign"></span></button>
+                <button style="vertical-align: text-top;" class="removeButton" ng-show='$last'><span ng-click='mrl_teamMemberArray.splice(-1);mrl_numTeamMembers=mrl_numTeamMembers-1' class="glyphicon glyphicon-minus-sign"></span></button>
             </div>
         </div>
 
@@ -216,6 +216,7 @@
             var startButtonWrapper = document.getElementById('startButtonWrapper');
             var threadsWrapper = document.getElementById('collapseThreads');
             var mainContent = document.getElementById('mainContent');
+            var addTeamButton = document.getElementsByClassName('addButton')[0];
             startButton.disabled = true;
 
             var formFields = getFormFieldsToValidate();
@@ -247,11 +248,21 @@
                 }
             };
 
+            function setTeamListeners() {
+              var teamMemberRows = document.getElementsByClassName('memberRow');
+              for (var i=0; i<teamMemberRows.length; i++) {
+                teamMemberRows[i].getElementsByClassName('removeButton')[0].onclick = function(ev) {
+                  ev.currentTarget.parentElement.parentElement.remove();
+                  updateTeamMembers();
+                }
+              }
+            }
+
             setTimeout(function(){
               updateTeamMembers();
               updateThreadSelection(threadsWrapper);
+              setTeamListeners();
             },100);
-
         });
 
         function getFormFieldsToValidate() {
