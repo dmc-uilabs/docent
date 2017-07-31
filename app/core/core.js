@@ -362,6 +362,8 @@ getQuestionInfo = function(questionId){
     return {};
   }
 
+  var attachments = getAttachmentsForQuestion(questionId);
+
   var question = {questionId:nextQuestionResults[0].values[0][0],
                   questionText:addTooltips(nextQuestionResults[0].values[0][1]),
                   helpText:addTooltips(nextQuestionResults[0].values[0][2]),
@@ -369,7 +371,8 @@ getQuestionInfo = function(questionId){
                   subThreadName:nextQuestionResults[0].values[0][5],
                   threadId:nextQuestionResults[0].values[0][6],
                   threadName:nextQuestionResults[0].values[0][7],
-                  mrlLevel:nextQuestionResults[0].values[0][8]
+                  mrlLevel:nextQuestionResults[0].values[0][8],
+                  attachments: attachments
                 };
 
   return question;
@@ -531,7 +534,7 @@ getAnswerInfo = function(questionId){
                   documentation:answerResults[0].values[0][11],
                   actionPerson:actionPerson,
                   actionPersonFormatted:JSON.stringify(actionPerson),
-                  attachments:attachments,
+                  attachments:attachments
                 };
 
   return answerInfo;
@@ -1176,10 +1179,16 @@ generateCSVHeader = function(csvOutputShape) {
 
 getAttachmentsForQuestion = function(questionId){
     var attachments = [];
-    var attachmentResults = assessmentDb.exec("SELECT attachment_name, id FROM attachment WHERE question_id=" + questionId);
+    var attachmentResults = assessmentDb.exec("SELECT attachment_name, id, data FROM attachment WHERE question_id=" + questionId);
     if(attachmentResults.length > 0){
       for(var j=0; j<attachmentResults[0].values.length; j++){
-        attachments.push({attachmentName:attachmentResults[0].values[j][0], id:attachmentResults[0].values[j][1]});
+        var dmcId = 0;
+        try {
+          var dmcData = JSON.parse(attachmentResults[0].values[j][2])
+          dmcId = dmcData.id
+        } catch(err) {
+        }
+        attachments.push({attachmentName:attachmentResults[0].values[j][0], id:attachmentResults[0].values[j][1], dmcId: dmcId});
       }
     }
     return attachments;
