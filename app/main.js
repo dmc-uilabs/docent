@@ -15,7 +15,7 @@ function createWindow () {
   win.loadURL(`file://${__dirname}/index.html`)
 
   // Show developer tools in Electron
- // win.webContents.openDevTools()
+ win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {
