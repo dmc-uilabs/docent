@@ -58,9 +58,13 @@
 			<dt>Assumptions:</dt>
 			<dd>{{assumptions}}</dd>
 			<dt>Notes:</dt><dd>{{notes}}</dd>
-			<dt>Attachements:</dt>
+			<dt>Attachments:</dt>
       {{#each attachments}}
-        <dd><a href="javascript:void(0)" onclick='$("#functionToCall").val("downloadAttachment");$("#attachmentId").val("{{id}}")' ng-click='run()'>Operaiton-inspection-Q2_2017.pdf</a></dd>
+        {{#if mraOutputs.isRunningInElectron}}
+          <dd><a href="javascript:void(0)" onclick='$("#functionToCall").val("downloadAttachment");$("#attachmentId").val("{{id}}")' ng-click='run()'>{{attachmentName}}</a></dd>
+        {{else}}
+          <dd><a>{{attachmentName}}</a></dd>
+        {{/if}}
       {{/each}}
 	</div>
 
@@ -68,6 +72,16 @@
 	<div class="review-block" ng-if='{{answer}}==2'>
     <h2><a href onclick='$("#functionToCall").val("getQuestionnairePageFromNavigation");$("#navQuestionId").val({{questionId}})' ng-click='run()'>{{questionText}}</a></h2>
 		<div class="status-no">No</div>
+    <dl>
+      <dt>Attachments:</dt>
+      {{#each attachments}}
+        {{#if mraOutputs.isRunningInElectron}}
+          <dd><a href="javascript:void(0)" onclick='$("#functionToCall").val("downloadAttachment");$("#attachmentId").val("{{id}}")' ng-click='run()'>{{attachmentName}}</a></dd>
+        {{else}}
+          <dd><a>{{attachmentName}}</a></dd>
+        {{/if}}
+      {{/each}}
+    </dl>
 	</div>
 
   <!-- YES -->
@@ -75,8 +89,16 @@
     <h2><a href onclick='$("#functionToCall").val("getQuestionnairePageFromNavigation");$("#navQuestionId").val({{questionId}})' ng-click='run()'>{{questionText}}</a></h2>
 		<div class="status-yes">Yes</div>
 		<dl>
-			<dt>Object Evidence:</dt>
+			<dt>Objective Evidence:</dt>
 			<dd>{{evidence}}</dd>
+      <dt>Attachments:</dt>
+      {{#each attachments}}
+        {{#if mraOutputs.isRunningInElectron}}
+          <dd><a href="javascript:void(0)" onclick='$("#functionToCall").val("downloadAttachment");$("#attachmentId").val("{{id}}")' ng-click='run()'>{{attachmentName}}</a></dd>
+        {{else}}
+          <dd><a>{{attachmentName}}</a></dd>
+        {{/if}}
+      {{/each}}
 		</dl>
 	</div>
 
@@ -84,6 +106,16 @@
 	<div class="review-block" ng-if='{{answer}}==3'>
     <h2><a href onclick='$("#functionToCall").val("getQuestionnairePageFromNavigation");$("#navQuestionId").val({{questionId}})' ng-click='run()'>{{questionText}}</a></h2>
 		<div class="status-na">Not Applicable</div>
+    <dl>
+      <dt>Attachments:</dt>
+      {{#each attachments}}
+        {{#if mraOutputs.isRunningInElectron}}
+          <dd><a href="javascript:void(0)" onclick='$("#functionToCall").val("downloadAttachment");$("#attachmentId").val("{{id}}")' ng-click='run()'>{{attachmentName}}</a></dd>
+        {{else}}
+          <dd><a>{{attachmentName}}</a></dd>
+        {{/if}}
+      {{/each}}
+    </dl>
 	</div>
 
   {{/each}}
