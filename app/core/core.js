@@ -364,8 +364,6 @@ getQuestionInfo = function(questionId){
 
   var attachments = getAttachmentsForQuestion(questionId);
 
-  console.log('getQuestionInfo attachments', attachments)
-
   var question = {questionId:nextQuestionResults[0].values[0][0],
                   questionText:addTooltips(nextQuestionResults[0].values[0][1]),
                   helpText:addTooltips(nextQuestionResults[0].values[0][2]),
@@ -521,8 +519,6 @@ getAnswerInfo = function(questionId){
   }
 
   var attachments = getAttachmentsForQuestion(questionId);
-
-  console.log('getAnswerInfo attachments', attachments);
 
   var answerInfo = {questionId:answerResults[0].values[0][0],
                   answer:answerResults[0].values[0][1],

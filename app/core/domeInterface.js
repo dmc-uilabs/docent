@@ -433,7 +433,6 @@ attachFileS3 = function(questionId, dmcProjectId, attachment){
   console.log(dateString+' attachFilesS3 single file', JSON.stringify(attachment));
 
   var attachmentId = 0;
-  // var fileName = path.replace(/^.*[\\\/]/, '');
 
   var maxId = assessmentDb.exec("SELECT MAX(id) FROM attachment");
   if(maxId[0].values.length == 0
