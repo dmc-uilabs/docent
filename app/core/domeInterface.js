@@ -83,7 +83,7 @@ writeOutDomeData = function(){
                     outputPage: coreContext['outputPage'],
                     outAssessmentPath: coreContext['outAssessmentPath'],
                     // mraCss: coreContext['mraCss'],
-                    mraCss: encodeURI(coreContext['mraCss']),
+                    // mraCss: encodeURI(coreContext['mraCss']),
                     helpMenuItems: coreContext['helpMenuItems'],
                     pageTitle: coreContext['pageTitle']
             };
