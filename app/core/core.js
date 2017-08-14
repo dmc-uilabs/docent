@@ -1485,6 +1485,15 @@ getImportPage = function() {
   coreContext['mraCss'] = mraCss;
 }
 
+getExportPage = function(urlData) {
+  outputTemplate = exportTemplate;
+  coreContext['exportUrl'] = urlData.exportUrl;
+  coreContext['exportError'] = urlData.exportError;
+  coreContext['outputPage'] = 'exportPage';
+  coreContext['outAssessmentPath'] = assessmentPath;
+  coreContext['mraCss'] = mraCss;
+}
+
 getDashboardPage = function() {
   outputTemplate = dashboardTemplate;
   var assessment = importAssessment(assessmentPath);

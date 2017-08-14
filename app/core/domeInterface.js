@@ -30,6 +30,7 @@ needToImportAssessment = function(inputPage, functionToCall){
       functionToCall == 'getSkippedPage' ||
       functionToCall == 'getStartPage' ||
       functionToCall == 'addAttachment' ||
+      functionToCall == 'exportAssessmentDMC' ||
       functionToCall == 'deleteAttachment'){
     return true;
   }
@@ -266,6 +267,13 @@ callDomeFunction = function(inputPage, functionToCall){
     getAvailableAssessmentsFromS3(dmcProjectId);
     return;
   }
+  if(functionToCall == 'getExportPage'){
+    var dmcProjectId = domeInputs['dmcProjectId'];
+    var path = domeInputs['inAssessmentPath'];
+    var urlData = getAssessmentLinkFromS3(dmcProjectId, path);
+    getExportPage(urlData);
+    return;
+  }
   if(functionToCall == 'saveAssessment'){
     var inPath = domeInputs['inAssessmentPath'];
     needToSaveAssessment = true;
@@ -415,6 +423,30 @@ getAvailableAssessmentsFromS3 = function(dmcProjectId){
   });
 };
 
+
+getAssessmentLinkFromS3 = function(dmcProjectId, path){
+  var AWS = require('aws-sdk');
+  AWS.config.loadFromPath('./credentials.json');
+  var s3 = new AWS.S3();
+  var key = getAssessmentKeyS3(dmcProjectId, path);
+  console.log('getAssessmentFromS3 key: ',key)
+
+  // hard-coding expiration to be 24 hours
+  var exportUrl;
+  var exportError;
+
+  s3.getSignedUrl('getObject', {Bucket:dmcBucketName, Key:key, Expires: 86400},
+    function(error,url){
+      if(error != null){
+        console.log("Failed to generate URL:"+error);
+        exportError = error;
+      } else {
+        exportUrl = url;
+      }
+  });
+
+  return {exportUrl: exportUrl, exportError: exportError}
+};
 
 attachFilesS3 = function(questionId, dmcProjectId, attachments) {
   var dateObject = new Date(Date.now());

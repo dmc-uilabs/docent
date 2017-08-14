@@ -1,0 +1,37 @@
+<header id="subheader">
+  <div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+    <ol class="breadcrumb">
+      <li class="active">Export Assessment</li>
+    </ol>
+    {{#if mraOutputs.assessment.targetLevel}}<span class="collapse-link visible-xs xs-expand-link" data-toggle="collapse" data-target="#subheader-collapseable" aria-expanded="false" aria-controls="subheader-collapseable"><span class="glyphicon glyphicon-triangle-bottom"></span></span>{{/if}}
+    </div>
+    <div class="col-sm-6 hidden-xs">
+
+    </div>
+  </div>
+  </div>
+</header>
+
+<div class="container" id="mainContent">
+
+    {{#if mraOutputs.exportUrl}}
+      <h2>Exported Assessment:</h2>
+      <p>{{mraOutputs.exportError}}</p>
+    {{else}}
+      <h2>Error Exporting Assessment</h2>
+      <p>{{mraOutputs.exportError}}</p>
+    {{/if}}
+
+	</div>
+
+  <input type='hidden' id='inputPage' value='importPage'>
+</div>
+
+
+
+
+
+
+
