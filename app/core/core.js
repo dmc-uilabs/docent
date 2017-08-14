@@ -1485,13 +1485,16 @@ getImportPage = function() {
   coreContext['mraCss'] = mraCss;
 }
 
+// this function is DMC-only
 getExportPage = function(urlData) {
+  console.log("maz getExportPage called")
   outputTemplate = exportTemplate;
   coreContext['exportUrl'] = urlData.exportUrl;
   coreContext['exportError'] = urlData.exportError;
   coreContext['outputPage'] = 'exportPage';
   coreContext['outAssessmentPath'] = assessmentPath;
   coreContext['mraCss'] = mraCss;
+  console.log("maz coreContext", coreContext)
 }
 
 getDashboardPage = function() {

@@ -85,6 +85,8 @@ writeOutDomeData = function(){
                     outAssessmentPath: coreContext['outAssessmentPath'],
                     // mraCss: coreContext['mraCss'],
                     // mraCss: encodeURI(coreContext['mraCss']),
+                    exportUrl: coreContext['exportUrl'],
+                    exportError: coreContext['exportError'],
                     helpMenuItems: coreContext['helpMenuItems'],
                     pageTitle: coreContext['pageTitle']
             };
@@ -272,7 +274,7 @@ callDomeFunction = function(inputPage, functionToCall){
     var path = domeInputs['inAssessmentPath'];
     var urlData = getAssessmentLinkFromS3(dmcProjectId, path);
     getExportPage(urlData);
-    return;
+    // return;
   }
   if(functionToCall == 'saveAssessment'){
     var inPath = domeInputs['inAssessmentPath'];
