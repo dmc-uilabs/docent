@@ -429,6 +429,8 @@ getAvailableAssessmentsFromS3 = function(dmcProjectId){
 getAssessmentLinkFromS3 = function(dmcProjectId, path){
   var AWS = require('aws-sdk');
   AWS.config.loadFromPath('./credentials.json');
+  // not using a region so the link is region-agnostic
+  AWS.config.update({region: ""});
   var s3 = new AWS.S3();
   var key = getAssessmentKeyS3(dmcProjectId, path);
   console.log('getAssessmentFromS3 key: ',key)
