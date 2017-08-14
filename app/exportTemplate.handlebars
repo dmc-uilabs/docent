@@ -18,7 +18,7 @@
 
     {{#if mraOutputs.exportUrl}}
       <h2>Exported Assessment:</h2>
-      <p>{{mraOutputs.exportUrl}}</p>
+      <p><a href={{mraOutputs.exportUrl}} download>Download {{mraOutputs.outAssessmentPath}}</a></p>
     {{/if}}
     {{#if mraOutputs.exportError}}
       <h2>Error Exporting Assessment</h2>
