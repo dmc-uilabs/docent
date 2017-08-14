@@ -37,14 +37,15 @@
     <button style='display:inline;' type='button' class='btn btn-primary' style='margin-bottom:10px' onclick='$("#functionToCall").val("getStartPage")' ng-click='run()'>Start Assessment</button>
     {{/if}}
 
+    <h3 style="margin: 30px 0px 10px;">Upload Assessment</h3>
+    <button style='float:left;' type='button' class='btn btn-primary' ng-click="uploadInputFile()" style='margin-bottom:10px'>Select File</button>
+    <button style="margin-left: 15px; max-width: 500px;" ng-show="currentInputFile.documentName" id="uploadAssessmentButton" type='button' class='btn btn-primary' onclick='$("#functionToCall").val("uploadAssessment")' ng-click="run()" style='margin-bottom:10px'>Upload &#123;&#123;currentInputFile.documentName&#125;&#125;</button>
+    <input type="hidden" id='inputFile'>
+
 	</div>
 
   <input type='hidden' id='inputPage' value='importPage'>
 </div>
-
-
-
-
 
 
 

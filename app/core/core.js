@@ -1633,7 +1633,8 @@ getNavigationPage = function() {
 }
 
 getHelpPage = function() {
-  outputTemplate = helpTemplate;
+  // outputTemplate = helpTemplate;
+  outputTemplate = importTemplate;
   coreContext['assessment'] = {};
   coreContext['helpMenuItems'] = returnHelpItems();
   coreContext['outputPage'] = 'helpPage';
