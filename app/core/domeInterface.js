@@ -269,6 +269,12 @@ callDomeFunction = function(inputPage, functionToCall){
     getAvailableAssessmentsFromS3(dmcProjectId);
     return;
   }
+  if(functionToCall == 'uploadAssessment'){
+    var dmcProjectId = domeInputs['dmcProjectId'];
+    console.log('mazrimas inputFile', domeInputs['inputFile']);
+    getAvailableAssessmentsFromS3(dmcProjectId);
+    return;
+  }
   if(functionToCall == 'getExportPage'){
     var dmcProjectId = domeInputs['dmcProjectId'];
     var path = domeInputs['inAssessmentPath'];
@@ -524,9 +530,13 @@ for(var i=0; i<inputs.length; i++){
   line = inputs[i];
   nameVal = line.split("=");
 
-  if(nameVal.length > 1){
+  if(nameVal.length === 2){
     varName = nameVal[0].trim();
     varValue = nameVal[1].trim();
+    domeInputs[varName] = varValue;
+  } else if (nameVal.length > 1) {
+    varName = nameVal.splice(0,1)[0].trim();
+    varValue = nameVal.join('=').trim();
     domeInputs[varName] = varValue;
   }
 
