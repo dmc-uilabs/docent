@@ -2,6 +2,7 @@ var startDate = new Date().toISOString();
 console.log("DOCENT START TIME******************************"+startDate+"***********************");
 var core = require('./core');
 var fs = require('fs');
+var https = require('https');
 var functionToCall;
 var varName = "";
 var varValue = "";
@@ -271,7 +272,7 @@ callDomeFunction = function(inputPage, functionToCall){
   }
   if(functionToCall == 'uploadAssessment'){
     var dmcProjectId = domeInputs['dmcProjectId'];
-    console.log('mazrimas inputFile', domeInputs['inputFile']);
+    importUploadedAssessment(domeInputs['inputFile']);
     getAvailableAssessmentsFromS3(dmcProjectId);
     return;
   }
@@ -519,8 +520,33 @@ deleteAssessmentS3 = function(dmcProjectId, assessmentPath){
   return;
 }
 
-downloadAttachmentS3 = function(dmcProjectId, path){
+getFileNameFromURL = function(url) {
+  var start = url.indexOf('sanitized')+10;
+  var params = url.indexOf('?');
+  return url.substring(start,params).replace('.mra','');
+}
 
+loadDbToMem = function(url){
+  var dbData = fs.readFileSync('./downloadedmra.mra');
+  assessmentDb = new sqlite.Database(dbData);
+  var fileName = getFileNameFromURL(url);
+  saveAssessmentToS3(domeInputs['dmcProjectId'], fileName);
+}
+
+importUploadedAssessment = function(downloadURL) {
+  var dest = "downloadedmra.mra";
+  var file = fs.createWriteStream(dest);
+  var request = https.get(downloadURL, function(response) {
+    response.pipe(file);
+    file.on('finish', function() {
+      file.close(function(){
+        loadDbToMem(downloadURL);
+      });
+    });
+  }).on('error', function(err) {
+    fs.unlink(dest);
+    console.log('error downloading file');
+  });
 }
 
 // Read in variables from DOME
