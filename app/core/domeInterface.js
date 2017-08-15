@@ -271,9 +271,9 @@ callDomeFunction = function(inputPage, functionToCall){
     return;
   }
   if(functionToCall == 'uploadAssessment'){
-    var dmcProjectId = domeInputs['dmcProjectId'];
+    // var dmcProjectId = domeInputs['dmcProjectId'];
     importUploadedAssessment(domeInputs['inputFile']);
-    getAvailableAssessmentsFromS3(dmcProjectId);
+    // getAvailableAssessmentsFromS3(dmcProjectId);
     return;
   }
   if(functionToCall == 'getExportPage'){
@@ -367,7 +367,7 @@ getAssessmentFromS3 = function(dmcProjectId, path, inputPage, functionToCall){
 /*
 * Should be called only for DMC version
 */
-saveAssessmentToS3 = function(dmcProjectId, path){
+saveAssessmentToS3 = function(dmcProjectId, path, callback){
   // Check if we have a valid path
   if(path.length == 0){
     writeOutDomeData();
@@ -388,6 +388,9 @@ saveAssessmentToS3 = function(dmcProjectId, path){
       console.log("Unable to save Assessment:"+error);
       writeOutDomeData();
     }else{
+      if (callback) {
+        callback();
+      }
       writeOutDomeData();
     }
   });
@@ -530,7 +533,9 @@ loadDbToMem = function(url){
   var dbData = fs.readFileSync('./downloadedmra.mra');
   assessmentDb = new sqlite.Database(dbData);
   var fileName = getFileNameFromURL(url);
-  saveAssessmentToS3(domeInputs['dmcProjectId'], fileName);
+  saveAssessmentToS3(domeInputs['dmcProjectId'], fileName, function() {
+    getAvailableAssessmentsFromS3(domeInputs['dmcProjectId']);
+  });
 }
 
 importUploadedAssessment = function(downloadURL) {
