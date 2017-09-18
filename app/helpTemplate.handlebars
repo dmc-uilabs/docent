@@ -34,7 +34,28 @@
   </div>
 </header>
 
+
 <div class="container" id="mainContent">
+  <div class="row" style="margin-bottom: 15px;">
+    <div class="col-xs-12" style="padding-bottom: 10px;">
+      <a class="criteria-controls filter-button collapsed" data-toggle="collapse" data-target="#collapseContact">Feedback</a>
+    </div>
+  </div>
+
+  <div class="row collapse" id="collapseContact" style="border-top: 1px solid lightgrey; padding-top: 15px; margin: 0px 0px 15px;">
+    <div class="col-xs-6">
+      <b>Elizabeth Wirrig</b>
+      <span style="font-size: .8em;"><br>AFRL/RXMS</span>
+      <span style="color: grey;"><br>elizabeth.wirrig.1@us.af.mil</span>
+    </div>
+    <div class="col-xs-6">
+      <b>Digital Manufacturing Commons | DMDII</b>
+      <span style="font-size: .8em;"><br>Docent Development Team</span>
+      <span style="color: grey;"><br>askDMC@uilabs.org</span>
+    </div>
+  </div>
+
+
   {{#each mraOutputs.helpMenuItems}}
 		<div class="faqQuestion">
 		<div style="margin-bottom: 10px;" class="collapse-link" data-toggle="collapse" data-target="#help{{@index}}" aria-expanded="false" aria-controls="help{{@index}}">{{helpTitle}}</div>
