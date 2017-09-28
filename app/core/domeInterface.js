@@ -189,7 +189,8 @@ callDomeFunction = function(inputPage, functionToCall){
                   reason:domeInputs['reason'],
                   whatAction:domeInputs['whatAction'],
                   documentation:domeInputs['documentation'],
-                  actionPerson:actionPerson
+                  actionPerson:actionPerson,
+                  functionToCall: functionToCall
                 };
     saveAnswer(answer);
   }

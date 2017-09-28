@@ -1210,6 +1210,14 @@ saveAnswer = function(answer){
     return;
   }
 
+  // This is to prevent questions being marked as "skipped" if the "skip" button
+  //  wasn't actually used
+  var ftc = answer['functionToCall'] ? answer['functionToCall'] : "getNextQuestionnairePage";
+
+  if(answer['answerValue'] == 0 && ftc != 'getNextQuestionnairePage'){
+    return;
+  }
+
   if(isQuestionIdInAssessment(answer['questionId'])){
 
     // Update existing answer here
