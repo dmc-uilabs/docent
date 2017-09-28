@@ -1214,7 +1214,7 @@ saveAnswer = function(answer){
   //  wasn't actually used
   var ftc = answer['functionToCall'] ? answer['functionToCall'] : "getNextQuestionnairePage";
 
-  if(answer['answerValue'] == 0 && ftc != 'getNextQuestionnairePage'){
+  if(answer['answerValue'] == 0 && ftc != 'getNextQuestionnairePage' && ftc != 'addAttachment'){
     return;
   }
 
