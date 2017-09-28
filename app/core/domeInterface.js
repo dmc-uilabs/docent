@@ -490,8 +490,8 @@ for(var i=0; i<inputs.length; i++){
   nameVal = line.split("=");
 
   if(nameVal.length > 1){
-    varName = nameVal[0].trim();
-    varValue = nameVal[1].trim();
+    varName = nameVal.shift().trim();
+    varValue = nameVal.join('').trim();
     domeInputs[varName] = varValue;
   }
 
