@@ -525,7 +525,8 @@ app.controller('templateCtrl', function($scope, $compile){
 										reason:reason,
 										whatAction:whatAction,
 										documentation:documentation,
-										actionPerson:actionPerson
+										actionPerson:actionPerson,
+										functionToCall: functionToCall
 									};
 			saveAnswer(answer);
 		}

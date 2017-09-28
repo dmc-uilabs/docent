@@ -86,7 +86,7 @@
         {{/each}}
     		<dt>Attachements</dt>
         {{#each attachments}}
-    		  <dd><a href="javascript:void(0)" onclick='$("#functionToCall").val("downloadAttachment");$("#attachmentId").val("{{id}}")' ng-click='run()'>Operaiton-inspection-Q2_2017.pdf</a></dd>
+    		  <dd><a href="javascript:void(0)" onclick='$("#functionToCall").val("downloadAttachment");$("#attachmentId").val("{{id}}")' ng-click='run()'>{{attachmentName}}</a></dd>
         {{/each}}
     	</dl>
     </div>

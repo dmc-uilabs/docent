@@ -1212,11 +1212,8 @@ saveAnswer = function(answer){
 
   // This is to prevent questions being marked as "skipped" if the "skip" button
   //  wasn't actually used
-  if (typeof functionToCall == 'undefined') {
-    var functionToCall = {value: 'getNextQuestionnairePage'};
-  }
+  var ftc = answer['functionToCall'] ? answer['functionToCall'] : "getNextQuestionnairePage";
 
-  var ftc = answer['functionToCall'] ? answer['functionToCall'] : functionToCall.value;
   if(answer['answerValue'] == 0 && ftc != 'getNextQuestionnairePage'){
     return;
   }
